@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/game_view_frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.ntut.killboss.HelloGameView
+        android:id="@+id/game_view_skill_gameView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right" >
+
+        <ImageButton
+            android:id="@+id/game_view_skill_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/skill_a" />
+
+        <ImageButton
+            android:id="@+id/game_view_skill_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/skill_b" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" >
+
+        <ImageButton
+            android:id="@+id/game_view_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/left" />
+
+        <ImageButton
+            android:id="@+id/game_view_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right" />
+
+    </LinearLayout>
+
+</FrameLayout>
