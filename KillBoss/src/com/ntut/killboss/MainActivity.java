@@ -1,15 +1,13 @@
 package com.ntut.killboss;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 
-public class MainActivityActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +20,7 @@ public class MainActivityActivity extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(MainActivityActivity.this, HelloGameActivity.class);
+				Intent intent = new Intent(MainActivity.this, HelloGameActivity.class);
 				startActivity(intent);
 				
 			}});

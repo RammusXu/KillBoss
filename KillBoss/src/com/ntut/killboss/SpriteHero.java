@@ -2,8 +2,8 @@ package com.ntut.killboss;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.util.Log;
 
 import com.ntut.killboss.object.Sprite;
@@ -13,19 +13,18 @@ public class SpriteHero extends Sprite {
 	HelloGameView _gameView;
 	private boolean _direction = true;
 
-	public SpriteHero(HelloGameView gameView, Bitmap bitmap) {
+	public SpriteHero(HelloGameView gameView, Bitmap bitmap, Point screenSize) {
 		_gameView = gameView;
 		setBitmap(bitmap, 1, 1);
 
+		_y = screenSize.y - _height - Constant.SPACE_TO_BOTTOM;
 		Log.e(TAG, "_y = " + _y);
-		Log.e(TAG, "gameView.getHeight() = " + _gameView.getHeight());
-		Log.e(TAG, "_height" + _height);
-		_y = _gameView.getHeight() - _height;
-
-		Log.e(TAG, "_y = " + _y);
+		Log.e(TAG, "_screenWidth = " + HelloGameView._screenSize.x);
+		// Log.e(TAG, "_screenHeight = " + HelloGameActivity._screenHeight);
 
 	}
 
+	//	TODO
 	public void move(int x) {
 		if (x > 0) {
 			_direction = true;
@@ -33,7 +32,9 @@ public class SpriteHero extends Sprite {
 			_direction = false;
 		}
 
-		_x += x;
+		if (!checkObjectOutScreen(_x + x, _y)) {
+			_x += x;
+		}
 	}
 
 	private Rect src = new Rect();

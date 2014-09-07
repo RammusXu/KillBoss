@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.os.Handler;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -20,18 +20,22 @@ public class HelloGameView extends SurfaceView {
 	private SurfaceHolder _holder;
 	private HelloGameThread _gameThread;
 
-	//	Sprite
+	// Sprite
 	private ArrayList<Sprite3x4> sprites;
 	private List<HelloGameTempSprite> temps = new ArrayList<HelloGameTempSprite>();
 	private Bitmap bmpBlood;
 	private SpriteHero _hero;
 
+	//
+	public static Point _screenSize;
+
 	public HelloGameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-
 		_gameThread = new HelloGameThread(this);
-		
-		_hero = new SpriteHero(HelloGameView.this, createSprite(R.drawable.hero111));
+
+		_screenSize = FunctionUtilities.getDisplaySize(context);
+		_hero = new SpriteHero(HelloGameView.this,
+				createSprite(R.drawable.hero111), _screenSize);
 
 		// this.bmpBlood = BitmapFactory.decodeResource(getResources(),
 		// R.drawable.blood);
@@ -90,28 +94,28 @@ public class HelloGameView extends SurfaceView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		
-//		synchronized (getHolder()) {
-//			for (int i = 0; i < sprites.size(); i++) {
-//				Sprite3x4 s = sprites.get(i);
-//				if (s.isTouched(event.getX(), event.getY())) {
-//					temps.add(new HelloGameTempSprite(temps, this,
-//							event.getX(), event.getY(), bmpBlood));
-//					sprites.remove(i);
-//
-//					if (sprites.size() == 1) {
-//						new Handler().postDelayed(new Runnable() {
-//							@Override
-//							public void run() {
-//								resetAllSprites();
-//							}
-//						}, 1000);
-//					}
-//
-//					break;
-//				}
-//			}
-//		}
+
+		// synchronized (getHolder()) {
+		// for (int i = 0; i < sprites.size(); i++) {
+		// Sprite3x4 s = sprites.get(i);
+		// if (s.isTouched(event.getX(), event.getY())) {
+		// temps.add(new HelloGameTempSprite(temps, this,
+		// event.getX(), event.getY(), bmpBlood));
+		// sprites.remove(i);
+		//
+		// if (sprites.size() == 1) {
+		// new Handler().postDelayed(new Runnable() {
+		// @Override
+		// public void run() {
+		// resetAllSprites();
+		// }
+		// }, 1000);
+		// }
+		//
+		// break;
+		// }
+		// }
+		// }
 
 		return super.onTouchEvent(event);
 	}
@@ -139,8 +143,9 @@ public class HelloGameView extends SurfaceView {
 		for (int i = temps.size() - 1; i >= 0; i--) {
 			temps.get(i).onDraw(canvas);
 		}
-		
-		_hero.onDraw(canvas);;
+
+		_hero.onDraw(canvas);
+		;
 
 		super.onDraw(canvas);
 	}

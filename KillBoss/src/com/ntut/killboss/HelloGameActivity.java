@@ -15,32 +15,34 @@ import android.widget.ImageButton;
 public class HelloGameActivity extends Activity {
 	private static final int MOVE_HERO_SPEED = 5;
 	HelloGameView _gameview;
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.game_view);
-		
+
 		_gameview = (HelloGameView) findViewById(R.id.game_view_skill_gameView);
 		ImageButton ibRight = (ImageButton) findViewById(R.id.game_view_right);
-		ibRight.setOnTouchListener(new ImageButton.OnTouchListener(){
+		ibRight.setOnTouchListener(new ImageButton.OnTouchListener() {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				_gameview.moveHero(MOVE_HERO_SPEED);
 				return false;
-			}});
-		
+			}
+		});
+
 		ImageButton ibLeft = (ImageButton) findViewById(R.id.game_view_left);
-		ibLeft.setOnTouchListener(new ImageButton.OnTouchListener(){
+		ibLeft.setOnTouchListener(new ImageButton.OnTouchListener() {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				_gameview.moveHero(-MOVE_HERO_SPEED);
 				return false;
-			}});
+			}
+		});
+
 	}
 
 	@Override
