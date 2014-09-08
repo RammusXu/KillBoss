@@ -1,15 +1,16 @@
-package com.ntut.killboss;
+package com.ntut.killboss.core;
+
+import com.ntut.killboss.R;
+import com.ntut.killboss.R.id;
+import com.ntut.killboss.R.layout;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 public class HelloGameActivity extends Activity {
@@ -43,6 +44,25 @@ public class HelloGameActivity extends Activity {
 			}
 		});
 
+		ImageButton ibSkillA = (ImageButton) findViewById(R.id.game_view_skill_a);
+		ibSkillA.setOnClickListener(new ImageButton.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				_gameview.shotSkillA(1);
+			}
+
+		});
+
+		ImageButton ibSkillB = (ImageButton) findViewById(R.id.game_view_skill_b);
+		ibSkillB.setOnClickListener(new ImageButton.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+			}
+
+		});
 	}
 
 	@Override

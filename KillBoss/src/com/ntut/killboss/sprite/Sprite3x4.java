@@ -1,16 +1,14 @@
-package com.ntut.killboss;
+package com.ntut.killboss.sprite;
 
 import java.util.Random;
-
-import com.ntut.killboss.object.Sprite;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.util.Log;
+
+import com.ntut.killboss.core.HelloGameView;
 
 public class Sprite3x4 extends Sprite {
-	private HelloGameView _gameView;
 
 	private int[] DIRECTION_TO_ANIMATION_MAP = { 3, 1, 0, 2 };
 	private static final int MAX_SPEED = 5;
@@ -20,7 +18,6 @@ public class Sprite3x4 extends Sprite {
 	private int intROWs = 4;
 	private int intCOLUMNs = 3;
 	private int currentFrame = 0;
-	private int flagDirection = 1;
 
 	public Sprite3x4(HelloGameView gameView, Bitmap bitmap) {
 		this._gameView = gameView;
@@ -46,11 +43,6 @@ public class Sprite3x4 extends Sprite {
 
 		currentFrame = ++currentFrame % intCOLUMNs;
 
-		if (_speedX > 0) {
-			flagDirection = 2;
-		} else {
-			flagDirection = 1;
-		}
 	}
 
 	public boolean isTouched(float x2, float y2) {

@@ -1,19 +1,27 @@
-package com.ntut.killboss;
+package com.ntut.killboss.core;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import com.ntut.killboss.FunctionUtilities;
+import com.ntut.killboss.R;
+import com.ntut.killboss.R.drawable;
+import com.ntut.killboss.sprite.AnimationReduceHP;
+import com.ntut.killboss.sprite.Sprite3x4;
+import com.ntut.killboss.sprite.SpriteBoss;
+import com.ntut.killboss.sprite.SpriteHero;
 
 public class HelloGameView extends SurfaceView {
 	protected static final String TAG = "HelloGameView";
@@ -22,33 +30,33 @@ public class HelloGameView extends SurfaceView {
 
 	// Sprite
 	private ArrayList<Sprite3x4> sprites;
-	private List<HelloGameTempSprite> temps = new ArrayList<HelloGameTempSprite>();
+	private List<AnimationReduceHP> temps = new ArrayList<AnimationReduceHP>();
 	private Bitmap bmpBlood;
 	private SpriteHero _hero;
+	private SpriteBoss _boss;
 
-	//
+	// Global Variables
 	public static Point _screenSize;
 
 	public HelloGameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		_gameThread = new HelloGameThread(this);
 
+		// Init _screenSize
 		_screenSize = FunctionUtilities.getDisplaySize(context);
-		_hero = new SpriteHero(HelloGameView.this,
-				createSprite(R.drawable.hero111), _screenSize);
 
-		// this.bmpBlood = BitmapFactory.decodeResource(getResources(),
-		// R.drawable.blood);
-		//
-		sprites = new ArrayList<Sprite3x4>();
-		sprites.add(new Sprite3x4(HelloGameView.this,
-				createSprite(R.drawable.sprite)));
-		sprites.add(new Sprite3x4(HelloGameView.this,
-				createSprite(R.drawable.sprite2)));
-		sprites.add(new Sprite3x4(HelloGameView.this,
-				createSprite(R.drawable.sprite3)));
-		sprites.add(new Sprite3x4(HelloGameView.this,
-				createSprite(R.drawable.sprite4)));
+		_boss = new SpriteBoss(HelloGameView.this,
+				FunctionUtilities.createBitmap(getResources(),
+						R.drawable.boss111));
+
+		_hero = new SpriteHero(HelloGameView.this,
+				FunctionUtilities.createBitmap(getResources(),
+						R.drawable.hero111));
+
+		bmpBlood = FunctionUtilities.createBitmap(getResources(),
+				R.drawable.blood);
+
+		resetAllSprites();
 
 		_holder = getHolder();
 		_holder.addCallback(new SurfaceHolder.Callback() {
@@ -87,11 +95,6 @@ public class HelloGameView extends SurfaceView {
 
 	}
 
-	private Bitmap createSprite(int resource) {
-		Bitmap bmp = BitmapFactory.decodeResource(getResources(), resource);
-		return bmp;
-	}
-
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 
@@ -122,14 +125,14 @@ public class HelloGameView extends SurfaceView {
 
 	private void resetAllSprites() {
 		sprites = new ArrayList<Sprite3x4>();
-		sprites.add(new Sprite3x4(HelloGameView.this,
-				createSprite(R.drawable.sprite)));
-		sprites.add(new Sprite3x4(HelloGameView.this,
-				createSprite(R.drawable.sprite2)));
-		sprites.add(new Sprite3x4(HelloGameView.this,
-				createSprite(R.drawable.sprite3)));
-		sprites.add(new Sprite3x4(HelloGameView.this,
-				createSprite(R.drawable.sprite4)));
+		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
+				.createBitmap(getResources(), R.drawable.sprite)));
+		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
+				.createBitmap(getResources(), R.drawable.sprite2)));
+		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
+				.createBitmap(getResources(), R.drawable.sprite3)));
+		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
+				.createBitmap(getResources(), R.drawable.sprite4)));
 	}
 
 	@Override
@@ -140,18 +143,35 @@ public class HelloGameView extends SurfaceView {
 			s.onDraw(canvas);
 		}
 
+		_boss.onDraw(canvas);
+		_hero.onDraw(canvas);
+
 		for (int i = temps.size() - 1; i >= 0; i--) {
 			temps.get(i).onDraw(canvas);
 		}
 
-		_hero.onDraw(canvas);
-		;
+		// Paint paint = new Paint();
+		// paint.setTextSize(48);
+		// paint.setColor(Color.RED);
+		// canvas.drawText("" + -5, 100, 100, paint);
 
 		super.onDraw(canvas);
 	}
 
 	public void moveHero(int moveHeroSpeed) {
 		_hero.move(moveHeroSpeed);
+	}
+
+	public void shotSkillA(int skillID) {
+		_hero.reduceHP(1);
+		hitHero(-1);
+	}
+
+	private void hitHero(int reduceHP) {
+
+		AnimationReduceHP temp = new AnimationReduceHP(HelloGameView.this,
+				temps, _hero.get_x(), _hero.get_y(), bmpBlood, reduceHP);
+		temps.add(temp);
 	}
 
 }

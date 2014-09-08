@@ -1,4 +1,4 @@
-package com.ntut.killboss;
+package com.ntut.killboss.core;
 
 import android.graphics.Canvas;
 import android.util.Log;

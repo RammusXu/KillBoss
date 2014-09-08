@@ -1,5 +1,7 @@
 package com.ntut.killboss;
 
+import com.ntut.killboss.core.HelloGameActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,24 +16,27 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main_activity);
-		
+
 		ImageButton ibStart = (ImageButton) findViewById(R.id.main_activity_start);
-		ibStart.setOnClickListener(new ImageButton.OnClickListener(){
+		ibStart.setOnClickListener(new ImageButton.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(MainActivity.this, HelloGameActivity.class);
+				Intent intent = new Intent(MainActivity.this,
+						HelloGameActivity.class);
 				startActivity(intent);
-				
-			}});
-		
+
+			}
+		});
+
 		ImageButton ibSetting = (ImageButton) findViewById(R.id.main_activity_setting);
-		ibSetting.setOnClickListener(new ImageButton.OnClickListener(){
+		ibSetting.setOnClickListener(new ImageButton.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-			}});
+
+			}
+		});
 	}
 }
