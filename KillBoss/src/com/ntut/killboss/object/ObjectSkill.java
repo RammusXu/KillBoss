@@ -25,7 +25,7 @@ public class ObjectSkill {
 	private Paint paint = new Paint();
 
 	public ObjectSkill(List<ObjectSkill> objectSkills, Bitmap bitmap, float x, float y) {
-		//TEST
+		//TEST 2
 		_x = Math.min(Math.max(x - bmp.getWidth() / 2, 0),
 				HelloGameView._screenSize.x - bmp.getWidth());
 		_y = Math.min(Math.max(y - bmp.getHeight() / 2, 0),
