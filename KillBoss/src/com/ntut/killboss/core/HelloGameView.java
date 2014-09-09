@@ -16,6 +16,7 @@ import android.view.SurfaceView;
 
 import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.R;
+import com.ntut.killboss.SoundEffect;
 import com.ntut.killboss.object.ObjectSkill;
 import com.ntut.killboss.sprite.AnimationReduceHP;
 import com.ntut.killboss.sprite.Sprite3x4;
@@ -30,7 +31,7 @@ public class HelloGameView extends SurfaceView {
 	// Sprite
 	private ArrayList<Sprite3x4> sprites;
 	private List<AnimationReduceHP> temps = new ArrayList<AnimationReduceHP>();
-	private List<ObjectSkill> objectSkills = new ArrayList<ObjectSkill>();
+	private List<ObjectSkill> _objectSkills = new ArrayList<ObjectSkill>();
 	private Bitmap bmpBlood;
 	private SpriteHero _hero;
 	private SpriteBoss _boss;
@@ -150,11 +151,6 @@ public class HelloGameView extends SurfaceView {
 			temps.get(i).onDraw(canvas);
 		}
 
-		// Paint paint = new Paint();
-		// paint.setTextSize(48);
-		// paint.setColor(Color.RED);
-		// canvas.drawText("" + -5, 100, 100, paint);
-
 		super.onDraw(canvas);
 	}
 
@@ -163,12 +159,18 @@ public class HelloGameView extends SurfaceView {
 	}
 
 	public void shotSkillA(int skillID) {
-//		Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
-//				R.drawable.blood);
-//		ObjectSkill temp = new ObjectSkill(objectSkills, bitmap, _hero.get_x(),
-//				_hero.get_y());
+		// Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
+		// R.drawable.blood);
+		// ObjectSkill temp = new ObjectSkill(_objectSkills, bmpBlood,
+		// _hero.get_x(),
+		// _hero.get_y());
+		// _objectSkills.add(temp);
 		_hero.reduceHP(1);
 		hitHero(-1);
+	}
+
+	public void shotSkillB(int skillID) {
+		new SoundEffect(getContext(), R.raw.jump);
 	}
 
 	private void hitHero(int reduceHP) {

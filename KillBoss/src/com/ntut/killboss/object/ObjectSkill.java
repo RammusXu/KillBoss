@@ -26,11 +26,16 @@ public class ObjectSkill {
 
 	public ObjectSkill(List<ObjectSkill> objectSkills, Bitmap bitmap, float x, float y) {
 		//TEST   5
+		//TEST 2
+		//TEST 2
+		//TEST 2
 		_x = Math.min(Math.max(x - bmp.getWidth() / 2, 0),
 				HelloGameView._screenSize.x - bmp.getWidth());
 		_y = Math.min(Math.max(y - bmp.getHeight() / 2, 0),
 				HelloGameView._screenSize.y - bmp.getHeight());
 		_objectSkills = objectSkills;
+		
+		
 	}
 
 	private void update() {

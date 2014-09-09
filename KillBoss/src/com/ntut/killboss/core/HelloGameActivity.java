@@ -59,7 +59,7 @@ public class HelloGameActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
+				_gameview.shotSkillB(1);
 			}
 
 		});
