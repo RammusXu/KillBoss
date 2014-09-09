@@ -7,7 +7,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Point;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -17,7 +16,7 @@ import android.view.SurfaceView;
 
 import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.R;
-import com.ntut.killboss.R.drawable;
+import com.ntut.killboss.object.ObjectSkill;
 import com.ntut.killboss.sprite.AnimationReduceHP;
 import com.ntut.killboss.sprite.Sprite3x4;
 import com.ntut.killboss.sprite.SpriteBoss;
@@ -31,6 +30,7 @@ public class HelloGameView extends SurfaceView {
 	// Sprite
 	private ArrayList<Sprite3x4> sprites;
 	private List<AnimationReduceHP> temps = new ArrayList<AnimationReduceHP>();
+	private List<ObjectSkill> objectSkills = new ArrayList<ObjectSkill>();
 	private Bitmap bmpBlood;
 	private SpriteHero _hero;
 	private SpriteBoss _boss;
@@ -163,6 +163,10 @@ public class HelloGameView extends SurfaceView {
 	}
 
 	public void shotSkillA(int skillID) {
+//		Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
+//				R.drawable.blood);
+//		ObjectSkill temp = new ObjectSkill(objectSkills, bitmap, _hero.get_x(),
+//				_hero.get_y());
 		_hero.reduceHP(1);
 		hitHero(-1);
 	}

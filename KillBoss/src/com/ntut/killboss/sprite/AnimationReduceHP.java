@@ -2,16 +2,14 @@ package com.ntut.killboss.sprite;
 
 import java.util.List;
 
-import com.ntut.killboss.R;
-import com.ntut.killboss.SoundEffect;
-import com.ntut.killboss.R.raw;
-import com.ntut.killboss.core.HelloGameView;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
+
+import com.ntut.killboss.R;
+import com.ntut.killboss.SoundEffect;
+import com.ntut.killboss.core.HelloGameView;
 
 public class AnimationReduceHP {
 	private List<AnimationReduceHP> temps;

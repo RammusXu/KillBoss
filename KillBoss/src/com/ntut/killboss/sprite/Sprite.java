@@ -1,16 +1,13 @@
 package com.ntut.killboss.sprite;
 
-import com.ntut.killboss.FunctionUtilities;
-import com.ntut.killboss.R;
-import com.ntut.killboss.core.HelloGameView;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.util.Log;
+
+import com.ntut.killboss.core.HelloGameView;
 
 public abstract class Sprite {
 	private static final String TAG = "Sprite";

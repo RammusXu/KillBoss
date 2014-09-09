@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="HelloGameActivity"
+            android:name=".core.HelloGameActivity"
             android:screenOrientation="landscape" >
         </activity>
     </application>
