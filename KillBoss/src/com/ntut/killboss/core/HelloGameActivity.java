@@ -15,7 +15,7 @@ import android.widget.ImageButton;
 
 public class HelloGameActivity extends Activity {
 	private static final int MOVE_HERO_SPEED = 5;
-	HelloGameView _gameview;
+	GameView _gameview;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class HelloGameActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.game_view);
 
-		_gameview = (HelloGameView) findViewById(R.id.game_view_skill_gameView);
+		_gameview = (GameView) findViewById(R.id.game_view_skill_gameView);
 		ImageButton ibRight = (ImageButton) findViewById(R.id.game_view_right);
 		ibRight.setOnTouchListener(new ImageButton.OnTouchListener() {
 

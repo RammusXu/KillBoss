@@ -6,16 +6,16 @@ import android.graphics.Rect;
 import android.util.Log;
 
 import com.ntut.killboss.Constant;
-import com.ntut.killboss.core.HelloGameView;
+import com.ntut.killboss.core.GameView;
 
 public class SpriteHero extends Sprite {
 	private static final String TAG = "SpriteHero";
 
-	public SpriteHero(HelloGameView gameView, Bitmap bitmap) {
+	public SpriteHero(GameView gameView, Bitmap bitmap) {
 		_gameView = gameView;
 		setBitmap(bitmap, 1, 1);
 
-		_y = HelloGameView._screenSize.y - _height - Constant.SPACE_TO_BOTTOM;
+		_y = GameView._screenSize.y - _height - Constant.SPACE_TO_BOTTOM;
 
 	}
 

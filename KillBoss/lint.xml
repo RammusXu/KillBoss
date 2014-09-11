@@ -4,6 +4,7 @@
     <issue id="WrongCall">
         <ignore path="src/com/ntut/killboss/HelloGameThread.java" />
         <ignore path="src/com/ntut/killboss/HelloGameView.java" />
+        <ignore path="src/com/ntut/killboss/core/GameView.java" />
         <ignore path="src/com/ntut/killboss/core/HelloGameView.java" />
     </issue>
 </lint>

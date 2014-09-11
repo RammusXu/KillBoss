@@ -9,7 +9,7 @@ import android.graphics.Paint;
 
 import com.ntut.killboss.R;
 import com.ntut.killboss.SoundEffect;
-import com.ntut.killboss.core.HelloGameView;
+import com.ntut.killboss.core.GameView;
 
 public class AnimationReduceHP {
 	private List<AnimationReduceHP> temps;
@@ -21,12 +21,12 @@ public class AnimationReduceHP {
 	private int reduceHP = 1;
 	private Paint paint = new Paint();
 
-	public AnimationReduceHP(HelloGameView gameView, List<AnimationReduceHP> temps, float x, float y, Bitmap bmp, int reduceHP) {
+	public AnimationReduceHP(GameView gameView, List<AnimationReduceHP> temps, float x, float y, Bitmap bmp, int reduceHP) {
 		this.temps = temps;
 		this.x = Math.min(Math.max(x - bmp.getWidth() / 2, 0),
-				HelloGameView._screenSize.x - bmp.getWidth());
+				GameView._screenSize.x - bmp.getWidth());
 		this.y = Math.min(Math.max(y - bmp.getHeight() / 2, 0),
-				HelloGameView._screenSize.y - bmp.getHeight());
+				GameView._screenSize.y - bmp.getHeight());
 //		this.bmp = bmp;
 		this.reduceHP = reduceHP;
 

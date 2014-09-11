@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.ntut.killboss.core.HelloGameView
+    <com.ntut.killboss.core.GameView
         android:id="@+id/game_view_skill_gameView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

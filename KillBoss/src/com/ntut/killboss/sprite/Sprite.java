@@ -7,13 +7,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-import com.ntut.killboss.core.HelloGameView;
+import com.ntut.killboss.core.GameView;
 
 public abstract class Sprite {
 	private static final String TAG = "Sprite";
 	// UI
 	protected Context _context;
-	protected HelloGameView _gameView;
+	protected GameView _gameView;
 	protected Rect dst = new Rect();
 	protected Paint paint = new Paint();
 
@@ -78,8 +78,8 @@ public abstract class Sprite {
 		}
 
 		int tempX = _x + x;
-		if (tempX > (HelloGameView._screenSize.x - _width)) {
-			_x = HelloGameView._screenSize.x - _width;
+		if (tempX > (GameView._screenSize.x - _width)) {
+			_x = GameView._screenSize.x - _width;
 		} else if (tempX < 0) {
 			_x = 0;
 		} else {
@@ -89,10 +89,10 @@ public abstract class Sprite {
 
 	public Boolean checkObjectOutScreen(int nextX, int nextY) {
 
-		if (nextX > (HelloGameView._screenSize.x - _width) || _x < 0) {
+		if (nextX > (GameView._screenSize.x - _width) || _x < 0) {
 			return true;
 		}
-		if (nextY > (HelloGameView._screenSize.y - this._height)
+		if (nextY > (GameView._screenSize.y - this._height)
 				|| _y + _speedY <= 0) {
 			return true;
 		}

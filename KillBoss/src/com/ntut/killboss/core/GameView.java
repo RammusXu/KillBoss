@@ -23,8 +23,8 @@ import com.ntut.killboss.sprite.Sprite3x4;
 import com.ntut.killboss.sprite.SpriteBoss;
 import com.ntut.killboss.sprite.SpriteHero;
 
-public class HelloGameView extends SurfaceView {
-	protected static final String TAG = "HelloGameView";
+public class GameView extends SurfaceView {
+	protected static final String TAG = "GameView";
 	private SurfaceHolder _holder;
 	private HelloGameThread _gameThread;
 
@@ -39,18 +39,18 @@ public class HelloGameView extends SurfaceView {
 	// Global Variables
 	public static Point _screenSize;
 
-	public HelloGameView(Context context, AttributeSet attrs) {
+	public GameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		_gameThread = new HelloGameThread(this);
 
 		// Init _screenSize
 		_screenSize = FunctionUtilities.getDisplaySize(context);
 
-		_boss = new SpriteBoss(HelloGameView.this,
+		_boss = new SpriteBoss(GameView.this,
 				FunctionUtilities.createBitmap(getResources(),
 						R.drawable.boss111));
 
-		_hero = new SpriteHero(HelloGameView.this,
+		_hero = new SpriteHero(GameView.this,
 				FunctionUtilities.createBitmap(getResources(),
 						R.drawable.hero111));
 
@@ -126,13 +126,13 @@ public class HelloGameView extends SurfaceView {
 
 	private void resetAllSprites() {
 		sprites = new ArrayList<Sprite3x4>();
-		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
+		sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
 				.createBitmap(getResources(), R.drawable.sprite)));
-		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
+		sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
 				.createBitmap(getResources(), R.drawable.sprite2)));
-		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
+		sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
 				.createBitmap(getResources(), R.drawable.sprite3)));
-		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
+		sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
 				.createBitmap(getResources(), R.drawable.sprite4)));
 	}
 
@@ -175,7 +175,7 @@ public class HelloGameView extends SurfaceView {
 
 	private void hitHero(int reduceHP) {
 
-		AnimationReduceHP temp = new AnimationReduceHP(HelloGameView.this,
+		AnimationReduceHP temp = new AnimationReduceHP(GameView.this,
 				temps, _hero.get_x(), _hero.get_y(), bmpBlood, reduceHP);
 		temps.add(temp);
 	}
