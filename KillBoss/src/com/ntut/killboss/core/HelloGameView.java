@@ -36,7 +36,7 @@ public class HelloGameView extends SurfaceView {
 	private SpriteBoss _boss;
 
 	// Global Variables
-	public static Point _screenSize;
+	public static Point _screenSize;	//	HelloGameView._screenSize.x
 
 	public HelloGameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -51,7 +51,7 @@ public class HelloGameView extends SurfaceView {
 
 		_hero = new SpriteHero(HelloGameView.this,
 				FunctionUtilities.createBitmap(getResources(),
-						R.drawable.hero111));
+						R.drawable.pichero1));
 
 		bmpBlood = FunctionUtilities.createBitmap(getResources(),
 				R.drawable.blood);
@@ -133,18 +133,23 @@ public class HelloGameView extends SurfaceView {
 				.createBitmap(getResources(), R.drawable.sprite3)));
 		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
 				.createBitmap(getResources(), R.drawable.sprite4)));
+				
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		canvas.drawColor(Color.WHITE);
+		// BackGround
 
 		for (Sprite3x4 s : sprites) {
 			s.onDraw(canvas);
 		}
 
+		//	Hero
 		_boss.onDraw(canvas);
 		_hero.onDraw(canvas);
+		
+		//	Object
 
 		for (int i = temps.size() - 1; i >= 0; i--) {
 			temps.get(i).onDraw(canvas);
