@@ -50,7 +50,7 @@ public class GameView extends SurfaceView {
 				getResources(), R.drawable.boss111));
 
 		_hero = new SpriteHero(GameView.this, FunctionUtilities.createBitmap(
-				getResources(), R.drawable.hero111));
+				getResources(), R.drawable.hero1111));
 
 		bmpBlood = FunctionUtilities.createBitmap(getResources(),
 				R.drawable.blood);

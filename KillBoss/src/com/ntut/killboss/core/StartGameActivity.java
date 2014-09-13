@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -23,16 +24,21 @@ public class StartGameActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.game_view);
 
-		//	CLASS
+		// CLASS
 		_equipmentSetting = new EquipmentSetting();
-		
-		//	VIEW
+
+		// VIEW
 		_gameview = (GameView) findViewById(R.id.game_view_skill_gameView);
 		ImageButton ibRight = (ImageButton) findViewById(R.id.game_view_right);
 		ibRight.setOnTouchListener(new ImageButton.OnTouchListener() {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					Log.d("TouchTest", "Touch down");
+				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+					Log.d("TouchTest", "Touch up");
+				}
 				_gameview.moveHero(MOVE_HERO_SPEED);
 				return false;
 			}
@@ -43,6 +49,11 @@ public class StartGameActivity extends Activity {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					Log.d("TouchTest", "Touch down");
+				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+					Log.d("TouchTest", "Touch up");
+				}
 				_gameview.moveHero(-MOVE_HERO_SPEED);
 				return false;
 			}

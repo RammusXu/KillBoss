@@ -62,7 +62,10 @@ public class ObjectSkill {
 		boolean b2 = _x < boss.get_x() + boss.get_width();
 		boolean b3 = _y > boss.get_y();
 		boolean b4 = _y < boss.get_y() + boss.get_height();
-		if (b1 && b2 && b3 && b4) {
+		
+		
+		
+		if ((b1 && b2 && b3 && b4) ||(false)) {
 			_objectSkills.remove(this);
 			boss.reduceHP(_damage);
 			GameView._temps.add(new AnimationReduceHP(gameView, GameView._temps, boss.get_x(), boss.get_y(), bmp, -_damage));
