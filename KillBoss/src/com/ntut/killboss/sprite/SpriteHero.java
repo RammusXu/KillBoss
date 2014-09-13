@@ -37,14 +37,14 @@ public class SpriteHero extends Sprite {
 		}
 		else if (currentFrameWidth == 1 && currentFrameHeight == 0)
 		{
-			currentFrameWidth = 4;
-			currentFrameHeight = 2;
+			currentFrameWidth = 1;
+			currentFrameHeight = 1;
 		}
-		/*else if (currentFrameWidth == 1 && currentFrameHeight == 1)
+		else if (currentFrameWidth == 1 && currentFrameHeight == 1)
 		{
-			currentFrameWidth = 4;
-			currentFrameHeight = 2;
-		}*/
+			currentFrameWidth = 1;
+			currentFrameHeight = 0;
+		}
 		
 		
 		int tempX = _x + x;
@@ -56,6 +56,11 @@ public class SpriteHero extends Sprite {
 			_x = tempX;
 		}
 	}
+	public void resetImage(){
+		currentFrameWidth = 4;
+		currentFrameHeight = 2;
+	}
+	
 
 	@Override
 	public void onDraw(Canvas canvas) {

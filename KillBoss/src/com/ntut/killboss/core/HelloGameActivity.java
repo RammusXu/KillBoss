@@ -43,6 +43,7 @@ public class HelloGameActivity extends Activity {
 				return false;
 			}
 		});
+	
 
 		ImageButton ibSkillA = (ImageButton) findViewById(R.id.game_view_skill_a);
 		ibSkillA.setOnClickListener(new ImageButton.OnClickListener() {
