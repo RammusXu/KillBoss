@@ -12,6 +12,8 @@ import com.ntut.killboss.SoundEffect;
 import com.ntut.killboss.core.GameView;
 
 public class AnimationReduceHP {
+	private static final int SPACE_TO_BORDER = 48;
+
 	private List<AnimationReduceHP> temps;
 	private float x;
 	private float y;
@@ -21,13 +23,12 @@ public class AnimationReduceHP {
 	private int reduceHP = 1;
 	private Paint paint = new Paint();
 
-	public AnimationReduceHP(GameView gameView, List<AnimationReduceHP> temps, float x, float y, Bitmap bmp, int reduceHP) {
+	public AnimationReduceHP(GameView gameView, List<AnimationReduceHP> temps,
+			float x, float y, Bitmap bmp, int reduceHP) {
 		this.temps = temps;
-		this.x = Math.min(Math.max(x - bmp.getWidth() / 2, 0),
-				GameView._screenSize.x - bmp.getWidth());
-		this.y = Math.min(Math.max(y - bmp.getHeight() / 2, 0),
-				GameView._screenSize.y - bmp.getHeight());
-//		this.bmp = bmp;
+		this.x = Math.min(x, GameView._screenSize.x - SPACE_TO_BORDER);
+		this.y = Math.min(y, GameView._screenSize.y - SPACE_TO_BORDER);
+		// this.bmp = bmp;
 		this.reduceHP = reduceHP;
 
 		new SoundEffect(gameView.getContext(), R.raw.skill_a);

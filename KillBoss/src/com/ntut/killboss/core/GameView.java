@@ -26,11 +26,11 @@ import com.ntut.killboss.sprite.SpriteHero;
 public class GameView extends SurfaceView {
 	protected static final String TAG = "GameView";
 	private SurfaceHolder _holder;
-	private HelloGameThread _gameThread;
+	private GameThread _gameThread;
 
 	// Sprite
 	private ArrayList<Sprite3x4> sprites;
-	private List<AnimationReduceHP> temps = new ArrayList<AnimationReduceHP>();
+	public static List<AnimationReduceHP> _temps = new ArrayList<AnimationReduceHP>();
 	private List<ObjectSkill> _objectSkills = new ArrayList<ObjectSkill>();
 	private Bitmap bmpBlood;
 	private SpriteHero _hero;
@@ -41,7 +41,7 @@ public class GameView extends SurfaceView {
 
 	public GameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		_gameThread = new HelloGameThread(this);
+		_gameThread = new GameThread(this);
 
 		// Init _screenSize
 		_screenSize = FunctionUtilities.getDisplaySize(context);
@@ -145,15 +145,15 @@ public class GameView extends SurfaceView {
 		_boss.onDraw(canvas);
 		_hero.onDraw(canvas);
 
-		for (int i = temps.size() - 1; i >= 0; i--) {
-			temps.get(i).onDraw(canvas);
+		for (int i = _temps.size() - 1; i >= 0; i--) {
+			_temps.get(i).onDraw(canvas);
 		}
 
-		//TODO
-//		for (int i = _objectSkills.size() - 1; i >= 0; i--) {
-//			_objectSkills.get(i).onDraw(canvas);
-//		}
-		
+		// TODO
+		for (int i = _objectSkills.size() - 1; i >= 0; i--) {
+			_objectSkills.get(i).onDraw(canvas);
+			_objectSkills.get(i).hitBoss(_boss, GameView.this);
+		}
 
 		super.onDraw(canvas);
 	}
@@ -178,9 +178,9 @@ public class GameView extends SurfaceView {
 
 	private void hitHero(int reduceHP) {
 
-		AnimationReduceHP temp = new AnimationReduceHP(GameView.this, temps,
+		AnimationReduceHP temp = new AnimationReduceHP(GameView.this, _temps,
 				_hero.get_x(), _hero.get_y(), bmpBlood, reduceHP);
-		temps.add(temp);
+		_temps.add(temp);
 	}
 
 }

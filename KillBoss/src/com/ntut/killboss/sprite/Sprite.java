@@ -43,6 +43,14 @@ public abstract class Sprite {
 		return _y;
 	}
 
+	public int get_width() {
+		return _width;
+	}
+
+	public int get_height() {
+		return _height;
+	}
+
 	private static final int HP_HEIGHT = 20;
 
 	protected void drawHP(Canvas canvas) {
@@ -68,7 +76,6 @@ public abstract class Sprite {
 	public void reduceHP(int hp) {
 		_hp -= hp;
 	}
-
 
 	public void move(int x) {
 		if (x > 0) {
