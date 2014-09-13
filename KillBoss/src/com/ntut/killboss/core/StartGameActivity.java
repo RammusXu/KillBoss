@@ -38,6 +38,7 @@ public class StartGameActivity extends Activity {
 					Log.d("TouchTest", "Touch down");
 				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 					Log.d("TouchTest", "Touch up");
+					//TODO write something here
 				}
 				_gameview.moveHero(MOVE_HERO_SPEED);
 				return false;
