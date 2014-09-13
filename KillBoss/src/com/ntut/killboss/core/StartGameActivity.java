@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 
 import com.ntut.killboss.EquipmentSetting;
 import com.ntut.killboss.R;
+import com.ntut.killboss.sprite.Sprite;
+import com.ntut.killboss.sprite.SpriteHero;
 
 public class StartGameActivity extends Activity {
 	private static final int MOVE_HERO_SPEED = 5;
@@ -39,6 +41,7 @@ public class StartGameActivity extends Activity {
 				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 					Log.d("TouchTest", "Touch up");
 					//TODO write something here
+					_gameview.resetImage();
 				}
 				_gameview.moveHero(MOVE_HERO_SPEED);
 				return false;

@@ -182,5 +182,9 @@ public class GameView extends SurfaceView {
 				_hero.get_x(), _hero.get_y(), bmpBlood, reduceHP);
 		_temps.add(temp);
 	}
+	
+	public void resetImage(){
+		_hero.resetImage();
+	}
 
 }
