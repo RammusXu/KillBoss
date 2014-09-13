@@ -46,13 +46,11 @@ public class GameView extends SurfaceView {
 		// Init _screenSize
 		_screenSize = FunctionUtilities.getDisplaySize(context);
 
-		_boss = new SpriteBoss(GameView.this,
-				FunctionUtilities.createBitmap(getResources(),
-						R.drawable.boss111));
+		_boss = new SpriteBoss(GameView.this, FunctionUtilities.createBitmap(
+				getResources(), R.drawable.boss111));
 
-		_hero = new SpriteHero(GameView.this,
-				FunctionUtilities.createBitmap(getResources(),
-						R.drawable.hero111));
+		_hero = new SpriteHero(GameView.this, FunctionUtilities.createBitmap(
+				getResources(), R.drawable.hero111));
 
 		bmpBlood = FunctionUtilities.createBitmap(getResources(),
 				R.drawable.blood);
@@ -151,6 +149,12 @@ public class GameView extends SurfaceView {
 			temps.get(i).onDraw(canvas);
 		}
 
+		//TODO
+//		for (int i = _objectSkills.size() - 1; i >= 0; i--) {
+//			_objectSkills.get(i).onDraw(canvas);
+//		}
+		
+
 		super.onDraw(canvas);
 	}
 
@@ -161,10 +165,9 @@ public class GameView extends SurfaceView {
 	public void shotSkillA(int skillID) {
 		// Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
 		// R.drawable.blood);
-		// ObjectSkill temp = new ObjectSkill(_objectSkills, bmpBlood,
-		// _hero.get_x(),
-		// _hero.get_y());
-		// _objectSkills.add(temp);
+		ObjectSkill temp = new ObjectSkill(getContext(), _objectSkills,
+				R.drawable.blood, _hero.get_x(), _hero.get_y());
+		_objectSkills.add(temp);
 		_hero.reduceHP(1);
 		hitHero(-1);
 	}
@@ -175,8 +178,8 @@ public class GameView extends SurfaceView {
 
 	private void hitHero(int reduceHP) {
 
-		AnimationReduceHP temp = new AnimationReduceHP(GameView.this,
-				temps, _hero.get_x(), _hero.get_y(), bmpBlood, reduceHP);
+		AnimationReduceHP temp = new AnimationReduceHP(GameView.this, temps,
+				_hero.get_x(), _hero.get_y(), bmpBlood, reduceHP);
 		temps.add(temp);
 	}
 

@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ntut.killboss.core.HelloGameActivity"
+            android:name="com.ntut.killboss.core.StartGameActivity"
             android:screenOrientation="landscape" >
         </activity>
         <activity

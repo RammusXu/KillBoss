@@ -1,9 +1,5 @@
 package com.ntut.killboss.core;
 
-import com.ntut.killboss.R;
-import com.ntut.killboss.R.id;
-import com.ntut.killboss.R.layout;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,9 +9,13 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 
-public class HelloGameActivity extends Activity {
+import com.ntut.killboss.EquipmentSetting;
+import com.ntut.killboss.R;
+
+public class StartGameActivity extends Activity {
 	private static final int MOVE_HERO_SPEED = 5;
-	GameView _gameview;
+	private GameView _gameview;
+	private EquipmentSetting _equipmentSetting;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,10 @@ public class HelloGameActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.game_view);
 
+		//	CLASS
+		_equipmentSetting = new EquipmentSetting();
+		
+		//	VIEW
 		_gameview = (GameView) findViewById(R.id.game_view_skill_gameView);
 		ImageButton ibRight = (ImageButton) findViewById(R.id.game_view_right);
 		ibRight.setOnTouchListener(new ImageButton.OnTouchListener() {
@@ -73,7 +77,7 @@ public class HelloGameActivity extends Activity {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				HelloGameActivity.super.onBackPressed();
+				StartGameActivity.super.onBackPressed();
 			}
 		});
 		ab.setNegativeButton("No", new DialogInterface.OnClickListener() {

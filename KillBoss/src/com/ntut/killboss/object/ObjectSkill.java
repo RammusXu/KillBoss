@@ -2,9 +2,11 @@ package com.ntut.killboss.object;
 
 import java.util.List;
 
+import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.core.GameView;
 import com.ntut.killboss.sprite.AnimationReduceHP;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -24,11 +26,9 @@ public class ObjectSkill {
 
 	private Paint paint = new Paint();
 
-	public ObjectSkill(List<ObjectSkill> objectSkills, Bitmap bitmap, float x, float y) {
-		//TEST   5
-		//TEST 2
-		//TEST 2
-		//TEST 2
+	public ObjectSkill(Context context, List<ObjectSkill> objectSkills, int resID, float x, float y) {
+		bmp = FunctionUtilities.createBitmap(context.getResources(), resID);
+		
 		_x = Math.min(Math.max(x - bmp.getWidth() / 2, 0),
 				GameView._screenSize.x - bmp.getWidth());
 		_y = Math.min(Math.max(y - bmp.getHeight() / 2, 0),

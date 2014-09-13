@@ -1,6 +1,6 @@
 package com.ntut.killboss;
 
-import com.ntut.killboss.core.HelloGameActivity;
+import com.ntut.killboss.core.StartGameActivity;
 import com.ntut.killboss.menu.MenuActivity;
 
 import android.app.Activity;
@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this,
-						HelloGameActivity.class);
+						StartGameActivity.class);
 				startActivity(intent);
 
 			}
