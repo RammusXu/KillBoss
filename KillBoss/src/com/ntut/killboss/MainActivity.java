@@ -1,6 +1,7 @@
 package com.ntut.killboss;
 
 import com.ntut.killboss.core.HelloGameActivity;
+import com.ntut.killboss.menu.MenuActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -36,6 +37,17 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
+			}
+		});
+		
+		ImageButton ibMenu = (ImageButton) findViewById(R.id.main_activity_menu);
+		ibMenu.setOnClickListener(new ImageButton.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+				startActivity(intent);
 			}
 		});
 	}

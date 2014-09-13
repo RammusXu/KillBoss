@@ -2,7 +2,7 @@ package com.ntut.killboss.object;
 
 import java.util.List;
 
-import com.ntut.killboss.core.HelloGameView;
+import com.ntut.killboss.core.GameView;
 import com.ntut.killboss.sprite.AnimationReduceHP;
 
 import android.graphics.Bitmap;
@@ -25,12 +25,15 @@ public class ObjectSkill {
 	private Paint paint = new Paint();
 
 	public ObjectSkill(List<ObjectSkill> objectSkills, Bitmap bitmap, float x, float y) {
+		//TEST   5
+		//TEST 2
+		//TEST 2
 		//TEST 2
 		
 		_x = Math.min(Math.max(x - bmp.getWidth() / 2, 0),
-				HelloGameView._screenSize.x - bmp.getWidth());
+				GameView._screenSize.x - bmp.getWidth());
 		_y = Math.min(Math.max(y - bmp.getHeight() / 2, 0),
-				HelloGameView._screenSize.y - bmp.getHeight());
+				GameView._screenSize.y - bmp.getHeight());
 		_objectSkills = objectSkills;
 		
 		

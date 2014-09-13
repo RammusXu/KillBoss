@@ -16,42 +16,43 @@ import android.view.SurfaceView;
 
 import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.R;
+import com.ntut.killboss.SoundEffect;
 import com.ntut.killboss.object.ObjectSkill;
 import com.ntut.killboss.sprite.AnimationReduceHP;
 import com.ntut.killboss.sprite.Sprite3x4;
 import com.ntut.killboss.sprite.SpriteBoss;
 import com.ntut.killboss.sprite.SpriteHero;
 
-public class HelloGameView extends SurfaceView {
-	protected static final String TAG = "HelloGameView";
+public class GameView extends SurfaceView {
+	protected static final String TAG = "GameView";
 	private SurfaceHolder _holder;
 	private HelloGameThread _gameThread;
 
 	// Sprite
 	private ArrayList<Sprite3x4> sprites;
 	private List<AnimationReduceHP> temps = new ArrayList<AnimationReduceHP>();
-	private List<ObjectSkill> objectSkills = new ArrayList<ObjectSkill>();
+	private List<ObjectSkill> _objectSkills = new ArrayList<ObjectSkill>();
 	private Bitmap bmpBlood;
 	private SpriteHero _hero;
 	private SpriteBoss _boss;
 
 	// Global Variables
-	public static Point _screenSize;	//	HelloGameView._screenSize.x
+	public static Point _screenSize;
 
-	public HelloGameView(Context context, AttributeSet attrs) {
+	public GameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		_gameThread = new HelloGameThread(this);
 
 		// Init _screenSize
 		_screenSize = FunctionUtilities.getDisplaySize(context);
 
-		_boss = new SpriteBoss(HelloGameView.this,
+		_boss = new SpriteBoss(GameView.this,
 				FunctionUtilities.createBitmap(getResources(),
 						R.drawable.boss111));
 
-		_hero = new SpriteHero(HelloGameView.this,
+		_hero = new SpriteHero(GameView.this,
 				FunctionUtilities.createBitmap(getResources(),
-						R.drawable.pichero1));
+						R.drawable.hero111));
 
 		bmpBlood = FunctionUtilities.createBitmap(getResources(),
 				R.drawable.blood);
@@ -125,40 +126,30 @@ public class HelloGameView extends SurfaceView {
 
 	private void resetAllSprites() {
 		sprites = new ArrayList<Sprite3x4>();
-		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
+		sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
 				.createBitmap(getResources(), R.drawable.sprite)));
-		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
+		sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
 				.createBitmap(getResources(), R.drawable.sprite2)));
-		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
+		sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
 				.createBitmap(getResources(), R.drawable.sprite3)));
-		sprites.add(new Sprite3x4(HelloGameView.this, FunctionUtilities
+		sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
 				.createBitmap(getResources(), R.drawable.sprite4)));
-				
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		canvas.drawColor(Color.WHITE);
-		// BackGround
 
 		for (Sprite3x4 s : sprites) {
 			s.onDraw(canvas);
 		}
 
-		//	Hero
 		_boss.onDraw(canvas);
 		_hero.onDraw(canvas);
-		
-		//	Object
 
 		for (int i = temps.size() - 1; i >= 0; i--) {
 			temps.get(i).onDraw(canvas);
 		}
-
-		// Paint paint = new Paint();
-		// paint.setTextSize(48);
-		// paint.setColor(Color.RED);
-		// canvas.drawText("" + -5, 100, 100, paint);
 
 		super.onDraw(canvas);
 	}
@@ -168,17 +159,23 @@ public class HelloGameView extends SurfaceView {
 	}
 
 	public void shotSkillA(int skillID) {
-//		Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
-//				R.drawable.blood);
-//		ObjectSkill temp = new ObjectSkill(objectSkills, bitmap, _hero.get_x(),
-//				_hero.get_y());
+		// Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
+		// R.drawable.blood);
+		// ObjectSkill temp = new ObjectSkill(_objectSkills, bmpBlood,
+		// _hero.get_x(),
+		// _hero.get_y());
+		// _objectSkills.add(temp);
 		_hero.reduceHP(1);
 		hitHero(-1);
 	}
 
+	public void shotSkillB(int skillID) {
+		new SoundEffect(getContext(), R.raw.jump);
+	}
+
 	private void hitHero(int reduceHP) {
 
-		AnimationReduceHP temp = new AnimationReduceHP(HelloGameView.this,
+		AnimationReduceHP temp = new AnimationReduceHP(GameView.this,
 				temps, _hero.get_x(), _hero.get_y(), bmpBlood, reduceHP);
 		temps.add(temp);
 	}

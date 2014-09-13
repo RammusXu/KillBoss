@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.ntut.killboss.core.HelloGameView;
+import com.ntut.killboss.core.GameView;
 
 public class Sprite3x4 extends Sprite {
 
@@ -19,7 +19,7 @@ public class Sprite3x4 extends Sprite {
 	private int intCOLUMNs = 3;
 	private int currentFrame = 0;
 
-	public Sprite3x4(HelloGameView gameView, Bitmap bitmap) {
+	public Sprite3x4(GameView gameView, Bitmap bitmap) {
 		this._gameView = gameView;
 		setBitmap(bitmap, intCOLUMNs, intROWs);
 

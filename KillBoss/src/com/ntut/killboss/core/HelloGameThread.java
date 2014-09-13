@@ -6,10 +6,10 @@ import android.util.Log;
 public class HelloGameThread extends Thread {
 	private static final String TAG = "HelloGameThread";
 	private boolean bIfRunning = false;
-	private HelloGameView _view;
+	private GameView _view;
 	private final long FPS = 30;
 
-	public HelloGameThread(HelloGameView view) {
+	public HelloGameThread(GameView view) {
 		super();
 		this._view = view;
 	}
