@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -50,7 +51,7 @@ public class GameView extends SurfaceView {
 				getResources(), R.drawable.boss111));
 
 		_hero = new SpriteHero(GameView.this, FunctionUtilities.createBitmap(
-				getResources(), R.drawable.hero1111));
+				getResources(), R.drawable.pichero1));
 
 		bmpBlood = FunctionUtilities.createBitmap(getResources(),
 				R.drawable.blood);
@@ -165,11 +166,32 @@ public class GameView extends SurfaceView {
 	public void shotSkillA(int skillID) {
 		// Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
 		// R.drawable.blood);
-		ObjectSkill temp = new ObjectSkill(getContext(), _objectSkills,
-				R.drawable.blood, _hero.get_x(), _hero.get_y());
-		_objectSkills.add(temp);
-		_hero.reduceHP(1);
-		hitHero(-1);
+		final ObjectSkill temp = new ObjectSkill(getContext(), _objectSkills,
+				R.drawable.skilla, _hero.get_x() + 90, _hero.get_y() + 80);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				_hero.skillAgetReady();
+			}
+		}, 100);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				_hero.skillAshot();
+				_objectSkills.add(temp);
+				_hero.reduceHP(1);
+				hitHero(-1);
+			}
+		}, 280);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				_hero.resetImage();
+			}
+		}, 500);
 	}
 
 	public void shotSkillB(int skillID) {
@@ -182,8 +204,8 @@ public class GameView extends SurfaceView {
 				_hero.get_x(), _hero.get_y(), bmpBlood, reduceHP);
 		_temps.add(temp);
 	}
-	
-	public void resetImage(){
+
+	public void resetImage() {
 		_hero.resetImage();
 	}
 

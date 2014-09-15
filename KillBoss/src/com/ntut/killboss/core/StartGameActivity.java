@@ -36,6 +36,7 @@ public class StartGameActivity extends Activity {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
+				_gameview.moveHero(MOVE_HERO_SPEED);
 				if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 					Log.d("TouchTest", "Touch down");
 				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
@@ -43,7 +44,6 @@ public class StartGameActivity extends Activity {
 					//TODO write something here
 					_gameview.resetImage();
 				}
-				_gameview.moveHero(MOVE_HERO_SPEED);
 				return false;
 			}
 		});
@@ -53,12 +53,13 @@ public class StartGameActivity extends Activity {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
+				_gameview.moveHero(-MOVE_HERO_SPEED);
 				if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 					Log.d("TouchTest", "Touch down");
 				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 					Log.d("TouchTest", "Touch up");
+					_gameview.resetImage();
 				}
-				_gameview.moveHero(-MOVE_HERO_SPEED);
 				return false;
 			}
 		});

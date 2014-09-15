@@ -32,18 +32,19 @@ public class SpriteHero extends Sprite {
 		//currentFrame = ++currentFrame % 10;
 		if(currentFrameWidth == 4 && currentFrameHeight == 2)
 		{
-			currentFrameWidth = 1;
-			currentFrameHeight = 0;
+			currentFrameWidth = 6;
+			currentFrameHeight = 3;
 		}
-		else if (currentFrameWidth == 1 && currentFrameHeight == 0)
+		
+		else if (currentFrameWidth == 6 && currentFrameHeight == 3)
 		{
-			currentFrameWidth = 1;
-			currentFrameHeight = 1;
+			currentFrameWidth = 5;
+			currentFrameHeight = 3;
 		}
-		else if (currentFrameWidth == 1 && currentFrameHeight == 1)
+		else if (currentFrameWidth == 5 && currentFrameHeight == 3)
 		{
-			currentFrameWidth = 1;
-			currentFrameHeight = 0;
+			currentFrameWidth = 6;
+			currentFrameHeight = 3;
 		}
 		
 		
@@ -60,7 +61,14 @@ public class SpriteHero extends Sprite {
 		currentFrameWidth = 4;
 		currentFrameHeight = 2;
 	}
-	
+	public void skillAgetReady(){
+			currentFrameWidth = 0;
+		    currentFrameHeight = 2;
+	}
+	public void skillAshot(){
+		currentFrameWidth = 2;
+		currentFrameHeight = 2;
+	}
 
 	@Override
 	public void onDraw(Canvas canvas) {
