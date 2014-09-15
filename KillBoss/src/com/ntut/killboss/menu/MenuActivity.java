@@ -11,7 +11,6 @@ import com.ntut.killboss.R;
 import com.ntut.killboss.setting.EquipmentSetting;
 
 public class MenuActivity extends Activity {
-	public static EquipmentSetting _equipmentSetting;
 
 	StageFragment SF;
 	WeaponFragment WF;
@@ -22,8 +21,6 @@ public class MenuActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu_activity);
 
-		// CLASS
-		_equipmentSetting = new EquipmentSetting();
 
 		SF = new StageFragment();
 		WF = new WeaponFragment();
