@@ -40,7 +40,6 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:src="@drawable/hp" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -79,7 +78,14 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:src="@drawable/hp" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/weapon_fragment_buttonOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_weight="0.5"
+        android:text="Chagne" />
 
 </LinearLayout>

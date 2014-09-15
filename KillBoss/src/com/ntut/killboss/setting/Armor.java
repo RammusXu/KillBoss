@@ -9,8 +9,8 @@ public class Armor {
 		changeArmor(1);
 	}
 
-	public void changeArmor(int weaponID) {
-		switch (weaponID) {
+	public void changeArmor(int armorID) {
+		switch (armorID) {
 		case 1:
 			_healthPoint = 5;
 			break;
