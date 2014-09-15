@@ -76,6 +76,9 @@ public abstract class Sprite {
 	public void reduceHP(int hp) {
 		_hp -= hp;
 	}
+	public void increaseHP(int hp) {
+		_hp += hp;
+	}
 
 	public void move(int x) {
 		if (x > 0) {
@@ -121,5 +124,10 @@ public abstract class Sprite {
 		_bitmap = bitmap;
 		_width = bitmap.getWidth() / columns;
 		_height = bitmap.getHeight() / rows;
+	}
+
+	public void jump(int x) {
+		// TODO Auto-generated method stub
+		
 	}
 }

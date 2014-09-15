@@ -3,6 +3,7 @@ package com.ntut.killboss.sprite;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.os.Handler;
 import android.util.Log;
 
 import com.ntut.killboss.Constant;
@@ -29,25 +30,20 @@ public class SpriteHero extends Sprite {
 			_direction = false;
 		}
 
-		//currentFrame = ++currentFrame % 10;
-		if(currentFrameWidth == 4 && currentFrameHeight == 2)
-		{
+		// currentFrame = ++currentFrame % 10;
+		if (currentFrameWidth == 4 && currentFrameHeight == 2) {
 			currentFrameWidth = 6;
 			currentFrameHeight = 3;
 		}
-		
-		else if (currentFrameWidth == 6 && currentFrameHeight == 3)
-		{
+
+		else if (currentFrameWidth == 6 && currentFrameHeight == 3) {
 			currentFrameWidth = 5;
 			currentFrameHeight = 3;
-		}
-		else if (currentFrameWidth == 5 && currentFrameHeight == 3)
-		{
+		} else if (currentFrameWidth == 5 && currentFrameHeight == 3) {
 			currentFrameWidth = 6;
 			currentFrameHeight = 3;
 		}
-		
-		
+
 		int tempX = _x + x;
 		if (tempX > (GameView._screenSize.x - _width)) {
 			_x = GameView._screenSize.x - _width;
@@ -57,17 +53,118 @@ public class SpriteHero extends Sprite {
 			_x = tempX;
 		}
 	}
-	public void resetImage(){
+
+	@Override
+	public void jump(final int x) {
+		if (x > 0) {
+			_direction = true;
+		} else {
+			_direction = false;
+		}
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				jumpUp();
+				int tempY = _y - 10;
+				_y = tempY;
+			}
+		}, 100);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				jumpUp();
+				int tempY = _y - 20;
+				_y = tempY;
+			}
+		}, 200);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				jumpUp();
+				int tempY = _y - 30;
+				_y = tempY;
+				_x = _x + x/3;
+			}
+		}, 300);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				jumpDown();
+				int tempY = _y + 10;
+				_y = tempY;
+				_x = _x + x/3;
+			}
+		}, 400);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				jumpDown();
+				int tempY = _y + 20;
+				_y = tempY;
+				_x = _x + x/7;
+			}
+		}, 500);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				jumpDown();
+				int tempY = _y + 30;
+				_y = tempY;
+			}
+		}, 600);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				resetImage();
+			}
+		}, 700);
+	}
+
+	public void resetImage() {
 		currentFrameWidth = 4;
 		currentFrameHeight = 2;
 	}
-	public void skillAgetReady(){
-			currentFrameWidth = 0;
-		    currentFrameHeight = 2;
+
+	public void skillAgetReady() {
+		currentFrameWidth = 0;
+		currentFrameHeight = 2;
 	}
-	public void skillAshot(){
+
+	public void skillAshot() {
 		currentFrameWidth = 2;
 		currentFrameHeight = 2;
+	}
+
+	public void skillBgetReady1() {
+		currentFrameWidth = 7;
+		currentFrameHeight = 0;
+	}
+
+	public void skillBgetReady2() {
+		currentFrameWidth = 4;
+		currentFrameHeight = 3;
+	}
+
+	public void skillBshot() {
+		currentFrameWidth = 8;
+		currentFrameHeight = 0;
+	}
+
+	public void jumpUp() {
+		currentFrameWidth = 2;
+		currentFrameHeight = 4;
+	}
+
+	public void jumpDown() {
+		currentFrameWidth = 3;
+		currentFrameHeight = 4;
 	}
 
 	@Override

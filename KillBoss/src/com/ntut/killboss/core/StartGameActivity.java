@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.ntut.killboss.EquipmentSetting;
@@ -41,7 +42,7 @@ public class StartGameActivity extends Activity {
 					Log.d("TouchTest", "Touch down");
 				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 					Log.d("TouchTest", "Touch up");
-					//TODO write something here
+					// TODO write something here
 					_gameview.resetImage();
 				}
 				return false;
@@ -82,6 +83,14 @@ public class StartGameActivity extends Activity {
 				_gameview.shotSkillB(1);
 			}
 
+		});
+		Button ibJump = (Button) findViewById(R.id.game_view_jump);
+		ibJump.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				_gameview.jump();
+			}
 		});
 	}
 

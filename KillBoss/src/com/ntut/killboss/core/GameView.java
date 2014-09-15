@@ -125,7 +125,7 @@ public class GameView extends SurfaceView {
 
 	private void resetAllSprites() {
 		sprites = new ArrayList<Sprite3x4>();
-		sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
+		/*sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
 				.createBitmap(getResources(), R.drawable.sprite)));
 		sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
 				.createBitmap(getResources(), R.drawable.sprite2)));
@@ -133,6 +133,7 @@ public class GameView extends SurfaceView {
 				.createBitmap(getResources(), R.drawable.sprite3)));
 		sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
 				.createBitmap(getResources(), R.drawable.sprite4)));
+				*/
 	}
 
 	@Override
@@ -162,6 +163,7 @@ public class GameView extends SurfaceView {
 	public void moveHero(int moveHeroSpeed) {
 		_hero.move(moveHeroSpeed);
 	}
+	
 
 	public void shotSkillA(int skillID) {
 		// Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
@@ -196,17 +198,52 @@ public class GameView extends SurfaceView {
 
 	public void shotSkillB(int skillID) {
 		new SoundEffect(getContext(), R.raw.jump);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				_hero.skillBgetReady1();
+			}
+		}, 150);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				_hero.skillBgetReady2();
+			}
+		}, 350);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				_hero.skillBshot();
+				_hero.increaseHP(2);
+				hitHero(+2);
+			}
+		}, 530);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				_hero.resetImage();
+			}
+		}, 750);
 	}
-
+	
 	private void hitHero(int reduceHP) {
 
 		AnimationReduceHP temp = new AnimationReduceHP(GameView.this, _temps,
-				_hero.get_x(), _hero.get_y(), bmpBlood, reduceHP);
+				_hero.get_x() + 50, _hero.get_y(), bmpBlood, reduceHP);
 		_temps.add(temp);
 	}
 
 	public void resetImage() {
 		_hero.resetImage();
+	}
+
+	public void jump() {
+		// TODO Auto-generated method stub
+		_hero.jump(18);
 	}
 
 }

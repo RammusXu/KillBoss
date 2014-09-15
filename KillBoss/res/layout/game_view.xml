@@ -26,6 +26,12 @@
             android:layout_height="wrap_content"
             android:src="@drawable/skill_b" />
 
+        <Button
+            android:id="@+id/game_view_jump"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/jump_btn" />
+
     </LinearLayout>
 
     <LinearLayout
