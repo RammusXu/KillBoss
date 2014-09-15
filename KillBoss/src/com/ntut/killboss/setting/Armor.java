@@ -1,4 +1,4 @@
-package com.ntut.killboss;
+package com.ntut.killboss.setting;
 
 
 public class Armor {

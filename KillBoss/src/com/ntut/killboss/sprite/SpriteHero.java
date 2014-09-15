@@ -2,11 +2,13 @@ package com.ntut.killboss.sprite;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.util.Log;
 
 import com.ntut.killboss.Constant;
+import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.core.GameView;
 
 public class SpriteHero extends Sprite {
@@ -86,7 +88,7 @@ public class SpriteHero extends Sprite {
 				jumpUp();
 				int tempY = _y - 30;
 				_y = tempY;
-				_x = _x + x/3;
+				_x = _x + x / 3;
 			}
 		}, 300);
 		new Handler().postDelayed(new Runnable() {
@@ -96,7 +98,7 @@ public class SpriteHero extends Sprite {
 				jumpDown();
 				int tempY = _y + 10;
 				_y = tempY;
-				_x = _x + x/3;
+				_x = _x + x / 3;
 			}
 		}, 400);
 		new Handler().postDelayed(new Runnable() {
@@ -106,7 +108,7 @@ public class SpriteHero extends Sprite {
 				jumpDown();
 				int tempY = _y + 20;
 				_y = tempY;
-				_x = _x + x/7;
+				_x = _x + x / 7;
 			}
 		}, 500);
 		new Handler().postDelayed(new Runnable() {
@@ -167,17 +169,17 @@ public class SpriteHero extends Sprite {
 		currentFrameHeight = 4;
 	}
 
+	private Rect src = new Rect();
+
 	@Override
 	public void onDraw(Canvas canvas) {
 		// dst.set(_x, _y, _x + _width, _y + _height);
 
-		if (_direction) {
-
-		}
 		int srcX = currentFrameWidth * this._width;
 		int srcY = currentFrameHeight * this._height;
-		Rect src = new Rect(srcX, srcY, srcX + this._width, srcY + this._height);
-		Rect dst = new Rect(_x, _y, _x + this._width, _y + this._height);
+		src.set(srcX, srcY, srcX + this._width, srcY + this._height);
+		dst.set(_x, _y, _x + this._width, _y + this._height);
+
 		canvas.drawBitmap(this._bitmap, src, dst, null);
 
 		// canvas.drawBitmap(_bitmap, null, dst, null);

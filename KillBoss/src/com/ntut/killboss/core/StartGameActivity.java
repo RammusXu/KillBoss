@@ -11,8 +11,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.ntut.killboss.EquipmentSetting;
 import com.ntut.killboss.R;
+import com.ntut.killboss.setting.EquipmentSetting;
 import com.ntut.killboss.sprite.Sprite;
 import com.ntut.killboss.sprite.SpriteHero;
 

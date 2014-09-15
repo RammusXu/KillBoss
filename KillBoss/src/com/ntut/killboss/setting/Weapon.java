@@ -1,4 +1,7 @@
-package com.ntut.killboss;
+package com.ntut.killboss.setting;
+
+import com.ntut.killboss.R;
+import com.ntut.killboss.R.drawable;
 
 public class Weapon {
 	private Property _property;
