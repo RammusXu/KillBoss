@@ -13,8 +13,8 @@ import com.ntut.killboss.setting.EquipmentSetting;
 public class MenuActivity extends Activity {
 
 	StageFragment SF;
-	WeaponFragment WF;
-	ArmorFragment AF;
+	EquipmentFragment WF;
+	AchievementFragment AF;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +23,8 @@ public class MenuActivity extends Activity {
 
 
 		SF = new StageFragment();
-		WF = new WeaponFragment();
-		AF = new ArmorFragment();
+		WF = new EquipmentFragment();
+		AF = new AchievementFragment();
 
 		ImageButton ib1 = (ImageButton) findViewById(R.id.menu_activity_ImageButton1);
 		ib1.setOnClickListener(new ImageButton.OnClickListener() {

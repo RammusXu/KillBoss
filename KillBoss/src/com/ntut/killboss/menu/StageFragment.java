@@ -31,7 +31,10 @@ public class StageFragment extends Fragment {
 		GridView gridView = (GridView) v
 				.findViewById(R.id.stage_fragment_gridView1);
 
-		gridView.setAdapter(new ImageAdapter(getActivity()));
+		Integer[] bossIDs = { R.drawable.boss111, R.drawable.boss222,
+				R.drawable.boss222, R.drawable.boss222, R.drawable.boss222,
+				R.drawable.boss222, };
+		gridView.setAdapter(new ImageAdapter(getActivity(), bossIDs));
 
 		gridView.setOnItemClickListener(new GridView.OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,

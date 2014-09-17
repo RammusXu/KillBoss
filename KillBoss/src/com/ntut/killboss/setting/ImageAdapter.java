@@ -13,13 +13,17 @@ public class ImageAdapter extends BaseAdapter {
 
 	private Context mContext;
 
-	public ImageAdapter(Context c) {
+	// references to our images
+	private Integer[] mResIDArray;
+
+	public ImageAdapter(Context c, Integer[] resIDArray) {
 		mContext = c;
+		mResIDArray = resIDArray;
 	}
 
 	@Override
 	public int getCount() {
-		return mThumbIds.length;
+		return mResIDArray.length;
 	}
 
 	@Override
@@ -45,14 +49,10 @@ public class ImageAdapter extends BaseAdapter {
 			imageView = (ImageView) convertView;
 		}
 
-		imageView.setImageResource(mThumbIds[position]);
+		imageView.setImageResource(mResIDArray[position]);
 		imageView.setBackgroundResource(R.drawable.button_selector);
 		return imageView;
 	}
 
-	// references to our images
-	private Integer[] mThumbIds = { R.drawable.boss111, R.drawable.boss222,
-			R.drawable.boss222, R.drawable.boss222, R.drawable.boss222,
-			R.drawable.boss222, };
 
 }
