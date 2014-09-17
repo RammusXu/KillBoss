@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.ntut.killboss.R;
-import com.ntut.killboss.menu.MenuActivity;
 import com.ntut.killboss.setting.EquipmentSetting;
 
 public class StartGameActivity extends Activity {

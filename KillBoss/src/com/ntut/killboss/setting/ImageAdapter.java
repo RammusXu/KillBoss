@@ -38,18 +38,21 @@ public class ImageAdapter extends BaseAdapter {
 		if (convertView == null) { // if it's not recycled, initialize some
 									// attributes
 			imageView = new ImageView(mContext);
-			imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
-			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+			imageView.setLayoutParams(new GridView.LayoutParams(160, 160));
+			imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 			imageView.setPadding(8, 8, 8, 8);
 		} else {
 			imageView = (ImageView) convertView;
 		}
 
 		imageView.setImageResource(mThumbIds[position]);
+		imageView.setBackgroundResource(R.drawable.button_selector);
 		return imageView;
 	}
 
 	// references to our images
-	private Integer[] mThumbIds = { R.drawable.boss111, R.drawable.boss222, };
+	private Integer[] mThumbIds = { R.drawable.boss111, R.drawable.boss222,
+			R.drawable.boss222, R.drawable.boss222, R.drawable.boss222,
+			R.drawable.boss222, };
 
 }

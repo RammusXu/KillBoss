@@ -1,10 +1,5 @@
 package com.ntut.killboss.menu;
 
-import com.ntut.killboss.MainActivity;
-import com.ntut.killboss.R;
-import com.ntut.killboss.core.StartGameActivity;
-import com.ntut.killboss.setting.ImageAdapter;
-
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +11,12 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.ntut.killboss.R;
+import com.ntut.killboss.core.StartGameActivity;
+import com.ntut.killboss.setting.ImageAdapter;
+
 public class StageFragment extends Fragment {
+	public static int bossInt = 0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +36,8 @@ public class StageFragment extends Fragment {
 		gridView.setOnItemClickListener(new GridView.OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
+				bossInt = position;
+				v.setSelected(true);
 				Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT)
 						.show();
 			}

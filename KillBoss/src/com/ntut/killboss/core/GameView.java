@@ -25,7 +25,7 @@ import com.ntut.killboss.sprite.SpriteBoss;
 import com.ntut.killboss.sprite.SpriteHero;
 
 public class GameView extends SurfaceView {
-	protected static final String TAG = "GameView";
+	private static final String TAG = "GameView";
 	private SurfaceHolder _holder;
 	private GameThread _gameThread;
 
