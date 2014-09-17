@@ -178,6 +178,12 @@ public class SpriteHero extends Sprite {
 		int srcX = currentFrameWidth * this._width;
 		int srcY = currentFrameHeight * this._height;
 		src.set(srcX, srcY, srcX + this._width, srcY + this._height);
+		
+
+		//	改成隨著螢幕大小改變
+		// _x + _width, _y + _height
+		// _x + GameView._screenSize.x/(看要幾倍)
+		// _y + GameView._screenSize.y/(看要幾倍)
 		dst.set(_x, _y, _x + this._width, _y + this._height);
 
 		canvas.drawBitmap(this._bitmap, src, dst, null);

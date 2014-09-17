@@ -23,6 +23,11 @@ public class SpriteBoss extends Sprite {
 
 	@Override
 	public void onDraw(Canvas canvas) {
+		//	改成隨著螢幕大小改變
+		// _x + _width, _y + _height
+		// _x + GameView._screenSize.x/(看要幾倍)
+		// _y + GameView._screenSize.y/(看要幾倍)
+		
 		dst.set(_x, _y, _x + _width, _y + _height);
 
 		if (_direction) {
