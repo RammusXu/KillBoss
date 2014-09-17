@@ -8,20 +8,23 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.ntut.killboss.R;
+import com.ntut.killboss.setting.EquipmentSetting;
 
 public class MenuActivity extends Activity {
+
 	StageFragment SF;
-	ArmorFragment AF;
 	WeaponFragment WF;
+	ArmorFragment AF;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu_activity);
 
+
 		SF = new StageFragment();
-		AF = new ArmorFragment();
 		WF = new WeaponFragment();
+		AF = new ArmorFragment();
 
 		ImageButton ib1 = (ImageButton) findViewById(R.id.menu_activity_ImageButton1);
 		ib1.setOnClickListener(new ImageButton.OnClickListener() {
@@ -59,9 +62,10 @@ public class MenuActivity extends Activity {
 		// Replace whatever is in the fragment_container view with
 		// this fragment,and add the transaction to the back stack
 		transaction.replace(R.id.menu_activity_fragment1, f);
-		transaction.addToBackStack(null);
+		// transaction.addToBackStack(null);
 
 		// Commit the transaction
 		transaction.commit();
 	}
+
 }

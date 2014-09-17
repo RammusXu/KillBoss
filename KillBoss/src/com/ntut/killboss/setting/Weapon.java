@@ -1,7 +1,6 @@
 package com.ntut.killboss.setting;
 
 import com.ntut.killboss.R;
-import com.ntut.killboss.R.drawable;
 
 public class Weapon {
 	private Property _property;
@@ -22,8 +21,8 @@ public class Weapon {
 		case 1:
 			_property = Property.None;
 			_power = 1;
-			_bitmapSkillA = R.drawable.skill_a;
-			_bitmapSkillA = R.drawable.skill_b;
+			_bitmapSkillA = R.drawable.skill_c;
+			_bitmapSkillA = R.drawable.skill_d;
 			break;
 
 		case 2:

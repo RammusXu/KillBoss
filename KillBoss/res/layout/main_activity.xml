@@ -31,6 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:src="@drawable/main_activity_setting" />
+        android:src="@drawable/main_activity_menu" />
 
 </LinearLayout>

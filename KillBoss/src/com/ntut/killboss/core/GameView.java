@@ -234,7 +234,7 @@ public class GameView extends SurfaceView {
 	private void hitHero(int reduceHP) {
 
 		AnimationReduceHP temp = new AnimationReduceHP(GameView.this, _temps,
-				_hero.get_x() + 50, _hero.get_y(), bmpBlood, reduceHP);
+				_hero.get_x() + 50, _hero.get_y(), reduceHP);
 		_temps.add(temp);
 	}
 

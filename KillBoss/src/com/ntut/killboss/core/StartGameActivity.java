@@ -13,23 +13,18 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.ntut.killboss.R;
+import com.ntut.killboss.menu.MenuActivity;
 import com.ntut.killboss.setting.EquipmentSetting;
-import com.ntut.killboss.sprite.Sprite;
-import com.ntut.killboss.sprite.SpriteHero;
 
 public class StartGameActivity extends Activity {
 	private static final int MOVE_HERO_SPEED = 5;
 	private GameView _gameview;
-	private EquipmentSetting _equipmentSetting;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.game_view);
-
-		// CLASS
-		_equipmentSetting = new EquipmentSetting();
 
 		// VIEW
 		_gameview = (GameView) findViewById(R.id.game_view_skill_gameView);
@@ -67,6 +62,7 @@ public class StartGameActivity extends Activity {
 		});
 
 		ImageButton ibSkillA = (ImageButton) findViewById(R.id.game_view_skill_a);
+		ibSkillA.setImageResource(EquipmentSetting._weapon.get_bitmapSkillA());
 		ibSkillA.setOnClickListener(new ImageButton.OnClickListener() {
 
 			@Override
@@ -77,6 +73,7 @@ public class StartGameActivity extends Activity {
 		});
 
 		ImageButton ibSkillB = (ImageButton) findViewById(R.id.game_view_skill_b);
+//		ibSkillA.setImageResource(MenuActivity._equipmentSetting._weapon.get_bitmapSkillB());
 		ibSkillB.setOnClickListener(new ImageButton.OnClickListener() {
 
 			@Override

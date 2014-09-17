@@ -17,18 +17,16 @@ public class AnimationReduceHP {
 	private List<AnimationReduceHP> temps;
 	private float x;
 	private float y;
-	private Bitmap bmp;
 
 	private int life = 15;
 	private int reduceHP = 1;
 	private Paint paint = new Paint();
 
 	public AnimationReduceHP(GameView gameView, List<AnimationReduceHP> temps,
-			float x, float y, Bitmap bmp, int reduceHP) {
+			float x, float y, int reduceHP) {
 		this.temps = temps;
 		this.x = Math.min(x, GameView._screenSize.x - SPACE_TO_BORDER);
 		this.y = Math.min(y, GameView._screenSize.y - SPACE_TO_BORDER);
-		// this.bmp = bmp;
 		this.reduceHP = reduceHP;
 
 		new SoundEffect(gameView.getContext(), R.raw.skill_a);
@@ -46,13 +44,10 @@ public class AnimationReduceHP {
 
 	public void onDraw(Canvas canvas) {
 		update();
-		// canvas.drawBitmap(bmp, x, y, null);
 
 		paint.setTextSize(48);
 		paint.setColor(Color.RED);
 		canvas.drawText("" + reduceHP, x, y, paint);
-		// canvas.drawText("" + reduceHP, _x + (_width / 2), _y + (_height / 2),
-		// paint);
 	}
 
 }
