@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.ntut.killboss.Constant;
 import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.R;
 import com.ntut.killboss.SoundEffect;
@@ -241,9 +242,25 @@ public class GameView extends SurfaceView {
 		_hero.resetImage();
 	}
 
-	public void jump() {
+	public void heroJump() {
 		// TODO Auto-generated method stub
-		_hero.jump(18);
+		if (_hero.get_y() + 160 < GameView._screenSize.y - Constant.SPACE_TO_BOTTOM) {
+			//could not jump untill it touches the ground
+		} else if (_hero.get_y() + 160 >= GameView._screenSize.y
+				- Constant.SPACE_TO_BOTTOM) {
+			_hero.jump(5);
+		}
+	}
+
+	public void heroDoubleJump() {
+		// TODO Auto-generated method stub
+		if (_hero.get_y() + 160 < GameView._screenSize.y - Constant.SPACE_TO_BOTTOM) {
+			//could not jump untill it touches the ground
+		} else if (_hero.get_y() + 160 >= GameView._screenSize.y
+				- Constant.SPACE_TO_BOTTOM) {
+			_hero.jump(5);
+			_hero.jump(8);
+		}
 	}
 
 }

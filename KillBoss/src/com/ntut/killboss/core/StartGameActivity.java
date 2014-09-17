@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -82,10 +83,18 @@ public class StartGameActivity extends Activity {
 		});
 		Button ibJump = (Button) findViewById(R.id.game_view_jump);
 		ibJump.setOnClickListener(new Button.OnClickListener() {
+			int i;
 
 			@Override
 			public void onClick(View v) {
-				_gameview.jump();
+				// TODO Auto-generated method stub
+				i++;
+				if (i == 1) {
+					_gameview.heroJump();
+				} else if (i == 2) {
+					i = 0;
+					_gameview.heroDoubleJump();
+				}
 			}
 		});
 	}
