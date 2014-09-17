@@ -184,6 +184,7 @@ public class SpriteHero extends Sprite {
 
 		// canvas.drawBitmap(_bitmap, null, dst, null);
 		drawHP(canvas);
+		//TEEST
 	}
 
 }
