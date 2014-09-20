@@ -1,8 +1,7 @@
 package com.ntut.killboss.setting;
 
-import com.ntut.killboss.R;
-
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,8 +9,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 public class ImageAdapter extends BaseAdapter {
-
 	private Context mContext;
+	private int correctEquip = 0;
+
+	private int clickTemp = -1;
 
 	// references to our images
 	private Integer[] mResIDArray;
@@ -36,9 +37,19 @@ public class ImageAdapter extends BaseAdapter {
 		return 0;
 	}
 
+	// 标识选择的Item
+	public void setSeclection(int position) {
+		clickTemp = position;
+	}
+	
+	public void setCorrectEquip(int position) {
+		correctEquip = position;
+	}
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ImageView imageView;
+
 		if (convertView == null) { // if it's not recycled, initialize some
 									// attributes
 			imageView = new ImageView(mContext);
@@ -49,10 +60,17 @@ public class ImageAdapter extends BaseAdapter {
 			imageView = (ImageView) convertView;
 		}
 
+		if (correctEquip == position) {
+			imageView.setBackgroundColor(Color.RED);
+		} else if (clickTemp == position) {
+			imageView.setBackgroundColor(Color.GREEN);
+		} else {
+			imageView.setBackgroundColor(Color.TRANSPARENT);
+		}
+
 		imageView.setImageResource(mResIDArray[position]);
-		imageView.setBackgroundResource(R.drawable.button_selector);
+		// imageView.setBackgroundResource(R.drawable.button_selector);
 		return imageView;
 	}
-
 
 }

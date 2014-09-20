@@ -1,9 +1,5 @@
 package com.ntut.killboss;
 
-import com.ntut.killboss.core.StartGameActivity;
-import com.ntut.killboss.menu.MenuActivity;
-import com.ntut.killboss.setting.EquipmentSetting;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +7,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 
+import com.ntut.killboss.core.StartGameActivity;
+import com.ntut.killboss.menu.MenuActivity;
+
 public class MainActivity extends Activity {
-	public static EquipmentSetting _equipmentSetting;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +19,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main_activity);
 		
 
-		// CLASS
-		_equipmentSetting = new EquipmentSetting();
 
 		ImageButton ibStart = (ImageButton) findViewById(R.id.main_activity_start);
 		ibStart.setOnClickListener(new ImageButton.OnClickListener() {

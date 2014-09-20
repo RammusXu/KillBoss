@@ -19,6 +19,7 @@ import com.ntut.killboss.Constant;
 import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.R;
 import com.ntut.killboss.SoundEffect;
+import com.ntut.killboss.menu.StageFragment;
 import com.ntut.killboss.object.ObjectSkill;
 import com.ntut.killboss.sprite.AnimationReduceHP;
 import com.ntut.killboss.sprite.Sprite3x4;
@@ -49,7 +50,7 @@ public class GameView extends SurfaceView {
 		_screenSize = FunctionUtilities.getDisplaySize(context);
 
 		_boss = new SpriteBoss(GameView.this, FunctionUtilities.createBitmap(
-				getResources(), R.drawable.boss111));
+				getResources(), Constant.bossIDs[StageFragment.bossInt]));
 
 		_hero = new SpriteHero(GameView.this, FunctionUtilities.createBitmap(
 				getResources(), R.drawable.pichero1));

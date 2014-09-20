@@ -72,7 +72,7 @@ public class StartGameActivity extends Activity {
 		});
 
 		ImageButton ibSkillB = (ImageButton) findViewById(R.id.game_view_skill_b);
-//		ibSkillA.setImageResource(MenuActivity._equipmentSetting._weapon.get_bitmapSkillB());
+		ibSkillB.setImageResource(EquipmentSetting._weapon.get_bitmapSkillB());
 		ibSkillB.setOnClickListener(new ImageButton.OnClickListener() {
 
 			@Override
@@ -101,21 +101,21 @@ public class StartGameActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		AlertDialog.Builder ab = new AlertDialog.Builder(this);
-		ab.setTitle("Back To Menu?");
-		ab.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+		dialog.setTitle("Back To Menu?");
+		dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				StartGameActivity.super.onBackPressed();
 			}
 		});
-		ab.setNegativeButton("No", new DialogInterface.OnClickListener() {
+		dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 			}
 		});
-		ab.show();
+		dialog.show();
 	}
 }

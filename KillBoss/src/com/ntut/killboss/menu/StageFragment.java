@@ -11,6 +11,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.ntut.killboss.Constant;
 import com.ntut.killboss.R;
 import com.ntut.killboss.core.StartGameActivity;
 import com.ntut.killboss.setting.ImageAdapter;
@@ -26,21 +27,23 @@ public class StageFragment extends Fragment {
 
 		return v;
 	}
+	
+	ImageAdapter bossAdapter;
 
 	private void findView(View v) {
 		GridView gridView = (GridView) v
 				.findViewById(R.id.stage_fragment_gridView1);
 
-		Integer[] bossIDs = { R.drawable.boss111, R.drawable.boss222,
-				R.drawable.boss222, R.drawable.boss222, R.drawable.boss222,
-				R.drawable.boss222, };
-		gridView.setAdapter(new ImageAdapter(getActivity(), bossIDs));
+		bossAdapter = new ImageAdapter(getActivity(), Constant.bossIDs);
+		bossAdapter.setCorrectEquip(bossInt);
+		gridView.setAdapter(bossAdapter);
 
 		gridView.setOnItemClickListener(new GridView.OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 				bossInt = position;
-				v.setSelected(true);
+				bossAdapter.setCorrectEquip(bossInt);
+				bossAdapter.notifyDataSetChanged();
 				Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT)
 						.show();
 			}

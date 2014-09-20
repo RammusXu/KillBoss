@@ -66,7 +66,8 @@ public class ObjectSkill {
 			_objectSkills.remove(this);
 			sprite.reduceHP(_damage);
 			GameView._temps.add(new AnimationReduceHP(gameView,
-					GameView._temps, sprite.get_x(), sprite.get_y(), -_damage));
+					GameView._temps, sprite.get_x() + (sprite.get_width() / 2),
+					sprite.get_y() + (sprite.get_height() / 3), -_damage));
 		}
 	}
 
