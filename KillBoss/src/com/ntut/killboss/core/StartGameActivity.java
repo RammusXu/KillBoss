@@ -91,6 +91,7 @@ public class StartGameActivity extends Activity {
 				i++;
 				if (i == 1) {
 					_gameview.heroJump();
+					i = 0;
 				} else if (i == 2) {
 					i = 0;
 					_gameview.heroDoubleJump();

@@ -30,7 +30,10 @@ public class ObjectSkill {
 	public ObjectSkill(Context context, List<ObjectSkill> objectSkills,
 			int resID, float x, float y) {
 
-		bmp = FunctionUtilities.createBitmap(context.getResources(), resID);
+		bmp = FunctionUtilities
+				.createScaleBitmap(context.getResources(), resID,
+						GameView._screenSize.x / 10,
+						GameView._screenSize.y / 10);
 		_x = (int) Math.min(Math.max(x - bmp.getWidth() / 2, 0),
 				GameView._screenSize.x - bmp.getWidth());
 		_y = (int) Math.min(Math.max(y - bmp.getHeight() / 2, 0),

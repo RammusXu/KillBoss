@@ -22,6 +22,14 @@ public class FunctionUtilities {
 		return bmp;
 	}
 
+	public static Bitmap createScaleBitmap(Resources resource, int id,
+			int width, int height) {
+
+		Bitmap bmp = BitmapFactory.decodeResource(resource, id);
+		bmp = Bitmap.createScaledBitmap(bmp, width, height, true);
+		return bmp;
+	}
+
 	public static Point getDisplaySize(Context context) {
 		WindowManager wm = (WindowManager) context
 				.getSystemService(Context.WINDOW_SERVICE);

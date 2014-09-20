@@ -73,7 +73,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpUp();
-				int tempY = _y - GameView._screenSize.y/10;
+				int tempY = _y - GameView._screenSize.y/20;
 				_y = tempY;
 			}
 		}, 100);
@@ -82,7 +82,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpUp();
-				int tempY = _y - GameView._screenSize.y/8;
+				int tempY = _y - GameView._screenSize.y/15;
 				_y = tempY;
 			}
 		}, 200);
@@ -91,7 +91,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpUp();
-				int tempY = _y - GameView._screenSize.y/5;
+				int tempY = _y - GameView._screenSize.y/10;
 				_y = tempY;
 				_x = _x + x / 3;
 			}
@@ -101,7 +101,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpDown();
-				int tempY = _y + GameView._screenSize.y/10;
+				int tempY = _y + GameView._screenSize.y/20;
 				_y = tempY;
 				_x = _x + x / 3;
 			}
@@ -111,7 +111,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpDown();
-				int tempY = _y + GameView._screenSize.y/8;
+				int tempY = _y + GameView._screenSize.y/15;
 				_y = tempY;
 				_x = _x + x / 7;
 			}
@@ -121,7 +121,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpDown();
-				int tempY = _y + GameView._screenSize.y/5;
+				int tempY = _y + GameView._screenSize.y/10;
 				_y = tempY;
 			}
 		}, 600);

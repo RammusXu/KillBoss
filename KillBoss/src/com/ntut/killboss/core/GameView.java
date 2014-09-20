@@ -171,7 +171,7 @@ public class GameView extends SurfaceView {
 		// Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
 		// R.drawable.blood);
 		final ObjectSkill temp = new ObjectSkill(getContext(), _objectSkills,
-				R.drawable.skilla, _hero.get_x() + 90, _hero.get_y() + 80);
+				R.drawable.skilla, _hero.get_x() + _hero.get_width()/2, _hero.get_y() + _hero.get_height()/4);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
@@ -258,7 +258,7 @@ public class GameView extends SurfaceView {
 		// TODO Auto-generated method stub
 		if (_hero.get_y() + _hero.get_height() < GameView._screenSize.y - Constant.SPACE_TO_BOTTOM) {
 			//could not jump untill it touches the ground
-		} else if (_hero.get_y() + 160 >= GameView._screenSize.y
+		} else if (_hero.get_y() + _hero.get_height() >= GameView._screenSize.y
 				- Constant.SPACE_TO_BOTTOM) {
 			_hero.jump(0);
 			_hero.jump(0);
