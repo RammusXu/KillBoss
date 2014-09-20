@@ -1,12 +1,14 @@
 package com.ntut.killboss.sprite;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.core.GameView;
 
 public abstract class Sprite {
@@ -23,6 +25,7 @@ public abstract class Sprite {
 	protected int _y = 0;
 	protected int _speedY = 10;
 	protected boolean _direction = true;
+
 
 	// Bitmap
 	protected Bitmap _bitmap;
@@ -50,6 +53,10 @@ public abstract class Sprite {
 	public int get_height() {
 		return _height;
 	}
+	
+	public boolean get_direction() {
+		return _direction;
+	}
 
 	private static final int HP_HEIGHT = 20;
 
@@ -76,6 +83,7 @@ public abstract class Sprite {
 	public void reduceHP(int hp) {
 		_hp -= hp;
 	}
+
 	public void increaseHP(int hp) {
 		_hp += hp;
 	}
@@ -126,8 +134,15 @@ public abstract class Sprite {
 		_height = bitmap.getHeight() / rows;
 	}
 
+	public void loadBitmap(int resID, int width, int height) {
+		_bitmap = FunctionUtilities.createScaleBitmap(_context.getResources(),
+				resID, width, height);
+		_width = _bitmap.getWidth();
+		_height = _bitmap.getHeight();
+	}
+
 	public void jump(int x) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

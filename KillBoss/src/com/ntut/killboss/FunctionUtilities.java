@@ -62,9 +62,9 @@ public class FunctionUtilities {
 		Bitmap newb = Bitmap.createBitmap(width, height, Config.ARGB_8888);// 创建一个新的和SRC长度宽度一样的位图
 		Canvas cv = new Canvas(newb);
 		Matrix m = new Matrix();
-		m.postScale(1, -1); // 镜像垂直翻转
+//		m.postScale(1, -1); // 镜像垂直翻转
 		m.postScale(-1, 1); // 镜像水平翻转
-		m.postRotate(-90); // 旋转-90度
+//		m.postRotate(-90); // 旋转-90度
 		Bitmap new2 = Bitmap.createBitmap(a, 0, 0, w, h, m, true);
 		cv.drawBitmap(new2, new Rect(0, 0, new2.getWidth(), new2.getHeight()),
 				new Rect(0, 0, width, height), null);

@@ -51,29 +51,6 @@ public class EquipmentFragment extends Fragment {
 
 		weaponAdapter.setCorrectEquip(weaponID);
 		gridView.setAdapter(weaponAdapter);
-		// gridView.setOnItemSelectedListener(new
-		// GridView.OnItemSelectedListener(){
-		//
-		// @Override
-		// public void onItemSelected(AdapterView<?> parent, View view,
-		// int position, long id) {
-		// // view.setSelected(true);
-		// //
-		// // gridView.requestFocusFromTouch();
-		// // gridView.setSelection(position);
-		// if (adapterFlag == 0) {
-		// weaponID = position;
-		// } else {
-		// armorID = position;
-		// }
-		//
-		// }
-		//
-		// @Override
-		// public void onNothingSelected(AdapterView<?> parent) {
-		// // TODO Auto-generated method stub
-		//
-		// }});
 
 		gridView.setOnItemClickListener(new GridView.OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,

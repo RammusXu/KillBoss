@@ -5,6 +5,7 @@ import java.util.List;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 
 import com.ntut.killboss.FunctionUtilities;
@@ -16,6 +17,7 @@ import com.ntut.killboss.sprite.SpriteBoss;
 public class ObjectSkill {
 	private List<ObjectSkill> _objectSkills;
 	private Bitmap bmp;
+	private Bitmap bmpMirror;
 
 	// Arguments
 	private int _x;
@@ -28,17 +30,22 @@ public class ObjectSkill {
 	private Paint paint = new Paint();
 
 	public ObjectSkill(Context context, List<ObjectSkill> objectSkills,
-			int resID, float x, float y) {
+			int resID, float x, float y, boolean direction) {
 
 		bmp = FunctionUtilities
 				.createScaleBitmap(context.getResources(), resID,
 						GameView._screenSize.x / 10,
 						GameView._screenSize.y / 10);
+		bmpMirror = FunctionUtilities.mirrorBitmap2(bmp, bmp.getWidth(),
+				bmp.getHeight());
+		
 		_x = (int) Math.min(Math.max(x - bmp.getWidth() / 2, 0),
 				GameView._screenSize.x - bmp.getWidth());
 		_y = (int) Math.min(Math.max(y - bmp.getHeight() / 2, 0),
 				GameView._screenSize.y - bmp.getHeight());
 		_objectSkills = objectSkills;
+		_direction = direction;
+
 
 	}
 
@@ -57,11 +64,18 @@ public class ObjectSkill {
 
 	public void onDraw(Canvas canvas) {
 		update();
-		canvas.drawBitmap(bmp, _x, _y, null);
+
+//		canvas.drawBitmap(bmpMirror, _x, _y, null);
+
+		 if (_direction) {
+		 canvas.drawBitmap(bmp, _x, _y, null);
+		 } else {
+		 canvas.drawBitmap(bmpMirror, _x, _y, null);
+		 }
 
 	}
 
-	public void hitBoss(Sprite sprite, GameView gameView) {
+	public void hitSprite(Sprite sprite, GameView gameView) {
 
 		if (isCollsionWithRect(_x, _y, bmp.getWidth(), bmp.getHeight(),
 				sprite.get_x(), sprite.get_y(), sprite.get_width(),

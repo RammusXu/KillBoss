@@ -34,8 +34,8 @@ public class GameView extends SurfaceView {
 	// Sprite
 	private ArrayList<Sprite3x4> sprites;
 	public static List<AnimationReduceHP> _temps = new ArrayList<AnimationReduceHP>();
-	private List<ObjectSkill> _objectSkills = new ArrayList<ObjectSkill>();
-	private Bitmap bmpBlood;
+	public static List<ObjectSkill> _objectSkillsHero = new ArrayList<ObjectSkill>();
+	public static List<ObjectSkill> _objectSkillsBoss = new ArrayList<ObjectSkill>();
 	private SpriteHero _hero;
 	private SpriteBoss _boss;
 
@@ -49,14 +49,10 @@ public class GameView extends SurfaceView {
 		// Init _screenSize
 		_screenSize = FunctionUtilities.getDisplaySize(context);
 
-		_boss = new SpriteBoss(GameView.this, FunctionUtilities.createBitmap(
-				getResources(), Constant.bossIDs[StageFragment.bossInt]));
+		_boss = new SpriteBoss(context, GameView.this, StageFragment.bossInt);
 
 		_hero = new SpriteHero(GameView.this, FunctionUtilities.createBitmap(
 				getResources(), R.drawable.pichero1));
-
-		bmpBlood = FunctionUtilities.createBitmap(getResources(),
-				R.drawable.blood);
 
 		resetAllSprites();
 
@@ -155,9 +151,14 @@ public class GameView extends SurfaceView {
 		}
 
 		// TODO
-		for (int i = _objectSkills.size() - 1; i >= 0; i--) {
-			_objectSkills.get(i).onDraw(canvas);
-			_objectSkills.get(i).hitBoss(_boss, GameView.this);
+		for (int i = _objectSkillsHero.size() - 1; i >= 0; i--) {
+			_objectSkillsHero.get(i).onDraw(canvas);
+			_objectSkillsHero.get(i).hitSprite(_boss, GameView.this);
+		}
+
+		for (int i = _objectSkillsBoss.size() - 1; i >= 0; i--) {
+			_objectSkillsBoss.get(i).onDraw(canvas);
+			_objectSkillsBoss.get(i).hitSprite(_hero, GameView.this);
 		}
 
 		super.onDraw(canvas);
@@ -170,8 +171,10 @@ public class GameView extends SurfaceView {
 	public void shotSkillA(int skillID) {
 		// Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
 		// R.drawable.blood);
-		final ObjectSkill temp = new ObjectSkill(getContext(), _objectSkills,
-				R.drawable.skilla, _hero.get_x() + _hero.get_width()/2, _hero.get_y() + _hero.get_height()/4);
+		final ObjectSkill temp = new ObjectSkill(getContext(),
+				_objectSkillsHero, R.drawable.skilla, _hero.get_x()
+						+ _hero.get_width() / 2, _hero.get_y()
+						+ _hero.get_height() / 4, _hero.get_direction());
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
@@ -184,7 +187,7 @@ public class GameView extends SurfaceView {
 			public void run() {
 				// TODO Auto-generated method stub
 				_hero.skillAshot();
-				_objectSkills.add(temp);
+				_objectSkillsHero.add(temp);
 				_hero.reduceHP(1);
 				hitHero(-1);
 			}
@@ -203,7 +206,7 @@ public class GameView extends SurfaceView {
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub 
+				// TODO Auto-generated method stub
 				_hero.skillBgetReady1();
 			}
 		}, 150);
@@ -245,9 +248,10 @@ public class GameView extends SurfaceView {
 
 	public void heroJump() {
 		// TODO Auto-generated method stub
-		//	這個160 應該用_hero.get_height才對
-		if (_hero.get_y() + _hero.get_height() < GameView._screenSize.y - Constant.SPACE_TO_BOTTOM) {
-			//could not jump untill it touches the ground
+		// 這個160 應該用_hero.get_height才對
+		if (_hero.get_y() + _hero.get_height() < GameView._screenSize.y
+				- Constant.SPACE_TO_BOTTOM) {
+			// could not jump untill it touches the ground
 		} else if (_hero.get_y() + 160 >= GameView._screenSize.y
 				- Constant.SPACE_TO_BOTTOM) {
 			_hero.jump(0);
@@ -256,8 +260,9 @@ public class GameView extends SurfaceView {
 
 	public void heroDoubleJump() {
 		// TODO Auto-generated method stub
-		if (_hero.get_y() + _hero.get_height() < GameView._screenSize.y - Constant.SPACE_TO_BOTTOM) {
-			//could not jump untill it touches the ground
+		if (_hero.get_y() + _hero.get_height() < GameView._screenSize.y
+				- Constant.SPACE_TO_BOTTOM) {
+			// could not jump untill it touches the ground
 		} else if (_hero.get_y() + _hero.get_height() >= GameView._screenSize.y
 				- Constant.SPACE_TO_BOTTOM) {
 			_hero.jump(0);

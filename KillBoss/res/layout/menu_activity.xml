@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
+            android:background="@drawable/button_menu"
             android:padding="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/main_activity_setting"
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
+            android:background="@drawable/button_menu"
             android:padding="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/main_activity_setting"
@@ -37,11 +39,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_menu"
             android:padding="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/main_activity_setting"
             android:text="Achievement" />
-
     </LinearLayout>
 
     <FrameLayout

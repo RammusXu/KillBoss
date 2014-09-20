@@ -16,7 +16,10 @@ public class Constant {
 			R.drawable.weapon_1, R.drawable.weapon_1, R.drawable.weapon_1,
 			R.drawable.weapon_1, R.drawable.weapon_1, };
 
-	public static final Integer[] bossIDs = { R.drawable.boss111, R.drawable.boss222,
+	public static final Integer[] bossIDs = { R.drawable.boss111,
 			R.drawable.boss222, R.drawable.boss222, R.drawable.boss222,
-			R.drawable.boss222, };
+			R.drawable.boss222, R.drawable.boss222, };
+
+	public static final Integer[] skillDrawbleResourceIDs = {
+			R.drawable.skilla, R.drawable.blood };
 }
