@@ -16,7 +16,6 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.ntut.killboss.R;
-import com.ntut.killboss.setting.ImageAdapter;
 
 public class AchievementFragment extends Fragment {
 

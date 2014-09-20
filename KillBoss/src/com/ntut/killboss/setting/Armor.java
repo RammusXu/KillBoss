@@ -1,8 +1,7 @@
 package com.ntut.killboss.setting;
 
-
 public class Armor {
-
+	private int _armorID;
 	private int _healthPoint;
 
 	public Armor() {
@@ -10,6 +9,7 @@ public class Armor {
 	}
 
 	public void changeArmor(int armorID) {
+		_armorID = armorID;
 		switch (armorID) {
 		case 1:
 			_healthPoint = 5;
@@ -24,6 +24,10 @@ public class Armor {
 			break;
 
 		}
+	}
+
+	public int get_armorID() {
+		return _armorID;
 	}
 
 	public int get_healthPoint() {

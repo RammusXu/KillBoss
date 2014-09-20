@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class MySaveData {
-	private static final String MY_SAVA_DATA = "MY_SAVA_DATA";
 	private static final String KILL_BOSS = "KILL_BOSS";
 	Context mContext;
 
@@ -40,6 +39,9 @@ public class MySaveData {
 		se.commit();
 	}
 
+	/**
+	 * @return if null return 0
+	 */
 	public int loadDataInt(String key) {
 		SharedPreferences sp = mContext.getSharedPreferences(KILL_BOSS,
 				Context.MODE_PRIVATE);
@@ -75,4 +77,12 @@ public class MySaveData {
 		}
 		return returnlist;
 	}
+	
+	// Integer[] obj = (Integer[]) data.readObject(TAG);
+	// if (obj != null) {
+	// for (int i = 0; i < obj.length; i++) {
+	//
+	// Log.d("DEBUG", "" + obj[i]);
+	// }
+	// }
 }
