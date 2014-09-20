@@ -1,5 +1,6 @@
 package com.ntut.killboss.sprite;
 
+import android.R.color;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
@@ -17,10 +18,14 @@ public class SpriteHero extends Sprite {
 	private int currentFrameHeight = 2;
 
 	public SpriteHero(GameView gameView, Bitmap bitmap) {
+
+		bitmap = Bitmap.createScaledBitmap(bitmap, GameView._screenSize.x,
+				GameView._screenSize.y, true);
+
 		_gameView = gameView;
 		this.setBitmap(bitmap, 10, 7);
 
-		_y = GameView._screenSize.y - _height - Constant.SPACE_TO_BOTTOM;
+		_y = GameView._screenSize.y - _height - GameView._screenSize.y / 3;
 
 	}
 
@@ -68,7 +73,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpUp();
-				int tempY = _y - 10;
+				int tempY = _y - GameView._screenSize.y/10;
 				_y = tempY;
 			}
 		}, 100);
@@ -77,7 +82,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpUp();
-				int tempY = _y - 20;
+				int tempY = _y - GameView._screenSize.y/8;
 				_y = tempY;
 			}
 		}, 200);
@@ -86,7 +91,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpUp();
-				int tempY = _y - 30;
+				int tempY = _y - GameView._screenSize.y/5;
 				_y = tempY;
 				_x = _x + x / 3;
 			}
@@ -96,7 +101,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpDown();
-				int tempY = _y + 10;
+				int tempY = _y + GameView._screenSize.y/10;
 				_y = tempY;
 				_x = _x + x / 3;
 			}
@@ -106,7 +111,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpDown();
-				int tempY = _y + 20;
+				int tempY = _y + GameView._screenSize.y/8;
 				_y = tempY;
 				_x = _x + x / 7;
 			}
@@ -116,7 +121,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpDown();
-				int tempY = _y + 30;
+				int tempY = _y + GameView._screenSize.y/5;
 				_y = tempY;
 			}
 		}, 600);
@@ -178,9 +183,8 @@ public class SpriteHero extends Sprite {
 		int srcX = currentFrameWidth * this._width;
 		int srcY = currentFrameHeight * this._height;
 		src.set(srcX, srcY, srcX + this._width, srcY + this._height);
-		
 
-		//	改成隨著螢幕大小改變
+		// 改成隨著螢幕大小改變
 		// _x + _width, _y + _height
 		// _x + GameView._screenSize.x/(看要幾倍)
 		// _y + GameView._screenSize.y/(看要幾倍)
@@ -190,7 +194,7 @@ public class SpriteHero extends Sprite {
 
 		// canvas.drawBitmap(_bitmap, null, dst, null);
 		drawHP(canvas);
-		//TEEST
+		// TEEST
 	}
 
 }

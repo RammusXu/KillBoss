@@ -202,7 +202,7 @@ public class GameView extends SurfaceView {
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub 
 				_hero.skillBgetReady1();
 			}
 		}, 150);
@@ -244,22 +244,23 @@ public class GameView extends SurfaceView {
 
 	public void heroJump() {
 		// TODO Auto-generated method stub
-		if (_hero.get_y() + 160 < GameView._screenSize.y - Constant.SPACE_TO_BOTTOM) {
+		//	這個160 應該用_hero.get_height才對
+		if (_hero.get_y() + _hero.get_height() < GameView._screenSize.y - Constant.SPACE_TO_BOTTOM) {
 			//could not jump untill it touches the ground
 		} else if (_hero.get_y() + 160 >= GameView._screenSize.y
 				- Constant.SPACE_TO_BOTTOM) {
-			_hero.jump(5);
+			_hero.jump(0);
 		}
 	}
 
 	public void heroDoubleJump() {
 		// TODO Auto-generated method stub
-		if (_hero.get_y() + 160 < GameView._screenSize.y - Constant.SPACE_TO_BOTTOM) {
+		if (_hero.get_y() + _hero.get_height() < GameView._screenSize.y - Constant.SPACE_TO_BOTTOM) {
 			//could not jump untill it touches the ground
 		} else if (_hero.get_y() + 160 >= GameView._screenSize.y
 				- Constant.SPACE_TO_BOTTOM) {
-			_hero.jump(5);
-			_hero.jump(8);
+			_hero.jump(0);
+			_hero.jump(0);
 		}
 	}
 
