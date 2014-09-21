@@ -30,7 +30,7 @@ public class SpriteHero extends Sprite {
 	}
 
 	@Override
-	public void move(int x) {
+	public void move(final int x) {
 		if (x > 0) {
 			_direction = true;
 		} else {
@@ -38,27 +38,57 @@ public class SpriteHero extends Sprite {
 		}
 
 		// currentFrame = ++currentFrame % 10;
-		if (currentFrameWidth == 4 && currentFrameHeight == 2) {
-			currentFrameWidth = 6;
-			currentFrameHeight = 3;
-		}
-
-		else if (currentFrameWidth == 6 && currentFrameHeight == 3) {
-			currentFrameWidth = 5;
-			currentFrameHeight = 3;
-		} else if (currentFrameWidth == 5 && currentFrameHeight == 3) {
-			currentFrameWidth = 6;
-			currentFrameHeight = 3;
-		}
-
-		int tempX = _x + x;
-		if (tempX > (GameView._screenSize.x - _width)) {
-			_x = GameView._screenSize.x - _width;
-		} else if (tempX < 0) {
-			_x = 0;
-		} else {
-			_x = tempX;
-		}
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				heroWalk1();
+				int tempX = _x + x/3;
+				if (tempX > (GameView._screenSize.x - _width)) {
+					_x = GameView._screenSize.x - _width;
+				} else if (tempX < 0) {
+					_x = 0;
+				} else {
+					_x = tempX;
+				}
+			}
+		}, 50);new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				heroWalk2();
+				int tempX = _x + x/3;
+				if (tempX > (GameView._screenSize.x - _width)) {
+					_x = GameView._screenSize.x - _width;
+				} else if (tempX < 0) {
+					_x = 0;
+				} else {
+					_x = tempX;
+				}
+			}
+		}, 200);new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				heroWalk3();
+				int tempX = _x + x/3;
+				if (tempX > (GameView._screenSize.x - _width)) {
+					_x = GameView._screenSize.x - _width;
+				} else if (tempX < 0) {
+					_x = 0;
+				} else {
+					_x = tempX;
+				}
+			}
+		}, 350);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				resetImage();
+			}
+		}, 500);
+		
 	}
 
 	@Override
@@ -172,6 +202,18 @@ public class SpriteHero extends Sprite {
 	public void jumpDown() {
 		currentFrameWidth = 3;
 		currentFrameHeight = 4;
+	}
+	public void heroWalk1() {
+		currentFrameWidth = 7;
+		currentFrameHeight = 3;
+	}
+	public void heroWalk2() {
+		currentFrameWidth = 5;
+		currentFrameHeight = 3;
+	}
+	public void heroWalk3() {
+		currentFrameWidth = 6;
+		currentFrameHeight = 3;
 	}
 
 	private Rect src = new Rect();

@@ -16,7 +16,7 @@ import com.ntut.killboss.R;
 import com.ntut.killboss.setting.EquipmentSetting;
 
 public class StartGameActivity extends Activity {
-	private static final int MOVE_HERO_SPEED = 5;
+	private static final int MOVE_HERO_SPEED = 15;//要改成比例為單位
 	private GameView _gameview;
 
 	@Override
@@ -33,13 +33,14 @@ public class StartGameActivity extends Activity {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				_gameview.moveHero(MOVE_HERO_SPEED);
-				if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+				
+				/*if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 					Log.d("TouchTest", "Touch down");
 				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 					Log.d("TouchTest", "Touch up");
 					// TODO write something here
 					_gameview.resetImage();
-				}
+				}*/
 				return false;
 			}
 		});
