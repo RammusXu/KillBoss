@@ -3,6 +3,7 @@ package com.ntut.killboss.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -17,6 +18,7 @@ import android.view.SurfaceView;
 
 import com.ntut.killboss.Constant;
 import com.ntut.killboss.FunctionUtilities;
+import com.ntut.killboss.GameOverDialog;
 import com.ntut.killboss.R;
 import com.ntut.killboss.SoundEffect;
 import com.ntut.killboss.menu.StageFragment;
@@ -36,8 +38,8 @@ public class GameView extends SurfaceView {
 	public static List<AnimationReduceHP> _temps = new ArrayList<AnimationReduceHP>();
 	public static List<ObjectSkill> _objectSkillsHero = new ArrayList<ObjectSkill>();
 	public static List<ObjectSkill> _objectSkillsBoss = new ArrayList<ObjectSkill>();
-	private SpriteHero _hero;
-	private SpriteBoss _boss;
+	public SpriteHero _hero;
+	public SpriteBoss _boss;
 
 	// Global Variables
 	public static Point _screenSize;
@@ -134,9 +136,10 @@ public class GameView extends SurfaceView {
 		 * .createBitmap(getResources(), R.drawable.sprite4)));
 		 */
 	}
-
+	
 	@Override
 	protected void onDraw(Canvas canvas) {
+
 		canvas.drawColor(Color.WHITE);
 
 		for (Sprite3x4 s : sprites) {
@@ -172,9 +175,8 @@ public class GameView extends SurfaceView {
 		// Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
 		// R.drawable.blood);
 		final ObjectSkill temp = new ObjectSkill(getContext(),
-				_objectSkillsHero, R.drawable.skilla, _hero.get_x()
-						+ _hero.get_width() / 2, _hero.get_y()
-						+ _hero.get_height() / 4, _hero.get_direction());
+				_objectSkillsHero, _hero.get_x() + _hero.get_width() / 2,
+				_hero.get_y() + _hero.get_height() / 4, _hero.get_direction());
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {

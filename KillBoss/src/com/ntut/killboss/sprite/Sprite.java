@@ -26,9 +26,9 @@ public abstract class Sprite {
 	protected int _speedY = 10;
 	protected boolean _direction = true;
 
-
 	// Bitmap
 	protected Bitmap _bitmap;
+	protected Bitmap _bitmapMirror;
 	protected int _width;
 	protected int _height;
 
@@ -53,9 +53,16 @@ public abstract class Sprite {
 	public int get_height() {
 		return _height;
 	}
-	
+
 	public boolean get_direction() {
 		return _direction;
+	}
+
+	public boolean checkSpriteDie() {
+		if (_hp <= 0) {
+			return true;
+		}
+		return false;
 	}
 
 	private static final int HP_HEIGHT = 20;

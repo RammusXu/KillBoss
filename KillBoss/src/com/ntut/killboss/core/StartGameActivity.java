@@ -12,11 +12,12 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.ntut.killboss.GameOverDialog;
 import com.ntut.killboss.R;
 import com.ntut.killboss.setting.EquipmentSetting;
 
 public class StartGameActivity extends Activity {
-	private static final int MOVE_HERO_SPEED = 15;//要改成比例為單位
+	private static final int MOVE_HERO_SPEED = 15;// 要改成比例為單位
 	private GameView _gameview;
 
 	@Override
@@ -99,6 +100,22 @@ public class StartGameActivity extends Activity {
 				}
 			}
 		});
+		
+		// Button ibOver = (Button) findViewById(R.id.game_view_over);
+		// ibOver.setOnClickListener(new Button.OnClickListener() {
+		// @Override
+		// public void onClick(View v) {
+		// finish();
+		// }
+		// });
+//		if(_gameview._hero.checkSpriteDie()) {
+//			ibOver.setVisibility(View.VISIBLE);
+//			Log.d("DEBUG","die");
+//		} else {
+//			ibOver.setVisibility(View.GONE);
+//			Log.d("DEBUG","live");
+//		}
+		
 	}
 
 	@Override
@@ -120,4 +137,5 @@ public class StartGameActivity extends Activity {
 		});
 		dialog.show();
 	}
+
 }

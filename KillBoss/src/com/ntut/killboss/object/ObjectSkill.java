@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 
+import com.ntut.killboss.Constant;
 import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.core.GameView;
 import com.ntut.killboss.sprite.AnimationReduceHP;
@@ -15,30 +16,38 @@ import com.ntut.killboss.sprite.Sprite;
 import com.ntut.killboss.sprite.SpriteBoss;
 
 public class ObjectSkill {
-	private List<ObjectSkill> _objectSkills;
-	private Bitmap bmp;
-	private Bitmap bmpMirror;
+	protected List<ObjectSkill> _objectSkills;
+	protected Bitmap bmp;
+	protected Bitmap bmpMirror;
 
 	// Arguments
-	private int _x;
-	private int _y;
-	private int _damage = 1;
-	private int _distance = 500;
-	private int _speed = 10;
-	private boolean _direction = true;
+	protected int _x;
+	protected int _y;
+	protected int _damage = 1;
+	protected int _distance = 500;
+	protected int _speed = 10;
+	protected boolean _direction = true;
 
 	private Paint paint = new Paint();
+	private int _resID;
 
 	public ObjectSkill(Context context, List<ObjectSkill> objectSkills,
-			int resID, float x, float y, boolean direction) {
+			float x, float y, boolean direction) {
+		this(context, objectSkills, Constant.skillDrawbleResourceIDs[0], x, y,
+				direction);
 
-		bmp = FunctionUtilities
-				.createScaleBitmap(context.getResources(), resID,
-						GameView._screenSize.x / 10,
-						GameView._screenSize.y / 10);
+	}
+
+	public ObjectSkill(Context context, List<ObjectSkill> objectSkills,
+			Integer resID, float x, float y, boolean direction) {
+		_resID = resID;
+
+		bmp = FunctionUtilities.createScaleBitmap(context.getResources(),
+				_resID, GameView._screenSize.x / 10,
+				GameView._screenSize.y / 10);
 		bmpMirror = FunctionUtilities.mirrorBitmap2(bmp, bmp.getWidth(),
 				bmp.getHeight());
-		
+
 		_x = (int) Math.min(Math.max(x - bmp.getWidth() / 2, 0),
 				GameView._screenSize.x - bmp.getWidth());
 		_y = (int) Math.min(Math.max(y - bmp.getHeight() / 2, 0),
@@ -46,10 +55,9 @@ public class ObjectSkill {
 		_objectSkills = objectSkills;
 		_direction = direction;
 
-
 	}
 
-	private void update() {
+	protected void update() {
 		if (_distance < 1) {
 			_objectSkills.remove(this);
 		} else {
@@ -62,16 +70,22 @@ public class ObjectSkill {
 		}
 	}
 
+	protected boolean checkYOutOfBound() {
+		if (_y > GameView._screenSize.y - Constant.SPACE_TO_BOTTOM
+				- bmp.getHeight()) {
+			return true;
+		}
+		return false;
+	}
+
 	public void onDraw(Canvas canvas) {
 		update();
 
-//		canvas.drawBitmap(bmpMirror, _x, _y, null);
-
-		 if (_direction) {
-		 canvas.drawBitmap(bmp, _x, _y, null);
-		 } else {
-		 canvas.drawBitmap(bmpMirror, _x, _y, null);
-		 }
+		if (_direction) {
+			canvas.drawBitmap(bmp, _x, _y, null);
+		} else {
+			canvas.drawBitmap(bmpMirror, _x, _y, null);
+		}
 
 	}
 
@@ -105,4 +119,5 @@ public class ObjectSkill {
 		// 所有不会发生碰撞都不满足时，肯定就是碰撞了
 		return true;
 	}
+
 }
