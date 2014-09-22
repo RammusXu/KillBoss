@@ -30,8 +30,8 @@ public class SpriteBoss extends Sprite {
 		_bitmapMirror = FunctionUtilities.mirrorBitmap2(_bitmap, _width,
 				_height);
 
-		_x = GameView._screenSize.x / 3;
-		_y = GameView._screenSize.y - _height - Constant.SPACE_TO_BOTTOM - 80;
+		_x = GameView._screenSize.x *4/ 5;
+		_y = GameView._screenSize.y - _height - Constant.SPACE_TO_BOTTOM ;
 
 	}
 

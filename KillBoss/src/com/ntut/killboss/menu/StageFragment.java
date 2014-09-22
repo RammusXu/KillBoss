@@ -17,7 +17,7 @@ import com.ntut.killboss.core.StartGameActivity;
 import com.ntut.killboss.setting.ImageAdapter;
 
 public class StageFragment extends Fragment {
-	public static int bossInt = 0;
+	public static int bossInt = 3;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

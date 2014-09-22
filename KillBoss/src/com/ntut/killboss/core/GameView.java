@@ -25,6 +25,7 @@ import com.ntut.killboss.menu.StageFragment;
 import com.ntut.killboss.object.ObjectSkill;
 import com.ntut.killboss.sprite.AnimationReduceHP;
 import com.ntut.killboss.sprite.Sprite3x4;
+import com.ntut.killboss.sprite.SpriteBackground;
 import com.ntut.killboss.sprite.SpriteBoss;
 import com.ntut.killboss.sprite.SpriteHero;
 
@@ -40,6 +41,7 @@ public class GameView extends SurfaceView {
 	public static List<ObjectSkill> _objectSkillsBoss = new ArrayList<ObjectSkill>();
 	public SpriteHero _hero;
 	public SpriteBoss _boss;
+	public SpriteBackground _background;
 
 	// Global Variables
 	public static Point _screenSize;
@@ -50,11 +52,15 @@ public class GameView extends SurfaceView {
 
 		// Init _screenSize
 		_screenSize = FunctionUtilities.getDisplaySize(context);
+		_background = new SpriteBackground(GameView.this,
+				FunctionUtilities.createBitmap(getResources(),
+						R.drawable.background1));
 
 		_boss = new SpriteBoss(context, GameView.this, StageFragment.bossInt);
 
 		_hero = new SpriteHero(GameView.this, FunctionUtilities.createBitmap(
 				getResources(), R.drawable.pichero1));
+		
 
 		resetAllSprites();
 
@@ -136,7 +142,7 @@ public class GameView extends SurfaceView {
 		 * .createBitmap(getResources(), R.drawable.sprite4)));
 		 */
 	}
-	
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 
@@ -145,7 +151,8 @@ public class GameView extends SurfaceView {
 		for (Sprite3x4 s : sprites) {
 			s.onDraw(canvas);
 		}
-
+		
+		_background.onDraw(canvas);
 		_boss.onDraw(canvas);
 		_hero.onDraw(canvas);
 
@@ -250,11 +257,11 @@ public class GameView extends SurfaceView {
 
 	public void heroJump() {
 		// TODO Auto-generated method stub
-		// 這個160 應該用_hero.get_height才對
 		if (_hero.get_y() + _hero.get_height() < GameView._screenSize.y
 				- Constant.SPACE_TO_BOTTOM) {
+			// SPACE_TO_BOTTOM直接在GameView中設定
 			// could not jump untill it touches the ground
-		} else if (_hero.get_y() + 160 >= GameView._screenSize.y
+		} else if (_hero.get_y() + _hero.get_height() >= GameView._screenSize.y
 				- Constant.SPACE_TO_BOTTOM) {
 			_hero.jump(0);
 		}
