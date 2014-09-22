@@ -25,7 +25,7 @@ public class SpriteHero extends Sprite {
 		_gameView = gameView;
 		this.setBitmap(bitmap, 10, 7);
 
-		_y = GameView._screenSize.y - _height - GameView._screenSize.y / 3;
+		_y = GameView._screenSize.y - _height - Constant.SPACE_TO_BOTTOM;
 
 	}
 
@@ -43,7 +43,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				heroWalk1();
-				int tempX = _x + x/3;
+				int tempX = _x + x / 3;
 				if (tempX > (GameView._screenSize.x - _width)) {
 					_x = GameView._screenSize.x - _width;
 				} else if (tempX < 0) {
@@ -52,12 +52,13 @@ public class SpriteHero extends Sprite {
 					_x = tempX;
 				}
 			}
-		}, 50);new Handler().postDelayed(new Runnable() {
+		}, 50);
+		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				heroWalk2();
-				int tempX = _x + x/3;
+				int tempX = _x + x / 3;
 				if (tempX > (GameView._screenSize.x - _width)) {
 					_x = GameView._screenSize.x - _width;
 				} else if (tempX < 0) {
@@ -66,12 +67,13 @@ public class SpriteHero extends Sprite {
 					_x = tempX;
 				}
 			}
-		}, 200);new Handler().postDelayed(new Runnable() {
+		}, 200);
+		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				heroWalk3();
-				int tempX = _x + x/3;
+				int tempX = _x + x / 3;
 				if (tempX > (GameView._screenSize.x - _width)) {
 					_x = GameView._screenSize.x - _width;
 				} else if (tempX < 0) {
@@ -88,7 +90,7 @@ public class SpriteHero extends Sprite {
 				resetImage();
 			}
 		}, 500);
-		
+
 	}
 
 	@Override
@@ -103,7 +105,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpUp();
-				int tempY = _y - GameView._screenSize.y/20;
+				int tempY = _y - GameView._screenSize.y / 20;
 				_y = tempY;
 			}
 		}, 100);
@@ -112,7 +114,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpUp();
-				int tempY = _y - GameView._screenSize.y/15;
+				int tempY = _y - GameView._screenSize.y / 15;
 				_y = tempY;
 			}
 		}, 200);
@@ -121,7 +123,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpUp();
-				int tempY = _y - GameView._screenSize.y/10;
+				int tempY = _y - GameView._screenSize.y / 10;
 				_y = tempY;
 				_x = _x + x / 3;
 			}
@@ -131,7 +133,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpDown();
-				int tempY = _y + GameView._screenSize.y/20;
+				int tempY = _y + GameView._screenSize.y / 20;
 				_y = tempY;
 				_x = _x + x / 3;
 			}
@@ -141,7 +143,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpDown();
-				int tempY = _y + GameView._screenSize.y/15;
+				int tempY = _y + GameView._screenSize.y / 15;
 				_y = tempY;
 				_x = _x + x / 7;
 			}
@@ -151,7 +153,7 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				jumpDown();
-				int tempY = _y + GameView._screenSize.y/10;
+				int tempY = _y + GameView._screenSize.y / 10;
 				_y = tempY;
 			}
 		}, 600);
@@ -203,14 +205,17 @@ public class SpriteHero extends Sprite {
 		currentFrameWidth = 3;
 		currentFrameHeight = 4;
 	}
+
 	public void heroWalk1() {
 		currentFrameWidth = 7;
 		currentFrameHeight = 3;
 	}
+
 	public void heroWalk2() {
 		currentFrameWidth = 5;
 		currentFrameHeight = 3;
 	}
+
 	public void heroWalk3() {
 		currentFrameWidth = 6;
 		currentFrameHeight = 3;
@@ -233,8 +238,6 @@ public class SpriteHero extends Sprite {
 		dst.set(_x, _y, _x + this._width, _y + this._height);
 
 		canvas.drawBitmap(this._bitmap, src, dst, null);
-
-		// canvas.drawBitmap(_bitmap, null, dst, null);
 		drawHP(canvas);
 		// TEEST
 	}
