@@ -5,7 +5,6 @@ import java.util.List;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 
 import com.ntut.killboss.Constant;
@@ -13,7 +12,6 @@ import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.core.GameView;
 import com.ntut.killboss.sprite.AnimationReduceHP;
 import com.ntut.killboss.sprite.Sprite;
-import com.ntut.killboss.sprite.SpriteBoss;
 
 public class ObjectSkill {
 	protected List<ObjectSkill> _objectSkills;
@@ -96,6 +94,11 @@ public class ObjectSkill {
 				sprite.get_height())) {
 			_objectSkills.remove(this);
 			sprite.reduceHP(_damage);
+			if(sprite.get_x() > _x) {
+				sprite.knockOut(20, 0);
+			} else {
+				sprite.knockOut(-20, 0);
+			}
 			GameView._temps.add(new AnimationReduceHP(gameView,
 					GameView._temps, sprite.get_x() + (sprite.get_width() / 2),
 					sprite.get_y() + (sprite.get_height() / 3), -_damage));

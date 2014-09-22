@@ -1,7 +1,6 @@
 package com.ntut.killboss.sprite;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -123,6 +122,11 @@ public abstract class Sprite {
 		}
 
 		return false;
+	}
+
+	public void knockOut(int x, int y) {
+		_x += x;
+		_y += y;
 	}
 
 	/**
