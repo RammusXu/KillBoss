@@ -24,29 +24,29 @@ public class Weapon {
 		case 1:
 			_property = Property.None;
 			_power = 1;
-			_bitmapSkillA = R.drawable.skill_b;
-			_bitmapSkillB = R.drawable.skill_c;
+			_bitmapSkillA = R.drawable.skill_button_2;
+			_bitmapSkillB = R.drawable.skill_button_3;
 			break;
 
 		case 2:
 			_property = Property.Ice;
 			_power = 3;
-			_bitmapSkillA = R.drawable.skill_c;
-			_bitmapSkillB = R.drawable.skill_d;
+			_bitmapSkillA = R.drawable.skill_button_3;
+			_bitmapSkillB = R.drawable.skill_button_4;
 			break;
 
 		case 3:
 			_property = Property.Fire;
 			_power = 5;
-			_bitmapSkillA = R.drawable.skill_d;
-			_bitmapSkillB = R.drawable.skill_a;
+			_bitmapSkillA = R.drawable.skill_button_4;
+			_bitmapSkillB = R.drawable.skill_button_1;
 			break;
 
 		default:
 			_property = Property.None;
 			_power = 1;
-			_bitmapSkillA = R.drawable.skill_a;
-			_bitmapSkillB = R.drawable.skill_b;
+			_bitmapSkillA = R.drawable.skill_button_1;
+			_bitmapSkillB = R.drawable.skill_button_2;
 			break;
 		}
 	}

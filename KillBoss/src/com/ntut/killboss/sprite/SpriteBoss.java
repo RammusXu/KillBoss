@@ -28,8 +28,8 @@ public class SpriteBoss extends Sprite {
 		_bitmapMirror = FunctionUtilities.mirrorBitmap2(_bitmap, _width,
 				_height);
 
-		_x = GameView._screenSize.x *4/ 5;
-		_y = GameView._screenSize.y - _height - GameView._screenSize.y/6 ;
+		_x = GameView._screenSize.x * 4 / 5;
+		_y = GameView._screenSize.y - _height - GameView._screenSize.y / 6;
 
 	}
 
@@ -92,6 +92,7 @@ public class SpriteBoss extends Sprite {
 
 	private void moveToX() {
 		if (moveToRandomXFlag) {
+			_status = SprtieStatus.Run;
 			Log.d("DEBUG", "moveToRandomXFlag = false, " + moveToRandomX);
 			moveToRandomX = FunctionUtilities.getRandom(GameView._screenSize.x
 					- _width);
@@ -107,7 +108,19 @@ public class SpriteBoss extends Sprite {
 			if (Math.abs(moveToRandomX - _x) < _speedX) {
 				Log.d("DEBUG", "moveToRandomXFlag = true, " + moveToRandomX);
 				moveToRandomXFlag = true;
+
+				_status = SprtieStatus.Normal;
+				_standCycle = 60;
 			}
+		}
+	}
+
+	private int _standCycle = 60;
+
+	private void stand() {
+		_standCycle--;
+		if (_standCycle < 1) {
+			_status = SprtieStatus.Run;
 		}
 	}
 
@@ -115,7 +128,11 @@ public class SpriteBoss extends Sprite {
 	public void onDraw(Canvas canvas) {
 		useSkill();
 
-		moveToX();
+		if (_status == SprtieStatus.Run) {
+			moveToX();
+		} else if (_status == SprtieStatus.Normal) {
+			stand();
+		}
 
 		dst.set(_x, _y, _x + _width, _y + _height);
 
@@ -127,5 +144,11 @@ public class SpriteBoss extends Sprite {
 
 		drawHP(canvas);
 	}
+
+	public enum SprtieStatus {
+		Normal, Run, Hurt, Skill
+	}
+
+	private SprtieStatus _status = SprtieStatus.Normal;
 
 }

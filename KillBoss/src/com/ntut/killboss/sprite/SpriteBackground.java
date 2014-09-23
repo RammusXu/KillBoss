@@ -27,7 +27,7 @@ public class SpriteBackground extends Sprite {
 		// TODO Auto-generated method stub
 
 		dst.set(_x, _y, GameView._screenSize.x, GameView._screenSize.y
-				- Constant.SPACE_TO_BOTTOM);
+				- GameView._screenSize.y / 6);
 
 		canvas.drawBitmap(this._bitmap, null, dst, null);
 	}
