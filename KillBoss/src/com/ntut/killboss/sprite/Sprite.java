@@ -88,6 +88,7 @@ public abstract class Sprite {
 
 	public void reduceHP(int hp) {
 		_hp -= hp;
+//		status = hurt;
 	}
 
 	public void increaseHP(int hp) {

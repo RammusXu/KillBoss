@@ -67,6 +67,8 @@ public class ObjectSkill {
 			_distance -= _speed;
 		}
 	}
+	
+
 
 	protected boolean checkYOutOfBound() {
 		if (_y > GameView._screenSize.y - Constant.SPACE_TO_BOTTOM

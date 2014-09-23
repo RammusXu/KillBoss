@@ -16,16 +16,18 @@ public class SpriteHero extends Sprite {
 	private static final String TAG = "SpriteHero";
 	private int currentFrameWidth = 4;
 	private int currentFrameHeight = 2;
+	private Bitmap bimapHurt;
 
 	public SpriteHero(GameView gameView, Bitmap bitmap) {
 
 		bitmap = Bitmap.createScaledBitmap(bitmap, GameView._screenSize.x,
 				GameView._screenSize.y, true);
+//		bimapHurt =
 
 		_gameView = gameView;
 		this.setBitmap(bitmap, 10, 7);
 
-		_y = GameView._screenSize.y - _height - GameView._screenSize.y/6;
+		_y = GameView._screenSize.y - _height - GameView._screenSize.y / 6;
 
 	}
 
@@ -92,9 +94,8 @@ public class SpriteHero extends Sprite {
 		}, 400);
 
 	}
-	
-	public void slide(final int x)
-	{
+
+	public void slide(final int x) {
 		slideReady1();
 		new Handler().postDelayed(new Runnable() {
 			@Override
@@ -123,14 +124,14 @@ public class SpriteHero extends Sprite {
 			public void run() {
 				// TODO Auto-generated method stub
 				slideFinish3();
-				}
+			}
 		}, 900);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				resetImage();
-				}
+			}
 		}, 1100);
 	}
 
@@ -261,21 +262,25 @@ public class SpriteHero extends Sprite {
 		currentFrameWidth = 6;
 		currentFrameHeight = 3;
 	}
+
 	private void slideReady1() {
 		// TODO Auto-generated method stub
 		currentFrameWidth = 5;
 		currentFrameHeight = 6;
 	}
+
 	private void slideReady2() {
 		// TODO Auto-generated method stub
 		currentFrameWidth = 6;
 		currentFrameHeight = 6;
 	}
+
 	private void slideReady3() {
 		// TODO Auto-generated method stub
 		currentFrameWidth = 7;
 		currentFrameHeight = 6;
 	}
+
 	private void slideFinish3() {
 		// TODO Auto-generated method stub
 		currentFrameWidth = 6;
@@ -284,8 +289,24 @@ public class SpriteHero extends Sprite {
 
 	private Rect src = new Rect();
 
+	int lifeCycle = 20;	//system time
+
+	protected void move() {
+		lifeCycle -= 1;
+		Log.d("DEBUG", "lifeCycle =" + lifeCycle);
+		if (lifeCycle <20) {
+			heroWalk1();
+//			status = normal;
+		} else if (lifeCycle < 10) {
+			// change status
+		} else if (lifeCycle < 1) {
+			// change status
+		} 
+	}
+
 	@Override
 	public void onDraw(Canvas canvas) {
+//		move(); TODO 
 		// dst.set(_x, _y, _x + _width, _y + _height);
 
 		int srcX = currentFrameWidth * this._width;
@@ -298,6 +319,16 @@ public class SpriteHero extends Sprite {
 		// _y + GameView._screenSize.y/(¬Ý­n´X­¿)
 		dst.set(_x, _y, _x + this._width, _y + this._height);
 
+		// //status = run
+		// if(status) {
+		//
+		// canvas.drawBitmap(this._bitmap, src, dst, null);
+		// //status = slide
+		// } else if() {
+		//
+		// canvas.drawBitmap(this.bitmapHurt, src, dst, null);
+		// //status = hurt
+		// }
 		canvas.drawBitmap(this._bitmap, src, dst, null);
 		drawHP(canvas);
 		// TEEST

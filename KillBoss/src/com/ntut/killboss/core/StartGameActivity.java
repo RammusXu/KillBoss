@@ -1,5 +1,7 @@
 package com.ntut.killboss.core;
 
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -7,18 +9,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.ntut.killboss.GameOverDialog;
 import com.ntut.killboss.R;
 import com.ntut.killboss.setting.EquipmentSetting;
 
 public class StartGameActivity extends Activity {
 	private static int MOVE_HERO_SPEED;// 下面33行處初始化，避免NULL POINT
 	private static int SLIDE_HERO_SPEED;
+	private long clickTime;
 	private GameView _gameview;
 
 	@Override
@@ -34,44 +35,46 @@ public class StartGameActivity extends Activity {
 		SLIDE_HERO_SPEED = GameView._screenSize.x / 3;
 
 		ImageButton ibRight = (ImageButton) findViewById(R.id.game_view_right);
-		ibRight.setOnLongClickListener(new ImageButton.OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				// TODO Auto-generated method stub
-				_gameview.slideHero(MOVE_HERO_SPEED);
-				return false;
-			}
-		});
 		ibRight.setOnClickListener(new ImageButton.OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				_gameview.moveHero(MOVE_HERO_SPEED);
+				long now = Calendar.getInstance().getTimeInMillis();
+				System.out.println(now + "," + clickTime);
+				if (now - clickTime <= 1500) {
+					_gameview.moveHero(MOVE_HERO_SPEED);
+				} else {
+					_gameview.slideHero(SLIDE_HERO_SPEED);
+				}
+				clickTime = now;
 			}
 		});
 
 		ImageButton ibLeft = (ImageButton) findViewById(R.id.game_view_left);
 		ibLeft.setOnTouchListener(new ImageButton.OnTouchListener() {
 
+			long now;
+			boolean touchFlag = false;
+
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				_gameview.moveHero(-MOVE_HERO_SPEED);
 				if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-					Log.d("TouchTest", "Touch down");
+					now = Calendar.getInstance().getTimeInMillis();
+					touchFlag = true;
 				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-					Log.d("TouchTest", "Touch up");
-					_gameview.resetImage();
+					touchFlag = false;
+					long now2 = Calendar.getInstance().getTimeInMillis();
+					if (now2 - now < 1500) {
+						// Onclick
+						_gameview.slideHero(SLIDE_HERO_SPEED);
+					}
+				}
+				
+				if (touchFlag) {
+					_gameview.moveHero(MOVE_HERO_SPEED);
 				}
 				return false;
-			}
-		});
-		ibRight.setOnClickListener(new ImageButton.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				_gameview.moveHero(MOVE_HERO_SPEED);
 			}
 		});
 
