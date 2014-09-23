@@ -67,7 +67,7 @@ public class SpriteHero extends Sprite {
 					_x = tempX;
 				}
 			}
-		}, 200);
+		}, 150);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
@@ -82,15 +82,56 @@ public class SpriteHero extends Sprite {
 					_x = tempX;
 				}
 			}
-		}, 350);
+		}, 250);
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				resetImage();
 			}
-		}, 500);
+		}, 400);
 
+	}
+	
+	public void slide(final int x)
+	{
+		slideReady1();
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				slideReady2();
+			}
+		}, 300);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				slideReady3();
+				int tempX = _x + x;
+				if (tempX > (GameView._screenSize.x - _width)) {
+					_x = GameView._screenSize.x - _width;
+				} else if (tempX < 0) {
+					_x = 0;
+				} else {
+					_x = tempX;
+				}
+			}
+		}, 600);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				slideFinish3();
+				}
+		}, 900);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				resetImage();
+				}
+		}, 1100);
 	}
 
 	@Override
@@ -219,6 +260,26 @@ public class SpriteHero extends Sprite {
 	public void heroWalk3() {
 		currentFrameWidth = 6;
 		currentFrameHeight = 3;
+	}
+	private void slideReady1() {
+		// TODO Auto-generated method stub
+		currentFrameWidth = 5;
+		currentFrameHeight = 6;
+	}
+	private void slideReady2() {
+		// TODO Auto-generated method stub
+		currentFrameWidth = 6;
+		currentFrameHeight = 6;
+	}
+	private void slideReady3() {
+		// TODO Auto-generated method stub
+		currentFrameWidth = 7;
+		currentFrameHeight = 6;
+	}
+	private void slideFinish3() {
+		// TODO Auto-generated method stub
+		currentFrameWidth = 6;
+		currentFrameHeight = 6;
 	}
 
 	private Rect src = new Rect();

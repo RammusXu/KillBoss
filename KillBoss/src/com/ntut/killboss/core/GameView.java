@@ -177,6 +177,9 @@ public class GameView extends SurfaceView {
 	public void moveHero(int moveHeroSpeed) {
 		_hero.move(moveHeroSpeed);
 	}
+	public void slideHero(int slideHeroSpeed) {
+		_hero.slide(slideHeroSpeed);
+	}
 
 	public void shotSkillA(int skillID) {
 		// Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),

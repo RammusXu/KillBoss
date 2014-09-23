@@ -17,7 +17,8 @@ import com.ntut.killboss.R;
 import com.ntut.killboss.setting.EquipmentSetting;
 
 public class StartGameActivity extends Activity {
-	private static final int MOVE_HERO_SPEED = 15;// 要改成比例為單位
+	private static int MOVE_HERO_SPEED;// 下面33行處初始化，避免NULL POINT
+	private static int SLIDE_HERO_SPEED;
 	private GameView _gameview;
 
 	@Override
@@ -28,21 +29,25 @@ public class StartGameActivity extends Activity {
 
 		// VIEW
 		_gameview = (GameView) findViewById(R.id.game_view_skill_gameView);
+
+		MOVE_HERO_SPEED = GameView._screenSize.x / 50;
+		SLIDE_HERO_SPEED = GameView._screenSize.x / 3;
+
 		ImageButton ibRight = (ImageButton) findViewById(R.id.game_view_right);
-		ibRight.setOnTouchListener(new ImageButton.OnTouchListener() {
+		ibRight.setOnLongClickListener(new ImageButton.OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				// TODO Auto-generated method stub
+				_gameview.slideHero(MOVE_HERO_SPEED);
+				return false;
+			}
+		});
+		ibRight.setOnClickListener(new ImageButton.OnClickListener() {
 
 			@Override
-			public boolean onTouch(View v, MotionEvent event) {
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
 				_gameview.moveHero(MOVE_HERO_SPEED);
-				
-				/*if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
-					Log.d("TouchTest", "Touch down");
-				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-					Log.d("TouchTest", "Touch up");
-					// TODO write something here
-					_gameview.resetImage();
-				}*/
-				return false;
 			}
 		});
 
@@ -59,6 +64,14 @@ public class StartGameActivity extends Activity {
 					_gameview.resetImage();
 				}
 				return false;
+			}
+		});
+		ibRight.setOnClickListener(new ImageButton.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				_gameview.moveHero(MOVE_HERO_SPEED);
 			}
 		});
 
@@ -100,7 +113,7 @@ public class StartGameActivity extends Activity {
 				}
 			}
 		});
-		
+
 		// Button ibOver = (Button) findViewById(R.id.game_view_over);
 		// ibOver.setOnClickListener(new Button.OnClickListener() {
 		// @Override
@@ -108,14 +121,14 @@ public class StartGameActivity extends Activity {
 		// finish();
 		// }
 		// });
-//		if(_gameview._hero.checkSpriteDie()) {
-//			ibOver.setVisibility(View.VISIBLE);
-//			Log.d("DEBUG","die");
-//		} else {
-//			ibOver.setVisibility(View.GONE);
-//			Log.d("DEBUG","live");
-//		}
-		
+		// if(_gameview._hero.checkSpriteDie()) {
+		// ibOver.setVisibility(View.VISIBLE);
+		// Log.d("DEBUG","die");
+		// } else {
+		// ibOver.setVisibility(View.GONE);
+		// Log.d("DEBUG","live");
+		// }
+
 	}
 
 	@Override

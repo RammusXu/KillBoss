@@ -24,5 +24,5 @@ public class Constant {
 			R.drawable.boss222, R.drawable.boss222, };
 
 	public static final Integer[] skillDrawbleResourceIDs = {
-			R.drawable.skilla, R.drawable.skillb };
+			R.drawable.skilla, R.drawable.dropfire };
 }
