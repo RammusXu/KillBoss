@@ -11,6 +11,9 @@ import android.util.Log;
 import com.ntut.killboss.Constant;
 import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.core.GameView;
+import com.ntut.killboss.object.ObjectSkill;
+import com.ntut.killboss.object.ObjectSkill2;
+import com.ntut.killboss.object.ObjectSkill3;
 
 public class SpriteHero extends Sprite {
 	private static final String TAG = "SpriteHero";
@@ -194,6 +197,7 @@ public class SpriteHero extends Sprite {
 	public void skillBshot() {
 		currentFrameWidth = 8;
 		currentFrameHeight = 0;
+		
 	}
 
 	public void jumpUp() {

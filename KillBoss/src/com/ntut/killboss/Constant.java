@@ -2,8 +2,6 @@ package com.ntut.killboss;
 
 import android.graphics.Point;
 
-
-
 public class Constant {
 
 	public static final int SPACE_TO_BOTTOM = 300;
@@ -25,5 +23,5 @@ public class Constant {
 			R.drawable.boss222, R.drawable.boss222, };
 
 	public static final Integer[] skillDrawbleResourceIDs = {
-			R.drawable.skilla, R.drawable.skillb };
+			R.drawable.skilla, R.drawable.skillb, R.drawable.skillc };
 }
