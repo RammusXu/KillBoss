@@ -19,7 +19,7 @@ public class ObjectSkill3 extends ObjectSkill {
 				direction);
 		_x = x + (_width / 2);
 		_y = y + (_height / 2);
-		_distance = 10;
+		_distance = 10; // life cycle
 	}
 
 	@Override
