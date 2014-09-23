@@ -29,7 +29,7 @@ public class SpriteBoss extends Sprite {
 				_height);
 
 		_x = GameView._screenSize.x *4/ 5;
-		_y = GameView._screenSize.y - _height - Constant.SPACE_TO_BOTTOM ;
+		_y = GameView._screenSize.y - _height - GameView._screenSize.y/6 ;
 
 	}
 
@@ -45,8 +45,8 @@ public class SpriteBoss extends Sprite {
 				if (FunctionUtilities.getRandom(2) == 0) {
 
 					temp = new ObjectSkill(_context,
-							GameView._objectSkillsBoss, _x + (_width / 2), _y
-									+ (_height * 3 / 4), _direction);
+							GameView._objectSkillsBoss, _x + (_width), _y
+									+ (_height * 1 / 2), _direction);
 					GameView._objectSkillsBoss.add(temp);
 				} else {
 

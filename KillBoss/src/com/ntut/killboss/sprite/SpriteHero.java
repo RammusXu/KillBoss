@@ -25,7 +25,7 @@ public class SpriteHero extends Sprite {
 		_gameView = gameView;
 		this.setBitmap(bitmap, 10, 7);
 
-		_y = GameView._screenSize.y - _height - Constant.SPACE_TO_BOTTOM;
+		_y = GameView._screenSize.y - _height - GameView._screenSize.y/6;
 
 	}
 

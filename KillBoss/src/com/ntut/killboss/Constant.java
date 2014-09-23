@@ -1,12 +1,11 @@
 package com.ntut.killboss;
-
-import android.graphics.Point;
-
+  
 
 
 public class Constant {
 
-	public static final int SPACE_TO_BOTTOM = 300;
+
+	public static final int SPACE_TO_BOTTOM = 250;
 
 	public static final Integer[] weaponIDs = { R.drawable.weapon_1,
 			R.drawable.weapon_2, R.drawable.weapon_3, R.drawable.weapon_1,

@@ -258,11 +258,11 @@ public class GameView extends SurfaceView {
 	public void heroJump() {
 		// TODO Auto-generated method stub
 		if (_hero.get_y() + _hero.get_height() < GameView._screenSize.y
-				- Constant.SPACE_TO_BOTTOM) {
+				- GameView._screenSize.y/6) {
 			// SPACE_TO_BOTTOM直接在GameView中設定
 			// could not jump untill it touches the ground
 		} else if (_hero.get_y() + _hero.get_height() >= GameView._screenSize.y
-				- Constant.SPACE_TO_BOTTOM) {
+				- GameView._screenSize.y/6) {
 			_hero.jump(0);
 		}
 	}
@@ -270,10 +270,10 @@ public class GameView extends SurfaceView {
 	public void heroDoubleJump() {
 		// TODO Auto-generated method stub
 		if (_hero.get_y() + _hero.get_height() < GameView._screenSize.y
-				- Constant.SPACE_TO_BOTTOM) {
+				- GameView._screenSize.y/6) {
 			// could not jump untill it touches the ground
 		} else if (_hero.get_y() + _hero.get_height() >= GameView._screenSize.y
-				- Constant.SPACE_TO_BOTTOM) {
+				- GameView._screenSize.y/6) {
 			_hero.jump(0);
 			_hero.jump(0);
 		}
