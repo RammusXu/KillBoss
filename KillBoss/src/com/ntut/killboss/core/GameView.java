@@ -23,6 +23,7 @@ import com.ntut.killboss.R;
 import com.ntut.killboss.SoundEffect;
 import com.ntut.killboss.menu.StageFragment;
 import com.ntut.killboss.object.ObjectSkill;
+import com.ntut.killboss.object.ObjectSkill3;
 import com.ntut.killboss.sprite.AnimationReduceHP;
 import com.ntut.killboss.sprite.Sprite3x4;
 import com.ntut.killboss.sprite.SpriteBackground;
@@ -36,7 +37,7 @@ public class GameView extends SurfaceView {
 
 	// Sprite
 	private ArrayList<Sprite3x4> sprites;
-	public static List<AnimationReduceHP> _temps = new ArrayList<AnimationReduceHP>();
+	public static List<AnimationReduceHP> _animationReduceHP = new ArrayList<AnimationReduceHP>();
 	public static List<ObjectSkill> _objectSkillsHero = new ArrayList<ObjectSkill>();
 	public static List<ObjectSkill> _objectSkillsBoss = new ArrayList<ObjectSkill>();
 	public SpriteHero _hero;
@@ -60,7 +61,6 @@ public class GameView extends SurfaceView {
 
 		_hero = new SpriteHero(GameView.this, FunctionUtilities.createBitmap(
 				getResources(), R.drawable.pichero1));
-		
 
 		resetAllSprites();
 
@@ -151,16 +151,15 @@ public class GameView extends SurfaceView {
 		for (Sprite3x4 s : sprites) {
 			s.onDraw(canvas);
 		}
-		
+
 		_background.onDraw(canvas);
 		_boss.onDraw(canvas);
 		_hero.onDraw(canvas);
 
-		for (int i = _temps.size() - 1; i >= 0; i--) {
-			_temps.get(i).onDraw(canvas);
+		for (int i = _animationReduceHP.size() - 1; i >= 0; i--) {
+			_animationReduceHP.get(i).onDraw(canvas);
 		}
 
-		// TODO
 		for (int i = _objectSkillsHero.size() - 1; i >= 0; i--) {
 			_objectSkillsHero.get(i).onDraw(canvas);
 			_objectSkillsHero.get(i).hitSprite(_boss, GameView.this);
@@ -234,6 +233,11 @@ public class GameView extends SurfaceView {
 			public void run() {
 				// TODO Auto-generated method stub
 				_hero.skillBshot();
+
+				ObjectSkill temp = new ObjectSkill3(getContext(),
+						GameView._objectSkillsHero, _hero.get_x(), _hero
+								.get_y(), _hero.get_direction());
+				GameView._objectSkillsHero.add(temp);
 				_hero.increaseHP(2);
 				hitHero(+2);
 			}
@@ -249,9 +253,9 @@ public class GameView extends SurfaceView {
 
 	private void hitHero(int reduceHP) {
 
-		AnimationReduceHP temp = new AnimationReduceHP(GameView.this, _temps,
+		AnimationReduceHP temp = new AnimationReduceHP(GameView.this,
 				_hero.get_x() + 50, _hero.get_y(), reduceHP);
-		_temps.add(temp);
+		_animationReduceHP.add(temp);
 	}
 
 	public void resetImage() {

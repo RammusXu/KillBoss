@@ -11,8 +11,8 @@ public class SpriteBackground extends Sprite {
 
 	public SpriteBackground(GameView gameView, Bitmap bitmap) {
 
-		//bitmap = Bitmap.createScaledBitmap(bitmap, GameView._screenSize.x,
-		 //GameView._screenSize.y, true);
+		// bitmap = Bitmap.createScaledBitmap(bitmap, GameView._screenSize.x,
+		// GameView._screenSize.y, true);
 
 		_gameView = gameView;
 		this.setBitmap(bitmap, 1, 1);
@@ -22,13 +22,12 @@ public class SpriteBackground extends Sprite {
 
 	}
 
-
 	@Override
 	public void onDraw(Canvas canvas) {
 		// TODO Auto-generated method stub
-		
-		dst.set(_x, _y, _x + GameView._screenSize.x, _y + GameView._screenSize.y);
-		
+
+		dst.set(_x, _y, GameView._screenSize.x, GameView._screenSize.y
+				- Constant.SPACE_TO_BOTTOM);
 
 		canvas.drawBitmap(this._bitmap, null, dst, null);
 	}

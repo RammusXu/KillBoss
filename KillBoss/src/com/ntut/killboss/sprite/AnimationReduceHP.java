@@ -14,7 +14,6 @@ import com.ntut.killboss.core.GameView;
 public class AnimationReduceHP {
 	private static final int SPACE_TO_BORDER = 48;
 
-	private List<AnimationReduceHP> temps;
 	private float x;
 	private float y;
 
@@ -22,9 +21,7 @@ public class AnimationReduceHP {
 	private int reduceHP = 1;
 	private Paint paint = new Paint();
 
-	public AnimationReduceHP(GameView gameView, List<AnimationReduceHP> temps,
-			float x, float y, int reduceHP) {
-		this.temps = temps;
+	public AnimationReduceHP(GameView gameView, float x, float y, int reduceHP) {
 		this.x = Math.min(x, GameView._screenSize.x - SPACE_TO_BORDER);
 		this.y = Math.min(y, GameView._screenSize.y - SPACE_TO_BORDER);
 		this.reduceHP = reduceHP;
@@ -34,7 +31,7 @@ public class AnimationReduceHP {
 
 	private void update() {
 		if (--life < 1) {
-			temps.remove(this);
+			GameView._animationReduceHP.remove(this);
 		} else {
 			if (y > 0) {
 				y -= 10;

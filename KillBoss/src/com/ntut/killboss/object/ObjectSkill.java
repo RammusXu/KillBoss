@@ -17,6 +17,8 @@ public class ObjectSkill {
 	protected List<ObjectSkill> _objectSkills;
 	protected Bitmap bmp;
 	protected Bitmap bmpMirror;
+	protected int _width;
+	protected int _height;
 
 	// Arguments
 	protected int _x;
@@ -45,6 +47,9 @@ public class ObjectSkill {
 				GameView._screenSize.y / 10);
 		bmpMirror = FunctionUtilities.mirrorBitmap2(bmp, bmp.getWidth(),
 				bmp.getHeight());
+
+		_width = bmp.getWidth();
+		_height = bmp.getHeight();
 
 		_x = (int) Math.min(Math.max(x - bmp.getWidth() / 2, 0),
 				GameView._screenSize.x - bmp.getWidth());
@@ -90,20 +95,19 @@ public class ObjectSkill {
 	}
 
 	public void hitSprite(Sprite sprite, GameView gameView) {
-
 		if (isCollsionWithRect(_x, _y, bmp.getWidth(), bmp.getHeight(),
 				sprite.get_x(), sprite.get_y(), sprite.get_width(),
 				sprite.get_height())) {
 			_objectSkills.remove(this);
 			sprite.reduceHP(_damage);
-			if(sprite.get_x() > _x) {
+			if (sprite.get_x() > _x) {
 				sprite.knockOut(20, 0);
 			} else {
 				sprite.knockOut(-20, 0);
 			}
-			GameView._temps.add(new AnimationReduceHP(gameView,
-					GameView._temps, sprite.get_x() + (sprite.get_width() / 2),
-					sprite.get_y() + (sprite.get_height() / 3), -_damage));
+			GameView._animationReduceHP.add(new AnimationReduceHP(gameView,
+					sprite.get_x() + (sprite.get_width() / 2), sprite.get_y()
+							+ (sprite.get_height() / 3), -_damage));
 		}
 	}
 
