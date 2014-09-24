@@ -60,7 +60,9 @@ public class GameView extends SurfaceView {
 		_boss = new SpriteBoss(context, GameView.this, StageFragment.bossInt);
 
 		_hero = new SpriteHero(GameView.this, FunctionUtilities.createBitmap(
-				getResources(), R.drawable.pichero1));
+				getResources(), R.drawable.pichero1),
+				FunctionUtilities.createBitmap(getResources(),
+						R.drawable.pichero2));
 
 		resetAllSprites();
 
@@ -173,11 +175,20 @@ public class GameView extends SurfaceView {
 		super.onDraw(canvas);
 	}
 
-	public void moveHero(int moveHeroSpeed) {
-		_hero.move(moveHeroSpeed);
+	public void moveHeroRight(int moveHeroSpeed) {
+		_hero.moveRight(moveHeroSpeed);
 	}
-	public void slideHero(int slideHeroSpeed) {
-		_hero.slide(slideHeroSpeed);
+
+	public void moveHeroLeft(int moveHeroSpeed) {
+		_hero.moveLeft(moveHeroSpeed);
+	}
+
+	public void flashHeroRight(int moveHeroSpeed) {
+		_hero.flashRight(moveHeroSpeed);
+	}
+
+	public void flashHeroLeft(int moveHeroSpeed) {
+		_hero.flashLeft(moveHeroSpeed);
 	}
 
 	public void shotSkillA(int skillID) {
@@ -265,24 +276,33 @@ public class GameView extends SurfaceView {
 	public void heroJump() {
 		// TODO Auto-generated method stub
 		if (_hero.get_y() + _hero.get_height() < GameView._screenSize.y
-				- GameView._screenSize.y/6) {
+				- GameView._screenSize.y / 6) {
 			// SPACE_TO_BOTTOM直接在GameView中設定
 			// could not jump untill it touches the ground
 		} else if (_hero.get_y() + _hero.get_height() >= GameView._screenSize.y
-				- GameView._screenSize.y/6) {
-			_hero.jump(0);
+				- GameView._screenSize.y / 6) {
+			if (_hero.get_direction()) {
+				_hero.jumpRight();
+			} else {
+				_hero.jumpLeft();
+			}
 		}
 	}
 
 	public void heroDoubleJump() {
 		// TODO Auto-generated method stub
 		if (_hero.get_y() + _hero.get_height() < GameView._screenSize.y
-				- GameView._screenSize.y/6) {
+				- GameView._screenSize.y / 6) {
 			// could not jump untill it touches the ground
 		} else if (_hero.get_y() + _hero.get_height() >= GameView._screenSize.y
-				- GameView._screenSize.y/6) {
-			_hero.jump(0);
-			_hero.jump(0);
+				- GameView._screenSize.y / 6) {
+			if (_hero.get_direction()) {
+				_hero.jumpRight();
+				_hero.jumpRight();
+			} else {
+				_hero.jumpLeft();
+				_hero.jumpLeft();
+			}
 		}
 	}
 

@@ -15,7 +15,7 @@ public class SpriteHeroGirl extends Sprite {
 
 	public SpriteHeroGirl(GameView gameView, Bitmap bitmap) {
 		_gameView = gameView;
-		this.setBitmap(bitmap, 4, 4);
+		this.setBitmap(bitmap, null, 4, 4);
 
 		_y = GameView._screenSize.y - _height - Constant.SPACE_TO_BOTTOM;
 

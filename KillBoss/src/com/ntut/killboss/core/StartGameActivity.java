@@ -19,7 +19,6 @@ import com.ntut.killboss.setting.EquipmentSetting;
 public class StartGameActivity extends Activity {
 	private static int MOVE_HERO_SPEED;// 下面33行處初始化，避免NULL POINT
 	private static int SLIDE_HERO_SPEED;
-	private long clickTime;
 	private GameView _gameview;
 
 	@Override
@@ -31,22 +30,33 @@ public class StartGameActivity extends Activity {
 		// VIEW
 		_gameview = (GameView) findViewById(R.id.game_view_skill_gameView);
 
-		MOVE_HERO_SPEED = GameView._screenSize.x / 50;
+		MOVE_HERO_SPEED = GameView._screenSize.x / 40;
 		SLIDE_HERO_SPEED = GameView._screenSize.x / 3;
 
 		ImageButton ibRight = (ImageButton) findViewById(R.id.game_view_right);
-		ibRight.setOnClickListener(new ImageButton.OnClickListener() {
+		ibRight.setOnTouchListener(new ImageButton.OnTouchListener() {
+		
+			long now;
+			long now2;
+			boolean touchFlag = false;
+
 			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				long now = Calendar.getInstance().getTimeInMillis();
-				System.out.println(now + "," + clickTime);
-				if (now - clickTime <= 1500) {
-					_gameview.moveHero(MOVE_HERO_SPEED);
-				} else {
-					_gameview.slideHero(SLIDE_HERO_SPEED);
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					now = Calendar.getInstance().getTimeInMillis();
+					touchFlag = true;
+				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+					touchFlag = false;
+					now2 = Calendar.getInstance().getTimeInMillis();
+					if (now2 - now < 600) {
+						// Onclick
+						_gameview.flashHeroRight(SLIDE_HERO_SPEED);
+					}
 				}
-				clickTime = now;
+				if (touchFlag) {
+					_gameview.moveHeroRight(MOVE_HERO_SPEED);
+				}
+				return false;
 			}
 		});
 
@@ -54,25 +64,24 @@ public class StartGameActivity extends Activity {
 		ibLeft.setOnTouchListener(new ImageButton.OnTouchListener() {
 
 			long now;
+			long now2;
 			boolean touchFlag = false;
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				_gameview.moveHero(-MOVE_HERO_SPEED);
 				if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 					now = Calendar.getInstance().getTimeInMillis();
 					touchFlag = true;
 				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
 					touchFlag = false;
-					long now2 = Calendar.getInstance().getTimeInMillis();
-					if (now2 - now < 1500) {
+					now2 = Calendar.getInstance().getTimeInMillis();
+					if (now2 - now < 1000) {
 						// Onclick
-						_gameview.slideHero(SLIDE_HERO_SPEED);
+						_gameview.flashHeroLeft(SLIDE_HERO_SPEED);
 					}
 				}
-				
 				if (touchFlag) {
-					_gameview.moveHero(MOVE_HERO_SPEED);
+					_gameview.moveHeroLeft(MOVE_HERO_SPEED);
 				}
 				return false;
 			}

@@ -21,7 +21,7 @@ public class Sprite3x4 extends Sprite {
 
 	public Sprite3x4(GameView gameView, Bitmap bitmap) {
 		this._gameView = gameView;
-		setBitmap(bitmap, intCOLUMNs, intROWs);
+		setBitmap(bitmap, null, intCOLUMNs, intROWs);
 
 		this._speedX = getRand(10, 21);
 		Random rnd = new Random();

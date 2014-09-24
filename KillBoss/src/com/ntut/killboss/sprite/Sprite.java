@@ -140,8 +140,9 @@ public abstract class Sprite {
 	 * @param rows
 	 *            This bitmap contain how many rows.
 	 */
-	public void setBitmap(Bitmap bitmap, int columns, int rows) {
+	public void setBitmap(Bitmap bitmap,Bitmap bitmapMirror, int columns, int rows) {
 		_bitmap = bitmap;
+		_bitmapMirror = bitmapMirror;
 		_width = bitmap.getWidth() / columns;
 		_height = bitmap.getHeight() / rows;
 	}
