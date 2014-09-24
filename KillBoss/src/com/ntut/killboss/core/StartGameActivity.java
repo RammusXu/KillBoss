@@ -5,6 +5,7 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -15,12 +16,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.ntut.killboss.R;
+import com.ntut.killboss.core.GameView.OnEndOfGameInterface;
 import com.ntut.killboss.setting.EquipmentSetting;
 
-public class StartGameActivity extends Activity {
-	private static int MOVE_HERO_SPEED;// �U��33��B��l�ơA�קKNULL POINT
+public class StartGameActivity extends Activity implements OnEndOfGameInterface{
+	private static int MOVE_HERO_SPEED;// 下面33行處初始化，避免NULL POINT
 	private static int SLIDE_HERO_SPEED;
 	private GameView _gameview;
+
+	private MediaPlayer _mediaPlayer;
+	public static boolean _musicFlag = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,12 @@ public class StartGameActivity extends Activity {
 
 		// VIEW
 		_gameview = (GameView) findViewById(R.id.game_view_skill_gameView);
+		_gameview.setOnEndOfGame(this);  //传入this，设定自己为回调目标 
+
+		_mediaPlayer = MediaPlayer.create(getApplicationContext(),
+				R.raw.background);
+		_mediaPlayer.setLooping(true);
+		_mediaPlayer.start();
 
 		MOVE_HERO_SPEED = GameView._screenSize.x / 40;
 		SLIDE_HERO_SPEED = GameView._screenSize.x / 3;
@@ -162,6 +173,21 @@ public class StartGameActivity extends Activity {
 				}
 			}
 		});
+		
+
+		ImageButton ibSetting = (ImageButton) findViewById(R.id.game_view_setting);
+		ibSetting.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if(_musicFlag) {
+					_mediaPlayer.pause();
+				} else {
+					_mediaPlayer.start();
+				}
+				_musicFlag = !_musicFlag;
+			}
+		});
 
 		// Button ibOver = (Button) findViewById(R.id.game_view_over);
 		// ibOver.setOnClickListener(new Button.OnClickListener() {
@@ -179,6 +205,21 @@ public class StartGameActivity extends Activity {
 		// }
 
 	}
+	
+
+	@Override
+	protected void onPause() {
+		_mediaPlayer.pause();
+		super.onPause();
+	}
+
+
+	@Override
+	protected void onDestroy() {
+		_mediaPlayer.release();
+		super.onDestroy();
+	}
+
 
 	@Override
 	public void onBackPressed() {
@@ -198,6 +239,22 @@ public class StartGameActivity extends Activity {
 			}
 		});
 		dialog.show();
+	}
+
+
+	@Override
+	public void onEndOfGame() {
+		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+		dialog.setTitle("Game Over?");
+		dialog.setPositiveButton("Victory", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				StartGameActivity.this.finish();
+			}
+		});
+		dialog.show();
+		
 	}
 
 }

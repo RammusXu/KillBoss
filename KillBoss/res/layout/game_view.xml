@@ -61,4 +61,11 @@
 
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/game_view_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:src="@drawable/setting" />
+
 </FrameLayout>

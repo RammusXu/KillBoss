@@ -3,6 +3,7 @@ package com.ntut.killboss.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -27,6 +28,14 @@ import com.ntut.killboss.sprite.SpriteBoss;
 import com.ntut.killboss.sprite.SpriteHero;
 
 public class GameView extends SurfaceView {
+	public interface OnEndOfGameInterface {  
+	    public void onEndOfGame();        
+	}
+	protected OnEndOfGameInterface mOnEndOfGame ; //callback interface   
+    public void setOnEndOfGame(OnEndOfGameInterface xOnEndOfGame){  
+        mOnEndOfGame = xOnEndOfGame;  
+    }  
+	
 	private static final String TAG = "GameView";
 	private SurfaceHolder _holder;
 	private GameThread _gameThread;
@@ -43,6 +52,8 @@ public class GameView extends SurfaceView {
 	// Global Variables
 	public static Point _screenSize;
 	public static int _bottomSpace;
+	
+	
 
 	public GameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -153,6 +164,11 @@ public class GameView extends SurfaceView {
 		}
 
 		_background.onDraw(canvas);
+//		if(_boss.checkSpriteDie()) {
+//		} else {
+//			((Activity)getContext()).finish();
+//		}
+		
 		_boss.onDraw(canvas);
 		_hero.onDraw(canvas);
 
