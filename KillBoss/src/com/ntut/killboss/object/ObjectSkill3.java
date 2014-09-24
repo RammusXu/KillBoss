@@ -36,7 +36,7 @@ public class ObjectSkill3 extends ObjectSkill {
 	public void hitSprite(Sprite sprite, GameView gameView) {
 		if (isCollsionWithRect(_x, _y, bmp.getWidth(), bmp.getHeight(),
 				sprite.get_x(), sprite.get_y(), sprite.get_width(),
-				sprite.get_height())) {
+				sprite.get_height())) { 
 			sprite.reduceHP(_damage);
 			if (sprite.get_x() > _x) {
 				sprite.knockOut(20, 0);
