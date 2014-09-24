@@ -3,7 +3,6 @@ package com.ntut.killboss.object;
 import java.util.List;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.ntut.killboss.Constant;
 import com.ntut.killboss.core.GameView;
@@ -29,7 +28,6 @@ public class ObjectSkill3 extends ObjectSkill {
 
 		} else {
 			_distance -= 1;
-			Log.d("DEBUG", "_distance =" + _distance);
 		}
 	}
 

@@ -73,7 +73,7 @@ public class ObjectSkill {
 	}
 
 	protected boolean checkYOutOfBound() {
-		if (_y > GameView._screenSize.y - Constant.SPACE_TO_BOTTOM
+		if (_y > GameView._screenSize.y - GameView._bottomSpace
 				- bmp.getHeight()) {
 			return true;
 		}
@@ -95,7 +95,6 @@ public class ObjectSkill {
 		if (isCollsionWithRect2(_x, _y, bmp.getWidth(), bmp.getHeight(),
 				sprite.get_x(), sprite.get_y(), sprite.get_width(),
 				sprite.get_height())) {
-			_objectSkills.remove(this);
 			sprite.reduceHP(_damage);
 			if (sprite.get_x() > _x) {
 				sprite.knockOut(20, 0);
@@ -105,6 +104,8 @@ public class ObjectSkill {
 			GameView._animationReduceHP.add(new AnimationReduceHP(gameView,
 					sprite.get_x() + (sprite.get_width() / 2), sprite.get_y()
 							+ (sprite.get_height() / 3), -_damage));
+
+			_objectSkills.remove(this);
 		}
 	}
 

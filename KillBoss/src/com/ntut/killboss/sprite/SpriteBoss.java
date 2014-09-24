@@ -48,7 +48,7 @@ public class SpriteBoss extends Sprite {
 		skillReleaseFlag = (skillReleaseFlag + 1) % SKILL_RELEASE_SPEED;
 		if (skillReleaseFlag == 0) {
 
-			 skillList();
+			skillList();
 		}
 	}
 
@@ -88,16 +88,17 @@ public class SpriteBoss extends Sprite {
 				moveToRandomXFlag = true;
 
 				_status = SprtieStatus.Normal;
-				_standCycle = 60;
+				_standCycleFlag = 60;
 			}
 		}
 	}
 
-	private int _standCycle = 60;
+	private static final int STAND_CYCLE = 60;
+	private int _standCycleFlag = 0;
 
 	private void stand() {
-		_standCycle--;
-		if (_standCycle < 1) {
+		_standCycleFlag = (_standCycleFlag + 1) % STAND_CYCLE;
+		if (_standCycleFlag == 0) {
 			_status = SprtieStatus.Run;
 		}
 	}

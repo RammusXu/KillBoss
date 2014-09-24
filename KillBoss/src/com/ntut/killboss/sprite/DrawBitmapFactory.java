@@ -1,14 +1,11 @@
 package com.ntut.killboss.sprite;
 
-import com.ntut.killboss.FunctionUtilities;
-import com.ntut.killboss.core.GameView;
-
-import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.util.Log;
+
+import com.ntut.killboss.core.GameView;
 
 public class DrawBitmapFactory {
 
@@ -20,7 +17,6 @@ public class DrawBitmapFactory {
 	private int _width;
 	private int _height;
 	private int _columns;
-	private int _rows;
 	private int _frameNum;
 
 	public DrawBitmapFactory(Bitmap bitmap, int x, int y, int columns,
@@ -32,7 +28,6 @@ public class DrawBitmapFactory {
 		_width = bitmap.getWidth() / columns;
 		_height = bitmap.getHeight() / rows;
 		_columns = columns;
-		_rows = rows;
 		_frameNum = frameNum;
 	}
 

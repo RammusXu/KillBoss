@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -35,24 +36,42 @@ public class StartGameActivity extends Activity {
 
 		ImageButton ibRight = (ImageButton) findViewById(R.id.game_view_right);
 		ibRight.setOnTouchListener(new ImageButton.OnTouchListener() {
-		
+
 			long now;
 			long now2;
 			boolean touchFlag = false;
 
+			long down1;
+			long down2;
+			boolean downFlag = false;
+
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					downFlag = !downFlag;
+					if (downFlag) {
+						down1 = Calendar.getInstance().getTimeInMillis();
+					} else {
+						down2 = Calendar.getInstance().getTimeInMillis();
+					}
+					// Button Double Clicked
+					if (Math.abs(down2 - down1) < 200) {
+						_gameview.flashHeroRight(SLIDE_HERO_SPEED);
+					}
+
 					now = Calendar.getInstance().getTimeInMillis();
 					touchFlag = true;
 				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-					touchFlag = false;
 					now2 = Calendar.getInstance().getTimeInMillis();
-					if (now2 - now < 600) {
-						// Onclick
-						_gameview.flashHeroRight(SLIDE_HERO_SPEED);
+					touchFlag = false;
+
+					// Button Clicked
+					if (now2 - now < 100) {
+						_gameview.changeHeroDirection(true);
 					}
 				}
+
+				// Button Pressed
 				if (touchFlag) {
 					_gameview.moveHeroRight(MOVE_HERO_SPEED);
 				}
@@ -67,19 +86,37 @@ public class StartGameActivity extends Activity {
 			long now2;
 			boolean touchFlag = false;
 
+			long down1;
+			long down2;
+			boolean downFlag = false;
+
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+					downFlag = !downFlag;
+					if (downFlag) {
+						down1 = Calendar.getInstance().getTimeInMillis();
+					} else {
+						down2 = Calendar.getInstance().getTimeInMillis();
+					}
+					// Button Double Clicked
+					if (Math.abs(down2 - down1) < 200) {
+						_gameview.flashHeroLeft(SLIDE_HERO_SPEED);
+					}
+
 					now = Calendar.getInstance().getTimeInMillis();
 					touchFlag = true;
 				} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-					touchFlag = false;
 					now2 = Calendar.getInstance().getTimeInMillis();
-					if (now2 - now < 1000) {
-						// Onclick
-						_gameview.flashHeroLeft(SLIDE_HERO_SPEED);
+					touchFlag = false;
+
+					// Button Clicked
+					if (now2 - now < 100) {
+						_gameview.changeHeroDirection(false);
 					}
 				}
+
+				// Button Pressed
 				if (touchFlag) {
 					_gameview.moveHeroLeft(MOVE_HERO_SPEED);
 				}

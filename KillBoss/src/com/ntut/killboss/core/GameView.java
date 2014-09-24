@@ -3,9 +3,7 @@ package com.ntut.killboss.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -16,15 +14,12 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.ntut.killboss.Constant;
 import com.ntut.killboss.FunctionUtilities;
-import com.ntut.killboss.GameOverDialog;
 import com.ntut.killboss.R;
 import com.ntut.killboss.SoundEffect;
 import com.ntut.killboss.menu.StageFragment;
 import com.ntut.killboss.object.ObjectSkill;
 import com.ntut.killboss.object.ObjectSkill3;
-import com.ntut.killboss.object.ObjectSkillShortExist;
 import com.ntut.killboss.sprite.AnimationReduceHP;
 import com.ntut.killboss.sprite.Sprite3x4;
 import com.ntut.killboss.sprite.SpriteBackground;
@@ -47,6 +42,7 @@ public class GameView extends SurfaceView {
 
 	// Global Variables
 	public static Point _screenSize;
+	public static int _bottomSpace;
 
 	public GameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -54,16 +50,17 @@ public class GameView extends SurfaceView {
 
 		// Init _screenSize
 		_screenSize = FunctionUtilities.getDisplaySize(context);
+		_bottomSpace = _screenSize.y / 6;
+
+		// Init sprites
 		_background = new SpriteBackground(GameView.this,
 				FunctionUtilities.createBitmap(getResources(),
 						R.drawable.background1));
-
 		_boss = new SpriteBoss(context, GameView.this, StageFragment.bossInt);
-
-		_hero = new SpriteHero(GameView.this, FunctionUtilities.createBitmap(
-				getResources(), R.drawable.pichero1),
+		_hero = new SpriteHero(context, GameView.this,
 				FunctionUtilities.createBitmap(getResources(),
-						R.drawable.pichero2));
+						R.drawable.pichero1), FunctionUtilities.createBitmap(
+						getResources(), R.drawable.pichero2));
 
 		resetAllSprites();
 
@@ -192,12 +189,11 @@ public class GameView extends SurfaceView {
 		_hero.flashLeft(moveHeroSpeed);
 	}
 
+	public void changeHeroDirection(boolean direction) {
+		_hero.set_direction(direction);
+	}
+
 	public void shotSkillA(int skillID) {
-		// Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
-		// R.drawable.blood);
-		final ObjectSkill temp = new ObjectSkill(getContext(),
-				_objectSkillsHero, _hero.get_x() + _hero.get_width(),
-				_hero.get_y() + _hero.get_height() / 2, _hero.get_direction());
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
@@ -210,9 +206,6 @@ public class GameView extends SurfaceView {
 			public void run() {
 				// TODO Auto-generated method stub
 				_hero.skillAshot();
-				_objectSkillsHero.add(temp);
-				_hero.reduceHP(1);
-				hitHero(-1);
 			}
 		}, 280);
 		new Handler().postDelayed(new Runnable() {
@@ -227,7 +220,6 @@ public class GameView extends SurfaceView {
 	public void shotSkillB(int skillID) {
 		new SoundEffect(getContext(), R.raw.jump);
 
-		
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
@@ -268,13 +260,6 @@ public class GameView extends SurfaceView {
 		}, 750);
 	}
 
-	private void hitHero(int reduceHP) {
-
-		AnimationReduceHP temp = new AnimationReduceHP(GameView.this,
-				_hero.get_x() + 50, _hero.get_y(), reduceHP);
-		_animationReduceHP.add(temp);
-	}
-
 	public void resetImage() {
 		_hero.resetImage();
 	}
@@ -312,5 +297,4 @@ public class GameView extends SurfaceView {
 		}
 	}
 
-	
 }

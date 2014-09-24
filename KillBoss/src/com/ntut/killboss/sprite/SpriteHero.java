@@ -1,34 +1,27 @@
 package com.ntut.killboss.sprite;
 
-import android.R.color;
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.os.Handler;
-import android.util.Log;
 
-import com.ntut.killboss.Constant;
-import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.core.GameView;
 import com.ntut.killboss.object.ObjectSkill;
-import com.ntut.killboss.object.ObjectSkill2;
-import com.ntut.killboss.object.ObjectSkill3;
-import com.ntut.killboss.sprite.SpriteBoss.SprtieStatus;
 
 public class SpriteHero extends Sprite {
 	private static final String TAG = "SpriteHero";
 	private int currentFrameWidth = 4;
 	private int currentFrameHeight = 2;
 
-	public SpriteHero(GameView gameView, Bitmap bitmap, Bitmap bitmapMirror) {
+	public SpriteHero(Context context, GameView gameView, Bitmap bitmap, Bitmap bitmapMirror) {
 
 		bitmap = Bitmap.createScaledBitmap(bitmap, GameView._screenSize.x,
 				GameView._screenSize.y, true);
 		bitmapMirror = Bitmap.createScaledBitmap(bitmapMirror,
 				GameView._screenSize.x, GameView._screenSize.y, true);
 
+		_context = context;
 		_gameView = gameView;
 		this.setBitmap(bitmap, bitmapMirror, 10, 7);
 
@@ -65,7 +58,15 @@ public class SpriteHero extends Sprite {
 			currentFrameWidth = 7;
 			currentFrameHeight = 2;
 		}
-
+		int width = 0;
+		if (_direction) {
+			width = _width;
+		}
+		
+		ObjectSkill temp = new ObjectSkill(_context,
+				GameView._objectSkillsHero, _x + width, _y + _height / 2,
+				_direction);
+		GameView._objectSkillsHero.add(temp);
 	}
 
 	public void skillBgetReady1() {
@@ -79,20 +80,20 @@ public class SpriteHero extends Sprite {
 	}
 
 	public void skillBgetReady2() {
-		if(_direction){
+		if (_direction) {
 			currentFrameWidth = 1;
 			currentFrameHeight = 3;
-		}else{
+		} else {
 			currentFrameWidth = 8;
 			currentFrameHeight = 3;
 		}
 	}
 
 	public void skillBshot() {
-		if(_direction){
+		if (_direction) {
 			currentFrameWidth = 2;
 			currentFrameHeight = 3;
-		}else{
+		} else {
 			currentFrameWidth = 7;
 			currentFrameHeight = 3;
 		}
