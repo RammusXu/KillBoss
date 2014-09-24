@@ -24,6 +24,7 @@ import com.ntut.killboss.SoundEffect;
 import com.ntut.killboss.menu.StageFragment;
 import com.ntut.killboss.object.ObjectSkill;
 import com.ntut.killboss.object.ObjectSkill3;
+import com.ntut.killboss.object.ObjectSkillShortExist;
 import com.ntut.killboss.sprite.AnimationReduceHP;
 import com.ntut.killboss.sprite.Sprite3x4;
 import com.ntut.killboss.sprite.SpriteBackground;
@@ -214,6 +215,8 @@ public class GameView extends SurfaceView {
 
 	public void shotSkillB(int skillID) {
 		new SoundEffect(getContext(), R.raw.jump);
+
+		
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
@@ -286,4 +289,5 @@ public class GameView extends SurfaceView {
 		}
 	}
 
+	
 }

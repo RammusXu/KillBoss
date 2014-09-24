@@ -26,6 +26,7 @@ public class ObjectSkill3 extends ObjectSkill {
 	protected void update() {
 		if (_distance < 1) {
 			_objectSkills.remove(this);
+
 		} else {
 			_distance -= 1;
 			Log.d("DEBUG", "_distance =" + _distance);
