@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Handler;
+import android.util.Log;
 
 import com.ntut.killboss.core.GameView;
 import com.ntut.killboss.object.ObjectSkill;
@@ -14,7 +15,8 @@ public class SpriteHero extends Sprite {
 	private int currentFrameWidth = 4;
 	private int currentFrameHeight = 2;
 
-	public SpriteHero(Context context, GameView gameView, Bitmap bitmap, Bitmap bitmapMirror) {
+	public SpriteHero(Context context, GameView gameView, Bitmap bitmap,
+			Bitmap bitmapMirror) {
 
 		bitmap = Bitmap.createScaledBitmap(bitmap, GameView._screenSize.x,
 				GameView._screenSize.y, true);
@@ -58,11 +60,9 @@ public class SpriteHero extends Sprite {
 			currentFrameWidth = 7;
 			currentFrameHeight = 2;
 		}
-		int width = 0;
-		if (_direction) {
-			width = _width;
-		}
-		
+		int width = _direction ? _width : 0;
+		Log.d(TAG, "width =" + width);
+
 		ObjectSkill temp = new ObjectSkill(_context,
 				GameView._objectSkillsHero, _x + width, _y + _height / 2,
 				_direction);

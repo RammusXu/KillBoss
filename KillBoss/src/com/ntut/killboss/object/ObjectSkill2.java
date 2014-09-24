@@ -5,6 +5,8 @@ import java.util.List;
 import com.ntut.killboss.Constant;
 import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.core.GameView;
+import com.ntut.killboss.sprite.AnimationReduceHP;
+import com.ntut.killboss.sprite.Sprite;
 
 import android.content.Context;
 
@@ -27,6 +29,20 @@ public class ObjectSkill2 extends ObjectSkill {
 			temp.playAnimation(_x, _y);
 		} else {
 			_y += _speed;
+		}
+	}
+
+	@Override
+	public void hitSprite(Sprite sprite, GameView gameView) {
+		if (isCollsionWithRect2(_x, _y, bmp.getWidth(), bmp.getHeight(),
+				sprite.get_x(), sprite.get_y(), sprite.get_width(),
+				sprite.get_height())) {
+			sprite.reduceHP(_damage);
+			GameView._animationReduceHP.add(new AnimationReduceHP(gameView,
+					sprite.get_x() + (sprite.get_width() / 2), sprite.get_y()
+							+ (sprite.get_height() / 3), -_damage));
+
+			_objectSkills.remove(this);
 		}
 	}
 
