@@ -11,11 +11,11 @@ public class SpriteBackground extends Sprite {
 
 	public SpriteBackground(GameView gameView, Bitmap bitmap) {
 
-		// bitmap = Bitmap.createScaledBitmap(bitmap, GameView._screenSize.x,
-		// GameView._screenSize.y, true);
+		bitmap = Bitmap.createScaledBitmap(bitmap, GameView._screenSize.x,
+				GameView._screenSize.y, true);
 
 		_gameView = gameView;
-		this.setBitmap(bitmap, 1, 1);
+		this.setBitmap(bitmap, null, 1, 1);
 
 		_y = 0;
 		_x = 0;

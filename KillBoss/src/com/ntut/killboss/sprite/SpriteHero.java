@@ -2,6 +2,7 @@ package com.ntut.killboss.sprite;
 
 import android.R.color;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
@@ -14,44 +15,486 @@ import com.ntut.killboss.core.GameView;
 import com.ntut.killboss.object.ObjectSkill;
 import com.ntut.killboss.object.ObjectSkill2;
 import com.ntut.killboss.object.ObjectSkill3;
+import com.ntut.killboss.sprite.SpriteBoss.SprtieStatus;
 
 public class SpriteHero extends Sprite {
 	private static final String TAG = "SpriteHero";
 	private int currentFrameWidth = 4;
 	private int currentFrameHeight = 2;
-	private Bitmap bimapHurt;
 
-	public SpriteHero(GameView gameView, Bitmap bitmap) {
+	public SpriteHero(GameView gameView, Bitmap bitmap, Bitmap bitmapMirror) {
 
 		bitmap = Bitmap.createScaledBitmap(bitmap, GameView._screenSize.x,
 				GameView._screenSize.y, true);
-//		bimapHurt =
+		bitmapMirror = Bitmap.createScaledBitmap(bitmapMirror,
+				GameView._screenSize.x, GameView._screenSize.y, true);
 
 		_gameView = gameView;
-		this.setBitmap(bitmap, 10, 7);
+		this.setBitmap(bitmap, bitmapMirror, 10, 7);
 
 		_y = GameView._screenSize.y - _height - GameView._screenSize.y / 6;
 
 	}
 
-	@Override
-	public void move(final int x) {
-		if (x > 0) {
-			_direction = true;
+	public void resetImage() {
+		if (_direction) {
+			currentFrameWidth = 4;
+			currentFrameHeight = 2;
 		} else {
-			_direction = false;
+			currentFrameWidth = 5;
+			currentFrameHeight = 2;
+		}
+	}
+
+	public void skillAgetReady() {
+
+		if (_direction) {
+			currentFrameWidth = 0;
+			currentFrameHeight = 2;
+		} else {
+			currentFrameWidth = 9;
+			currentFrameHeight = 2;
+		}
+	}
+
+	public void skillAshot() {
+		if (_direction) {
+			currentFrameWidth = 2;
+			currentFrameHeight = 2;
+		} else {
+			currentFrameWidth = 7;
+			currentFrameHeight = 2;
 		}
 
-		// currentFrame = ++currentFrame % 10;
+	}
+
+	public void skillBgetReady1() {
+		if (_direction) {
+			currentFrameWidth = 0;
+			currentFrameHeight = 3;
+		} else {
+			currentFrameWidth = 9;
+			currentFrameHeight = 3;
+		}
+	}
+
+	public void skillBgetReady2() {
+		if(_direction){
+			currentFrameWidth = 1;
+			currentFrameHeight = 3;
+		}else{
+			currentFrameWidth = 8;
+			currentFrameHeight = 3;
+		}
+	}
+
+	public void skillBshot() {
+		if(_direction){
+			currentFrameWidth = 2;
+			currentFrameHeight = 3;
+		}else{
+			currentFrameWidth = 7;
+			currentFrameHeight = 3;
+		}
+
+	}
+
+	public void hurt() {
+
+		if (_direction) {
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 4;
+					currentFrameHeight = 5;
+				}
+			}, 50);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 3;
+					currentFrameHeight = 5;
+				}
+			}, 300);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 2;
+					currentFrameHeight = 5;
+				}
+			}, 500);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					resetImage();
+				}
+			}, 700);
+		} else {
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 5;
+					currentFrameHeight = 5;
+				}
+			}, 50);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 6;
+					currentFrameHeight = 5;
+				}
+			}, 300);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 7;
+					currentFrameHeight = 5;
+				}
+			}, 500);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					resetImage();
+				}
+			}, 750);
+		}
+	}
+
+	public void jumpUp() {
+		if (_direction) {
+			currentFrameWidth = 2;
+			currentFrameHeight = 4;
+		} else {
+			currentFrameWidth = 7;
+			currentFrameHeight = 4;
+		}
+	}
+
+	public void jumpDown() {
+		if (_direction) {
+			currentFrameWidth = 3;
+			currentFrameHeight = 4;
+		} else {
+			currentFrameWidth = 6;
+			currentFrameHeight = 4;
+		}
+	}
+
+	public void flashRight(final int x) {
+		_direction = true;
 		new Handler().postDelayed(new Runnable() {
+
 			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				heroWalk1();
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 5;
+				currentFrameHeight = 6;
+			}
+		}, 50);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 6;
+				currentFrameHeight = 6;
+			}
+		}, 200);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 7;
+				currentFrameHeight = 6;
+			}
+		}, 350);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				int tempX = _x + x;
+				if (tempX > (GameView._screenSize.x - _width)) {
+					_x = GameView._screenSize.x - _width;
+				} else {
+					_x = tempX;
+				}
+			}
+		}, 400);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 6;
+				currentFrameHeight = 6;
+			}
+		}, 600);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				resetImage();
+			}
+		}, 700);
+
+	}
+
+	public void flashLeft(final int x) {
+		_direction = false;
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 4;
+				currentFrameHeight = 6;
+			}
+		}, 50);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 3;
+				currentFrameHeight = 6;
+			}
+		}, 200);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 2;
+				currentFrameHeight = 6;
+			}
+		}, 350);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				int tempX = _x - x;
+				if (tempX < 0) {
+					_x = 0;
+				} else {
+					_x = tempX;
+				}
+			}
+		}, 400);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 3;
+				currentFrameHeight = 6;
+			}
+		}, 600);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				resetImage();
+			}
+		}, 700);
+	}
+
+	public void jumpRight() {
+		_direction = true;
+
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				jumpUp();
+				int tempY = _y - GameView._screenSize.y / 30;
+				_y = tempY;
+			}
+		}, 50);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				jumpUp();
+				int tempY = _y - GameView._screenSize.y / 20;
+				_y = tempY;
+			}
+		}, 150);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				jumpUp();
+				int tempY = _y - GameView._screenSize.y / 15;
+				_y = tempY;
+			}
+		}, 250);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				jumpDown();
+				int tempY = _y + GameView._screenSize.y / 30;
+				_y = tempY;
+			}
+		}, 350);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				jumpDown();
+				int tempY = _y + GameView._screenSize.y / 20;
+				_y = tempY;
+			}
+		}, 450);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				jumpDown();
+				int tempY = _y + GameView._screenSize.y / 15;
+				_y = tempY;
+			}
+		}, 550);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				resetImage();
+			}
+		}, 650);
+	}
+
+	public void jumpLeft() {
+		_direction = false;
+
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				jumpUp();
+				int tempY = _y - GameView._screenSize.y / 30;
+				_y = tempY;
+			}
+		}, 50);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				jumpUp();
+				int tempY = _y - GameView._screenSize.y / 20;
+				_y = tempY;
+			}
+		}, 150);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				jumpUp();
+				int tempY = _y - GameView._screenSize.y / 15;
+				_y = tempY;
+			}
+		}, 250);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				jumpDown();
+				int tempY = _y + GameView._screenSize.y / 30;
+				_y = tempY;
+			}
+		}, 350);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				jumpDown();
+				int tempY = _y + GameView._screenSize.y / 20;
+				_y = tempY;
+			}
+		}, 450);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				jumpDown();
+				int tempY = _y + GameView._screenSize.y / 15;
+				_y = tempY;
+			}
+		}, 550);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				resetImage();
+			}
+		}, 650);
+	}
+
+	public void moveRight(final int x) {
+		_direction = true;
+
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 4;
+				currentFrameHeight = 4;
 				int tempX = _x + x / 3;
 				if (tempX > (GameView._screenSize.x - _width)) {
 					_x = GameView._screenSize.x - _width;
-				} else if (tempX < 0) {
+				} else {
+					_x = tempX;
+				}
+			}
+		}, 50);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 5;
+				currentFrameHeight = 4;
+				int tempX = _x + x / 3;
+				if (tempX > (GameView._screenSize.x - _width)) {
+					_x = GameView._screenSize.x - _width;
+				} else {
+					_x = tempX;
+				}
+			}
+		}, 250);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 6;
+				currentFrameHeight = 4;
+				int tempX = _x + x / 3;
+				if (tempX > (GameView._screenSize.x - _width)) {
+					_x = GameView._screenSize.x - _width;
+				} else {
+					_x = tempX;
+				}
+			}
+		}, 450);
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				resetImage();
+			}
+		}, 650);
+	}
+
+	public void moveLeft(final int x) {
+		_direction = false;
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 5;
+				currentFrameHeight = 4;
+				int tempX = _x - x / 3;
+				if (tempX < 0) {
 					_x = 0;
 				} else {
 					_x = tempX;
@@ -59,29 +502,13 @@ public class SpriteHero extends Sprite {
 			}
 		}, 50);
 		new Handler().postDelayed(new Runnable() {
+
 			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				heroWalk2();
-				int tempX = _x + x / 3;
-				if (tempX > (GameView._screenSize.x - _width)) {
-					_x = GameView._screenSize.x - _width;
-				} else if (tempX < 0) {
-					_x = 0;
-				} else {
-					_x = tempX;
-				}
-			}
-		}, 150);
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				heroWalk3();
-				int tempX = _x + x / 3;
-				if (tempX > (GameView._screenSize.x - _width)) {
-					_x = GameView._screenSize.x - _width;
-				} else if (tempX < 0) {
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 4;
+				currentFrameHeight = 4;
+				int tempX = _x - x / 3;
+				if (tempX < 0) {
 					_x = 0;
 				} else {
 					_x = tempX;
@@ -89,253 +516,47 @@ public class SpriteHero extends Sprite {
 			}
 		}, 250);
 		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				resetImage();
-			}
-		}, 400);
 
-	}
-
-	public void slide(final int x) {
-		slideReady1();
-		new Handler().postDelayed(new Runnable() {
 			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				slideReady2();
-			}
-		}, 300);
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				slideReady3();
-				int tempX = _x + x;
-				if (tempX > (GameView._screenSize.x - _width)) {
-					_x = GameView._screenSize.x - _width;
-				} else if (tempX < 0) {
+			public void run() { // TODO Auto-generated method stub
+				currentFrameWidth = 3;
+				currentFrameHeight = 4;
+				int tempX = _x - x / 3;
+				if (tempX < 0) {
 					_x = 0;
 				} else {
 					_x = tempX;
 				}
 			}
-		}, 600);
+		}, 450);
 		new Handler().postDelayed(new Runnable() {
+
 			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				slideFinish3();
-			}
-		}, 900);
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
+			public void run() { // TODO Auto-generated method stub
 				resetImage();
 			}
-		}, 1100);
-	}
-
-	@Override
-	public void jump(final int x) {
-		if (x > 0) {
-			_direction = true;
-		} else {
-			_direction = false;
-		}
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				jumpUp();
-				int tempY = _y - GameView._screenSize.y / 20;
-				_y = tempY;
-			}
-		}, 100);
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				jumpUp();
-				int tempY = _y - GameView._screenSize.y / 15;
-				_y = tempY;
-			}
-		}, 200);
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				jumpUp();
-				int tempY = _y - GameView._screenSize.y / 10;
-				_y = tempY;
-				_x = _x + x / 3;
-			}
-		}, 300);
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				jumpDown();
-				int tempY = _y + GameView._screenSize.y / 20;
-				_y = tempY;
-				_x = _x + x / 3;
-			}
-		}, 400);
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				jumpDown();
-				int tempY = _y + GameView._screenSize.y / 15;
-				_y = tempY;
-				_x = _x + x / 7;
-			}
-		}, 500);
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				jumpDown();
-				int tempY = _y + GameView._screenSize.y / 10;
-				_y = tempY;
-			}
-		}, 600);
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				resetImage();
-			}
-		}, 700);
-	}
-
-	public void resetImage() {
-		currentFrameWidth = 4;
-		currentFrameHeight = 2;
-	}
-
-	public void skillAgetReady() {
-		currentFrameWidth = 0;
-		currentFrameHeight = 2;
-	}
-
-	public void skillAshot() {
-		currentFrameWidth = 2;
-		currentFrameHeight = 2;
-	}
-
-	public void skillBgetReady1() {
-		currentFrameWidth = 7;
-		currentFrameHeight = 0;
-	}
-
-	public void skillBgetReady2() {
-		currentFrameWidth = 4;
-		currentFrameHeight = 3;
-	}
-
-	public void skillBshot() {
-		currentFrameWidth = 8;
-		currentFrameHeight = 0;
-		
-	}
-
-	public void jumpUp() {
-		currentFrameWidth = 2;
-		currentFrameHeight = 4;
-	}
-
-	public void jumpDown() {
-		currentFrameWidth = 3;
-		currentFrameHeight = 4;
-	}
-
-	public void heroWalk1() {
-		currentFrameWidth = 7;
-		currentFrameHeight = 3;
-	}
-
-	public void heroWalk2() {
-		currentFrameWidth = 5;
-		currentFrameHeight = 3;
-	}
-
-	public void heroWalk3() {
-		currentFrameWidth = 6;
-		currentFrameHeight = 3;
-	}
-
-	private void slideReady1() {
-		// TODO Auto-generated method stub
-		currentFrameWidth = 5;
-		currentFrameHeight = 6;
-	}
-
-	private void slideReady2() {
-		// TODO Auto-generated method stub
-		currentFrameWidth = 6;
-		currentFrameHeight = 6;
-	}
-
-	private void slideReady3() {
-		// TODO Auto-generated method stub
-		currentFrameWidth = 7;
-		currentFrameHeight = 6;
-	}
-
-	private void slideFinish3() {
-		// TODO Auto-generated method stub
-		currentFrameWidth = 6;
-		currentFrameHeight = 6;
+		}, 650);
 	}
 
 	private Rect src = new Rect();
 
-	int lifeCycle = 20;	//system time
-
-	protected void move() {
-		lifeCycle -= 1;
-		Log.d("DEBUG", "lifeCycle =" + lifeCycle);
-		if (lifeCycle <20) {
-			heroWalk1();
-//			status = normal;
-		} else if (lifeCycle < 10) {
-			// change status
-		} else if (lifeCycle < 1) {
-			// change status
-		} 
-	}
-
 	@Override
 	public void onDraw(Canvas canvas) {
-//		move(); TODO 
+
 		// dst.set(_x, _y, _x + _width, _y + _height);
 
 		int srcX = currentFrameWidth * this._width;
 		int srcY = currentFrameHeight * this._height;
 		src.set(srcX, srcY, srcX + this._width, srcY + this._height);
 
-		// 改成隨著螢幕大小改變
-		// _x + _width, _y + _height
-		// _x + GameView._screenSize.x/(看要幾倍)
-		// _y + GameView._screenSize.y/(看要幾倍)
 		dst.set(_x, _y, _x + this._width, _y + this._height);
 
-		// //status = run
-		// if(status) {
-		//
-		// canvas.drawBitmap(this._bitmap, src, dst, null);
-		// //status = slide
-		// } else if() {
-		//
-		// canvas.drawBitmap(this.bitmapHurt, src, dst, null);
-		// //status = hurt
-		// }
-		canvas.drawBitmap(this._bitmap, src, dst, null);
-		drawHP(canvas);
-		// TEEST
-	}
+		if (_direction) {
+			canvas.drawBitmap(_bitmap, src, dst, null);
+		} else {
+			canvas.drawBitmap(this._bitmapMirror, src, dst, null);
 
+		}
+		drawHP(canvas);
+	}
 }

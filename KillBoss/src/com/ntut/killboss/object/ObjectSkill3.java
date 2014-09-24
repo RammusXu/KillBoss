@@ -17,7 +17,7 @@ public class ObjectSkill3 extends ObjectSkill {
 
 		super(context, objectSkills, Constant.skillDrawbleResourceIDs[2], x, y,
 				direction);
-		_x = x + (_width / 2);
+		_x = x + _width;
 		_y = y + (_height / 2);
 		_distance = 10; // life cycle
 	}
@@ -37,7 +37,7 @@ public class ObjectSkill3 extends ObjectSkill {
 	public void hitSprite(Sprite sprite, GameView gameView) {
 		if (isCollsionWithRect(_x, _y, bmp.getWidth(), bmp.getHeight(),
 				sprite.get_x(), sprite.get_y(), sprite.get_width(),
-				sprite.get_height())) {
+				sprite.get_height())) { 
 			sprite.reduceHP(_damage);
 			if (sprite.get_x() > _x) {
 				sprite.knockOut(20, 0);
