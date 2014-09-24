@@ -195,8 +195,8 @@ public class GameView extends SurfaceView {
 		// Bitmap bitmap = FunctionUtilities.createBitmap(getResources(),
 		// R.drawable.blood);
 		final ObjectSkill temp = new ObjectSkill(getContext(),
-				_objectSkillsHero, _hero.get_x() + _hero.get_width() / 2,
-				_hero.get_y() + _hero.get_height() / 4, _hero.get_direction());
+				_objectSkillsHero, _hero.get_x() + _hero.get_width(),
+				_hero.get_y() + _hero.get_height() / 2, _hero.get_direction());
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {

@@ -17,7 +17,7 @@ public class ObjectSkill3 extends ObjectSkill {
 
 		super(context, objectSkills, Constant.skillDrawbleResourceIDs[2], x, y,
 				direction);
-		_x = x + (_width / 2);
+		_x = x + _width;
 		_y = y + (_height / 2);
 		_distance = 10; // life cycle
 	}

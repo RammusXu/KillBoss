@@ -47,46 +47,142 @@ public class SpriteHero extends Sprite {
 	}
 
 	public void skillAgetReady() {
-		currentFrameWidth = 0;
-		currentFrameHeight = 2;
+
+		if (_direction) {
+			currentFrameWidth = 0;
+			currentFrameHeight = 2;
+		} else {
+			currentFrameWidth = 9;
+			currentFrameHeight = 2;
+		}
 	}
 
 	public void skillAshot() {
-		currentFrameWidth = 2;
-		currentFrameHeight = 2;
+		if (_direction) {
+			currentFrameWidth = 2;
+			currentFrameHeight = 2;
+		} else {
+			currentFrameWidth = 7;
+			currentFrameHeight = 2;
+		}
+
 	}
 
 	public void skillBgetReady1() {
-		currentFrameWidth = 7;
-		currentFrameHeight = 0;
+		if (_direction) {
+			currentFrameWidth = 0;
+			currentFrameHeight = 3;
+		} else {
+			currentFrameWidth = 9;
+			currentFrameHeight = 3;
+		}
 	}
 
 	public void skillBgetReady2() {
-		currentFrameWidth = 4;
-		currentFrameHeight = 3;
+		if(_direction){
+			currentFrameWidth = 1;
+			currentFrameHeight = 3;
+		}else{
+			currentFrameWidth = 8;
+			currentFrameHeight = 3;
+		}
 	}
 
 	public void skillBshot() {
-		currentFrameWidth = 8;
-		currentFrameHeight = 0;
+		if(_direction){
+			currentFrameWidth = 2;
+			currentFrameHeight = 3;
+		}else{
+			currentFrameWidth = 7;
+			currentFrameHeight = 3;
+		}
 
 	}
 
+	public void hurt() {
+
+		if (_direction) {
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 4;
+					currentFrameHeight = 5;
+				}
+			}, 50);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 3;
+					currentFrameHeight = 5;
+				}
+			}, 300);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 2;
+					currentFrameHeight = 5;
+				}
+			}, 500);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					resetImage();
+				}
+			}, 700);
+		} else {
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 5;
+					currentFrameHeight = 5;
+				}
+			}, 50);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 6;
+					currentFrameHeight = 5;
+				}
+			}, 300);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 7;
+					currentFrameHeight = 5;
+				}
+			}, 500);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					resetImage();
+				}
+			}, 750);
+		}
+	}
+
 	public void jumpUp() {
-		if(_direction){
+		if (_direction) {
 			currentFrameWidth = 2;
 			currentFrameHeight = 4;
-		}else{
+		} else {
 			currentFrameWidth = 7;
 			currentFrameHeight = 4;
 		}
 	}
 
 	public void jumpDown() {
-		if(_direction){
+		if (_direction) {
 			currentFrameWidth = 3;
 			currentFrameHeight = 4;
-		}else{
+		} else {
 			currentFrameWidth = 6;
 			currentFrameHeight = 4;
 		}
