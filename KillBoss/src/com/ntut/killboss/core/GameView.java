@@ -245,15 +245,11 @@ public class GameView extends SurfaceView {
 				// TODO Auto-generated method stub
 				_hero.skillBshot();
 
-				ObjectSkill temp1 = new ObjectSkill3(getContext(),
+				ObjectSkill temp = new ObjectSkill3(getContext(),
 						GameView._objectSkillsHero, _hero.get_x(), _hero
 								.get_y(), _hero.get_direction());
-				ObjectSkill temp2 = new ObjectSkill3(getContext(),
-						GameView._objectSkillsHero, _hero.get_x(), _hero
-								.get_y() + _hero.get_height(), _hero
-								.get_direction());
-				GameView._objectSkillsHero.add(temp1);
-				GameView._objectSkillsHero.add(temp2);
+
+				GameView._objectSkillsHero.add(temp);
 			}
 		}, 530);
 		new Handler().postDelayed(new Runnable() {
