@@ -19,13 +19,20 @@ import com.ntut.killboss.R;
 import com.ntut.killboss.core.GameView.OnEndOfGameInterface;
 import com.ntut.killboss.setting.EquipmentSetting;
 
-public class StartGameActivity extends Activity implements OnEndOfGameInterface{
+public class StartGameActivity extends Activity implements OnEndOfGameInterface {
+	// Constant
 	private static int MOVE_HERO_SPEED;// 下面33行處初始化，避免NULL POINT
 	private static int SLIDE_HERO_SPEED;
+	
+	//	Class
 	private GameView _gameview;
 
+	// Music Player
 	private MediaPlayer _mediaPlayer;
 	public static boolean _musicFlag = true;
+
+	// UI
+	Button ibOver;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +42,7 @@ public class StartGameActivity extends Activity implements OnEndOfGameInterface{
 
 		// VIEW
 		_gameview = (GameView) findViewById(R.id.game_view_skill_gameView);
-		_gameview.setOnEndOfGame(this);  //传入this，设定自己为回调目标 
+		_gameview.setOnEndOfGame(this); // 传入this，设定自己为回调目标
 
 		_mediaPlayer = MediaPlayer.create(getApplicationContext(),
 				R.raw.background);
@@ -173,14 +180,13 @@ public class StartGameActivity extends Activity implements OnEndOfGameInterface{
 				}
 			}
 		});
-		
 
 		ImageButton ibSetting = (ImageButton) findViewById(R.id.game_view_setting);
 		ibSetting.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				if(_musicFlag) {
+				if (_musicFlag) {
 					_mediaPlayer.pause();
 				} else {
 					_mediaPlayer.start();
@@ -189,23 +195,7 @@ public class StartGameActivity extends Activity implements OnEndOfGameInterface{
 			}
 		});
 
-		// Button ibOver = (Button) findViewById(R.id.game_view_over);
-		// ibOver.setOnClickListener(new Button.OnClickListener() {
-		// @Override
-		// public void onClick(View v) {
-		// finish();
-		// }
-		// });
-		// if(_gameview._hero.checkSpriteDie()) {
-		// ibOver.setVisibility(View.VISIBLE);
-		// Log.d("DEBUG","die");
-		// } else {
-		// ibOver.setVisibility(View.GONE);
-		// Log.d("DEBUG","live");
-		// }
-
 	}
-	
 
 	@Override
 	protected void onPause() {
@@ -213,13 +203,11 @@ public class StartGameActivity extends Activity implements OnEndOfGameInterface{
 		super.onPause();
 	}
 
-
 	@Override
 	protected void onDestroy() {
 		_mediaPlayer.release();
 		super.onDestroy();
 	}
-
 
 	@Override
 	public void onBackPressed() {
@@ -241,20 +229,29 @@ public class StartGameActivity extends Activity implements OnEndOfGameInterface{
 		dialog.show();
 	}
 
+	public void showGameOverDialog(boolean ifWin) {
+		ibOver.setVisibility(View.VISIBLE);
+		if(ifWin){
+			ibOver.setText("Victory");
+		} else {
+			ibOver.setText("Defeat");
+		}
+	}
 
 	@Override
 	public void onEndOfGame() {
 		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 		dialog.setTitle("Game Over?");
-		dialog.setPositiveButton("Victory", new DialogInterface.OnClickListener() {
+		dialog.setPositiveButton("Victory",
+				new DialogInterface.OnClickListener() {
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				StartGameActivity.this.finish();
-			}
-		});
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						StartGameActivity.this.finish();
+					}
+				});
 		dialog.show();
-		
+
 	}
 
 }

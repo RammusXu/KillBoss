@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -25,6 +26,7 @@ import com.ntut.killboss.sprite.AnimationReduceHP;
 import com.ntut.killboss.sprite.Sprite3x4;
 import com.ntut.killboss.sprite.SpriteBackground;
 import com.ntut.killboss.sprite.SpriteBoss;
+import com.ntut.killboss.sprite.SpriteGameResult;
 import com.ntut.killboss.sprite.SpriteHero;
 
 public class GameView extends SurfaceView {
@@ -39,6 +41,7 @@ public class GameView extends SurfaceView {
 	private static final String TAG = "GameView";
 	private SurfaceHolder _holder;
 	private GameThread _gameThread;
+	private Context _context;
 
 	// Sprite
 	private ArrayList<Sprite3x4> sprites;
@@ -48,6 +51,7 @@ public class GameView extends SurfaceView {
 	public SpriteHero _hero;
 	public SpriteBoss _boss;
 	public SpriteBackground _background;
+	public SpriteGameResult _gameResult;
 
 	// Global Variables
 	public static Point _screenSize;
@@ -58,6 +62,7 @@ public class GameView extends SurfaceView {
 	public GameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		_gameThread = new GameThread(this);
+		_context = context;
 
 		// Init _screenSize
 		_screenSize = FunctionUtilities.getDisplaySize(context);
@@ -67,6 +72,8 @@ public class GameView extends SurfaceView {
 		_background = new SpriteBackground(GameView.this,
 				FunctionUtilities.createBitmap(getResources(),
 						R.drawable.background1));
+		_gameResult = new SpriteGameResult(context, GameView.this);
+		
 		_boss = new SpriteBoss(context, GameView.this, StageFragment.bossInt);
 		_hero = new SpriteHero(context, GameView.this,
 				FunctionUtilities.createBitmap(getResources(),
@@ -115,27 +122,11 @@ public class GameView extends SurfaceView {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 
-		// synchronized (getHolder()) {
-		// for (int i = 0; i < sprites.size(); i++) {
-		// Sprite3x4 s = sprites.get(i);
-		// if (s.isTouched(event.getX(), event.getY())) {
-		// temps.add(new HelloGameTempSprite(temps, this,
-		// event.getX(), event.getY(), bmpBlood));
-		// sprites.remove(i);
-		//
-		// if (sprites.size() == 1) {
-		// new Handler().postDelayed(new Runnable() {
-		// @Override
-		// public void run() {
-		// resetAllSprites();
-		// }
-		// }, 1000);
-		// }
-		//
-		// break;
-		// }
-		// }
-		// }
+		synchronized (getHolder()) {
+			if(_gameResult.isTouched(event.getX(), event.getY())){
+				((Activity)_context).finish();
+			}
+		}
 
 		return super.onTouchEvent(event);
 	}
@@ -184,6 +175,13 @@ public class GameView extends SurfaceView {
 		for (int i = _objectSkillsBoss.size() - 1; i >= 0; i--) {
 			_objectSkillsBoss.get(i).onDraw(canvas);
 			_objectSkillsBoss.get(i).hitSprite(_hero, GameView.this);
+		}
+		
+		if(_boss.checkSpriteDie()){
+			_gameResult.onDraw(canvas, true);
+		}
+		if(_hero.checkSpriteDie()) {
+			_gameResult.onDraw(canvas, false);
 		}
 
 		super.onDraw(canvas);
@@ -312,5 +310,6 @@ public class GameView extends SurfaceView {
 			}
 		}
 	}
+	
 
 }

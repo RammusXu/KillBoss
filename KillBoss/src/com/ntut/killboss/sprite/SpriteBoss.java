@@ -1,5 +1,6 @@
 package com.ntut.killboss.sprite;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -8,6 +9,7 @@ import android.util.Log;
 import com.ntut.killboss.Constant;
 import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.core.GameView;
+import com.ntut.killboss.core.StartGameActivity;
 import com.ntut.killboss.menu.StageFragment;
 import com.ntut.killboss.object.ObjectSkill;
 import com.ntut.killboss.object.ObjectSkill2;

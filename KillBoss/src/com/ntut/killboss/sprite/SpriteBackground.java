@@ -1,11 +1,9 @@
 package com.ntut.killboss.sprite;
 
-import com.ntut.killboss.Constant;
-import com.ntut.killboss.core.GameView;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Rect;
+
+import com.ntut.killboss.core.GameView;
 
 public class SpriteBackground extends Sprite {
 
@@ -24,7 +22,6 @@ public class SpriteBackground extends Sprite {
 
 	@Override
 	public void onDraw(Canvas canvas) {
-		// TODO Auto-generated method stub
 
 		dst.set(_x, _y, GameView._screenSize.x, GameView._screenSize.y
 				- GameView._screenSize.y / 6);
