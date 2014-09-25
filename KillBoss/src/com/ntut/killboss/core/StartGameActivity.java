@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -23,8 +24,8 @@ public class StartGameActivity extends Activity implements OnEndOfGameInterface 
 	// Constant
 	private static int MOVE_HERO_SPEED;// 下面33行處初始化，避免NULL POINT
 	private static int SLIDE_HERO_SPEED;
-	
-	//	Class
+
+	// Class
 	private GameView _gameview;
 
 	// Music Player
@@ -33,6 +34,7 @@ public class StartGameActivity extends Activity implements OnEndOfGameInterface 
 
 	// UI
 	Button ibOver;
+	ImageButton ibSkillA;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -142,13 +144,21 @@ public class StartGameActivity extends Activity implements OnEndOfGameInterface 
 			}
 		});
 
-		ImageButton ibSkillA = (ImageButton) findViewById(R.id.game_view_skill_a);
+		ibSkillA = (ImageButton) findViewById(R.id.game_view_skill_a);
 		ibSkillA.setImageResource(EquipmentSetting._weapon.get_bitmapSkillA());
 		ibSkillA.setOnClickListener(new ImageButton.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				ibSkillA.setEnabled(false);
+				// TODO
 				_gameview.shotSkillA(1);
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						ibSkillA.setEnabled(true);
+					}
+				}, 200);
 			}
 
 		});
@@ -231,7 +241,7 @@ public class StartGameActivity extends Activity implements OnEndOfGameInterface 
 
 	public void showGameOverDialog(boolean ifWin) {
 		ibOver.setVisibility(View.VISIBLE);
-		if(ifWin){
+		if (ifWin) {
 			ibOver.setText("Victory");
 		} else {
 			ibOver.setText("Defeat");

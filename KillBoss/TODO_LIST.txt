@@ -1,25 +1,14 @@
-Xu 1. ObjectSkill - A interface, let every skill extend it.
-
-2. MenuActivity - A activity, contains a list in left(or top) , can change fragment.
-2.1 StageFragment - A fragment, show all stages, show little image(boss).
-2.2 EquipmetFragmet - A fragment, show 2 items(Weapons & Armors), need some little image.
-2.3 AchievementFramgent - A fragment, show all achievement that had completed.
 
 3. GameView Problems
-Xu 3.1 Shoot some ObjectSkill.
-3.2 Boss can be shot by ObjectSkill, and reduce hp.
 3.3 Button have CD(cool down) time and effect.
 
 4. SpriteHero Problems
-4.1 Can jump.
 4.2 Animations.
 4.3 Sounds & Bitmaps.
 
-Ho 5. SpriteBoss
+5. SpriteBoss
 5.1 王放招前會變紅(身體變紅 or 旁邊有紅色的氣(圖片,動畫) )
-5.2 王會放招，有技能cd
 5.3 王會轉向(隨著英雄所在位置放招)
 5.4 
 
-Xu 6. ObjectSkill
-6.1 extend a new skill
+6. ObjectSkill
