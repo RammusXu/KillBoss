@@ -53,6 +53,10 @@ public abstract class Sprite {
 		return _height;
 	}
 
+	public void set_direction(boolean direction) {
+		_direction = direction;
+	}
+
 	public boolean get_direction() {
 		return _direction;
 	}
@@ -139,7 +143,8 @@ public abstract class Sprite {
 	 * @param rows
 	 *            This bitmap contain how many rows.
 	 */
-	public void setBitmap(Bitmap bitmap,Bitmap bitmapMirror, int columns, int rows) {
+	public void setBitmap(Bitmap bitmap, Bitmap bitmapMirror, int columns,
+			int rows) {
 		_bitmap = bitmap;
 		_bitmapMirror = bitmapMirror;
 		_width = bitmap.getWidth() / columns;

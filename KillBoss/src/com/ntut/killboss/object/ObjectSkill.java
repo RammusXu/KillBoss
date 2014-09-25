@@ -24,12 +24,16 @@ public class ObjectSkill {
 	protected int _x;
 	protected int _y;
 	protected int _damage = 1;
-	protected int _distance = 500;
+	private static final int INITIAL_DISTANCE = 500;
+	protected int _distance = INITIAL_DISTANCE;
 	protected int _speed = 10;
 	protected boolean _direction = true;
 
+	public void set_direction(boolean _direction) {
+		this._direction = _direction;
+	}
+
 	private Paint paint = new Paint();
-	private int _resID;
 
 	public ObjectSkill(Context context, List<ObjectSkill> objectSkills,
 			float x, float y, boolean direction) {
@@ -38,18 +42,13 @@ public class ObjectSkill {
 
 	}
 
+	protected Context _context;
+
 	public ObjectSkill(Context context, List<ObjectSkill> objectSkills,
 			Integer resID, float x, float y, boolean direction) {
-		_resID = resID;
+		_context = context;
 
-		bmp = FunctionUtilities.createScaleBitmap(context.getResources(),
-				_resID, GameView._screenSize.x / 10,
-				GameView._screenSize.y / 10);
-		bmpMirror = FunctionUtilities.mirrorBitmap2(bmp, bmp.getWidth(),
-				bmp.getHeight());
-
-		_width = bmp.getWidth();
-		_height = bmp.getHeight();
+		changeBitmap(resID);
 
 		_x = (int) Math.min(Math.max(x - bmp.getWidth() / 2, 0),
 				GameView._screenSize.x - bmp.getWidth());
@@ -72,11 +71,9 @@ public class ObjectSkill {
 			_distance -= _speed;
 		}
 	}
-	
-
 
 	protected boolean checkYOutOfBound() {
-		if (_y > GameView._screenSize.y - Constant.SPACE_TO_BOTTOM
+		if (_y > GameView._screenSize.y - GameView._bottomSpace
 				- bmp.getHeight()) {
 			return true;
 		}
@@ -95,10 +92,9 @@ public class ObjectSkill {
 	}
 
 	public void hitSprite(Sprite sprite, GameView gameView) {
-		if (isCollsionWithRect(_x, _y, bmp.getWidth(), bmp.getHeight(),
+		if (isCollsionWithRect2(_x, _y, bmp.getWidth(), bmp.getHeight(),
 				sprite.get_x(), sprite.get_y(), sprite.get_width(),
 				sprite.get_height())) {
-			_objectSkills.remove(this);
 			sprite.reduceHP(_damage);
 			if (sprite.get_x() > _x) {
 				sprite.knockOut(20, 0);
@@ -108,6 +104,8 @@ public class ObjectSkill {
 			GameView._animationReduceHP.add(new AnimationReduceHP(gameView,
 					sprite.get_x() + (sprite.get_width() / 2), sprite.get_y()
 							+ (sprite.get_height() / 3), -_damage));
+
+			_objectSkills.remove(this);
 		}
 	}
 
@@ -129,4 +127,40 @@ public class ObjectSkill {
 		return true;
 	}
 
+	public boolean isCollsionWithRect2(int x1, int y1, int w1, int h1, int x2,
+			int y2, int w2, int h2) {
+
+		if (x1 + w1 / 2 > x2 && x1 + w1 / 2 < x2 + w2 && y1 + h1 / 2 > y2
+				&& y1 + h1 / 2 < y2 + h2) {
+			return true;
+
+		}
+		return false;
+	}
+
+	protected void changeBitmap(Integer resID) {
+		bmp = FunctionUtilities
+				.createScaleBitmap(_context.getResources(), resID,
+						GameView._screenSize.x / 10,
+						GameView._screenSize.y / 10);
+		bmpMirror = FunctionUtilities.mirrorBitmap2(bmp, bmp.getWidth(),
+				bmp.getHeight());
+
+		_width = bmp.getWidth();
+		_height = bmp.getHeight();
+	}
+
+	public void activeObject(int x, int y, boolean direction) {
+		_x = x;
+		_y = y;
+		_distance = INITIAL_DISTANCE;
+		_direction = direction;
+		_objectSkills.add(this);
+	}
+
+	public void activeObject() {
+		_x = FunctionUtilities.getRandom(GameView._screenSize.x);
+		_y = 0;
+		_objectSkills.add(this);
+	}
 }

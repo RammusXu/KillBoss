@@ -1,8 +1,5 @@
 package com.ntut.killboss.sprite;
 
-import java.util.List;
-
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;

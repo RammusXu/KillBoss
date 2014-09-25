@@ -11,12 +11,17 @@ import com.ntut.killboss.core.GameView;
 import com.ntut.killboss.menu.StageFragment;
 import com.ntut.killboss.object.ObjectSkill;
 import com.ntut.killboss.object.ObjectSkill2;
+import com.ntut.killboss.object.ObjectSkill3;
+import com.ntut.killboss.object.ObjectSkillShortExist;
 
 public class SpriteBoss extends Sprite {
 	private static final String TAG = "SpriteBoss";
 
-	private int skillSpeed = 40;
+	// If too small, will cause objectSkill speed up.
+	private static final int SKILL_RELEASE_SPEED = 100;
 	private int skillReleaseFlag = 0;
+
+	ObjectSkill temp, temp1, temp2, temp3;
 
 	public SpriteBoss(Context context, GameView gameView, int bossID) {
 		_context = context;
@@ -31,57 +36,30 @@ public class SpriteBoss extends Sprite {
 		_x = GameView._screenSize.x * 4 / 5;
 		_y = GameView._screenSize.y - _height - GameView._screenSize.y / 6;
 
+		temp = new ObjectSkill(_context, GameView._objectSkillsBoss, _x, _y,
+				_direction);
+		temp1 = new ObjectSkill2(_context, GameView._objectSkillsBoss);
+		temp2 = new ObjectSkill2(_context, GameView._objectSkillsBoss);
+		temp3 = new ObjectSkill2(_context, GameView._objectSkillsBoss);
+
 	}
 
-	private boolean dirFlag = true;
-
 	public void useSkill() {
-		skillReleaseFlag = (skillReleaseFlag + 1) % skillSpeed;
+		skillReleaseFlag = (skillReleaseFlag + 1) % SKILL_RELEASE_SPEED;
 		if (skillReleaseFlag == 0) {
-			ObjectSkill temp, temp1, temp2;
-			dirFlag = !dirFlag;
-			if (dirFlag) {
 
-				if (FunctionUtilities.getRandom(2) == 0) {
+			skillList();
+		}
+	}
 
-					temp = new ObjectSkill(_context,
-							GameView._objectSkillsBoss, _x + (_width), _y
-									+ (_height * 1 / 2), _direction);
-					GameView._objectSkillsBoss.add(temp);
-				} else {
+	private void skillList() {
+		if (FunctionUtilities.getRandom(2) == 0) {
+			temp.activeObject(_x, _y, _direction);
+		} else {
 
-					temp = new ObjectSkill2(_context,
-							GameView._objectSkillsBoss);
-					temp1 = new ObjectSkill2(_context,
-							GameView._objectSkillsBoss);
-					temp2 = new ObjectSkill2(_context,
-							GameView._objectSkillsBoss);
-					GameView._objectSkillsBoss.add(temp);
-					GameView._objectSkillsBoss.add(temp1);
-					GameView._objectSkillsBoss.add(temp2);
-				}
-
-			} else {
-				if (FunctionUtilities.getRandom(1) == 0) {
-
-					temp = new ObjectSkill(_context,
-							GameView._objectSkillsBoss, _x + (_width / 2), _y
-									+ (_height * 3 / 4), _direction);
-					GameView._objectSkillsBoss.add(temp);
-				} else {
-					temp = new ObjectSkill2(_context,
-							GameView._objectSkillsBoss);
-					temp1 = new ObjectSkill2(_context,
-							GameView._objectSkillsBoss);
-					temp2 = new ObjectSkill2(_context,
-							GameView._objectSkillsBoss);
-					GameView._objectSkillsBoss.add(temp);
-					GameView._objectSkillsBoss.add(temp1);
-					GameView._objectSkillsBoss.add(temp2);
-				}
-			}
-			Log.d("DEBUG", "_objectSkillsBoss.size()"
-					+ GameView._objectSkillsBoss.size());
+			temp1.activeObject();
+			temp2.activeObject();
+			temp3.activeObject();
 		}
 	}
 
@@ -110,16 +88,17 @@ public class SpriteBoss extends Sprite {
 				moveToRandomXFlag = true;
 
 				_status = SprtieStatus.Normal;
-				_standCycle = 60;
+				_standCycleFlag = 60;
 			}
 		}
 	}
 
-	private int _standCycle = 60;
+	private static final int STAND_CYCLE = 60;
+	private int _standCycleFlag = 0;
 
 	private void stand() {
-		_standCycle--;
-		if (_standCycle < 1) {
+		_standCycleFlag = (_standCycleFlag + 1) % STAND_CYCLE;
+		if (_standCycleFlag == 0) {
 			_status = SprtieStatus.Run;
 		}
 	}
