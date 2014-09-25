@@ -1,6 +1,4 @@
 
-3. GameView Problems
-3.3 Button have CD(cool down) time and effect.
 
 4. SpriteHero Problems
 4.2 Animations.
@@ -12,3 +10,7 @@
 5.4 
 
 6. ObjectSkill
+
+
+7. StartGameActivity
+7.1 按了技能的button後，要有cd時間,圖片/enable
