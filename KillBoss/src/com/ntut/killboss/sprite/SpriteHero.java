@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.ntut.killboss.core.GameView;
+import com.ntut.killboss.core.StartGameActivity;
 import com.ntut.killboss.object.ObjectSkill;
 
 public class SpriteHero extends Sprite {
@@ -540,7 +541,7 @@ public class SpriteHero extends Sprite {
 	}
 
 	private Rect src = new Rect();
-
+ 
 	@Override
 	public void onDraw(Canvas canvas) {
 
