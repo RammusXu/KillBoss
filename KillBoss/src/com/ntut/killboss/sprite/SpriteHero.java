@@ -31,6 +31,76 @@ public class SpriteHero extends Sprite {
 		_y = GameView._screenSize.y - _height - GameView._screenSize.y / 6;
 
 	}
+	
+	public void shutDown(){
+		if (_direction) {
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 0;
+					currentFrameHeight = 4;
+				}
+			}, 50);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 1;
+					currentFrameHeight = 4;
+				}
+			}, 300);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 9;
+					currentFrameHeight = 2;
+				}
+			}, 500);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 9;
+					currentFrameHeight = 3;
+				}
+			}, 750);
+		} else {
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 9;
+					currentFrameHeight = 4;
+				}
+			}, 50);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 8;
+					currentFrameHeight = 4;
+				}
+			}, 300);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 0;
+					currentFrameHeight = 2;
+				}
+			}, 500);
+			new Handler().postDelayed(new Runnable() {
+
+				@Override
+				public void run() { // TODO Auto-generated method stub
+					currentFrameWidth = 0;
+					currentFrameHeight = 3;
+				}
+			}, 750);
+		}
+	}
 
 	public void resetImage() {
 		if (_direction) {
