@@ -133,16 +133,6 @@ public class GameView extends SurfaceView {
 
 	private void resetAllSprites() {
 		sprites = new ArrayList<Sprite3x4>();
-		/*
-		 * sprites.add(new Sprite3x4(GameView.this, FunctionUtilities
-		 * .createBitmap(getResources(), R.drawable.sprite))); sprites.add(new
-		 * Sprite3x4(GameView.this, FunctionUtilities
-		 * .createBitmap(getResources(), R.drawable.sprite2))); sprites.add(new
-		 * Sprite3x4(GameView.this, FunctionUtilities
-		 * .createBitmap(getResources(), R.drawable.sprite3))); sprites.add(new
-		 * Sprite3x4(GameView.this, FunctionUtilities
-		 * .createBitmap(getResources(), R.drawable.sprite4)));
-		 */
 	}
 
 	@Override
@@ -181,6 +171,7 @@ public class GameView extends SurfaceView {
 			_gameResult.onDraw(canvas, true);
 		}
 		if(_hero.checkSpriteDie()) {
+			_hero.shutDown();
 			_gameResult.onDraw(canvas, false);
 		}
 
