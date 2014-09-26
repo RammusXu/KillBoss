@@ -39,9 +39,11 @@ public class EquipmentFragment extends Fragment {
 	private int armorID = 0;
 
 	private void initAdapter() {
-		weaponAdapter = new ImageAdapter(getActivity(), Constant.weaponIDs);
+		weaponAdapter = new ImageAdapter(getActivity(), Constant.weaponIDs,
+				Constant.temp1);
 		weaponID = EquipmentSetting._weapon.get_weaponID();
-		armorAdapter = new ImageAdapter(getActivity(), Constant.armorIDs);
+		armorAdapter = new ImageAdapter(getActivity(), Constant.armorIDs,
+				Constant.temp2);
 		armorID = EquipmentSetting._armor.get_armorID();
 	}
 
@@ -56,13 +58,19 @@ public class EquipmentFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 				ImageAdapter adapter = (ImageAdapter) gridView.getAdapter();
-				adapter.setSeclection(position);
-				adapter.notifyDataSetChanged();
 
 				if (adapterFlag == 0) {
-					weaponID = position;
+					if (MenuActivity.weaponEnable[position]) {
+						weaponID = position;
+						adapter.setSeclection(position);
+						adapter.notifyDataSetChanged();
+					}
 				} else {
-					armorID = position;
+					if (MenuActivity.armorEnable[position]) {
+						armorID = position;
+						adapter.setSeclection(position);
+						adapter.notifyDataSetChanged();
+					}
 				}
 
 				Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT)

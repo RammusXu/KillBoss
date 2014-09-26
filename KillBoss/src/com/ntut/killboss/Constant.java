@@ -1,6 +1,5 @@
 package com.ntut.killboss;
 
-
 public class Constant {
 
 	public static final int SPACE_TO_BOTTOM = 300;
@@ -22,5 +21,15 @@ public class Constant {
 			R.drawable.boss222, R.drawable.boss222, };
 
 	public static final Integer[] skillDrawbleResourceIDs = {
-			R.drawable.skilla, R.drawable.dropfire, R.drawable.skillc, R.drawable.skill_fireblast };
+			R.drawable.skilla, R.drawable.dropfire, R.drawable.skillc,
+			R.drawable.skill_fireblast };
+
+	public static final Boolean[] temp1 = { true, false, false, false, false,
+			false, false, false, false, false, false, false };
+
+	public static final Boolean[] temp2 = { true, false, false, false, false,
+			false, false, false, false, false, false, false };
+
+	public static final Boolean[] temp3 = { true, false, false, false, false,
+			false };
 }

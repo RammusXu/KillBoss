@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.ntut.killboss.Constant;
 import com.ntut.killboss.R;
 import com.ntut.killboss.setting.EquipmentSetting;
 
@@ -23,11 +24,17 @@ public class MenuActivity extends Activity {
 	private AchievementFragment AF;
 
 	private Button ib1, ib2, ib3;
+	
+	public static Boolean[] bossEnable, weaponEnable, armorEnable;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu_activity);
+		bossEnable = Constant.temp3;
+		weaponEnable = Constant.temp1;
+		armorEnable = Constant.temp2;
+		
 		init();
 
 		// Perform Click
