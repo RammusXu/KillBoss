@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.ntut.killboss.Constant;
 import com.ntut.killboss.R;
-import com.ntut.killboss.setting.EquipmentSetting;
+import com.ntut.killboss.setting.GameSetting;
 import com.ntut.killboss.setting.ImageAdapter;
 
 public class EquipmentFragment extends Fragment {
@@ -40,11 +40,12 @@ public class EquipmentFragment extends Fragment {
 
 	private void initAdapter() {
 		weaponAdapter = new ImageAdapter(getActivity(), Constant.weaponIDs,
-				Constant.temp1);
-		weaponID = EquipmentSetting._weapon.get_weaponID();
+				GameSetting._weaponEnable);
+		weaponID = GameSetting._weapon.get_weaponID();
 		armorAdapter = new ImageAdapter(getActivity(), Constant.armorIDs,
-				Constant.temp2);
-		armorID = EquipmentSetting._armor.get_armorID();
+				GameSetting._armorEnable);
+		armorID = GameSetting._armor.get_armorID();
+		adapterFlag = 0;
 	}
 
 	private void findView() {
@@ -60,13 +61,13 @@ public class EquipmentFragment extends Fragment {
 				ImageAdapter adapter = (ImageAdapter) gridView.getAdapter();
 
 				if (adapterFlag == 0) {
-					if (MenuActivity.weaponEnable[position]) {
+					if (GameSetting._weaponEnable[position]) {
 						weaponID = position;
 						adapter.setSeclection(position);
 						adapter.notifyDataSetChanged();
 					}
 				} else {
-					if (MenuActivity.armorEnable[position]) {
+					if (GameSetting._armorEnable[position]) {
 						armorID = position;
 						adapter.setSeclection(position);
 						adapter.notifyDataSetChanged();
@@ -122,11 +123,11 @@ public class EquipmentFragment extends Fragment {
 				if (adapterFlag == 0) {
 					weaponAdapter.setCorrectEquip(weaponID);
 					weaponAdapter.notifyDataSetChanged();
-					EquipmentSetting._weapon.changeWeapon(weaponID);
+					GameSetting._weapon.changeWeapon(weaponID);
 				} else {
 					armorAdapter.setCorrectEquip(armorID);
 					armorAdapter.notifyDataSetChanged();
-					EquipmentSetting._armor.changeArmor(armorID);
+					GameSetting._armor.changeArmor(armorID);
 				}
 
 			}

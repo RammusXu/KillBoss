@@ -6,16 +6,19 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.ntut.killboss.Constant;
 import com.ntut.killboss.R;
-import com.ntut.killboss.setting.EquipmentSetting;
+import com.ntut.killboss.setting.GameSetting;
 
 public class MenuActivity extends Activity {
-	public static EquipmentSetting _equipmentSetting;
+	private static final String TAG = "MenuActivity";
+
+	public static GameSetting _gameSetting;
 
 	// Fragments
 	private int _fragmentFlag = 1;
@@ -25,15 +28,11 @@ public class MenuActivity extends Activity {
 
 	private Button ib1, ib2, ib3;
 	
-	public static Boolean[] bossEnable, weaponEnable, armorEnable;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu_activity);
-		bossEnable = Constant.temp3;
-		weaponEnable = Constant.temp1;
-		armorEnable = Constant.temp2;
 		
 		init();
 
@@ -44,7 +43,7 @@ public class MenuActivity extends Activity {
 	private void init() {
 
 		// CLASS
-		_equipmentSetting = new EquipmentSetting();
+		_gameSetting = new GameSetting();
 
 		SF = new StageFragment();
 		WF = new EquipmentFragment();
@@ -124,17 +123,19 @@ public class MenuActivity extends Activity {
 
 	@Override
 	public void onResume() {
-
+		Log.d(TAG, "onResume");
 		// Load Data
-		_equipmentSetting.loadSetting(getApplicationContext());
+		_gameSetting.loadSetting(getApplicationContext());
+		SF.updateAdapter();
 
 		super.onResume();
 	}
 
 	@Override
 	public void onPause() {
+		Log.d(TAG, "onPause");
 		// Save Data
-		_equipmentSetting.saveSetting(getApplicationContext());
+		_gameSetting.saveSetting(getApplicationContext());
 
 		super.onPause();
 	}
