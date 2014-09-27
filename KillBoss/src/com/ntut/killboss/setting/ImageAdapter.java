@@ -16,10 +16,12 @@ public class ImageAdapter extends BaseAdapter {
 
 	// references to our images
 	private Integer[] mResIDArray;
+	private Boolean[] mEnableArray;
 
-	public ImageAdapter(Context c, Integer[] resIDArray) {
+	public ImageAdapter(Context c, Integer[] resIDArray, Boolean[] enableArray) {
 		mContext = c;
 		mResIDArray = resIDArray;
+		mEnableArray = enableArray;
 	}
 
 	@Override
@@ -41,7 +43,7 @@ public class ImageAdapter extends BaseAdapter {
 	public void setSeclection(int position) {
 		clickTemp = position;
 	}
-	
+
 	public void setCorrectEquip(int position) {
 		correctEquip = position;
 	}
@@ -69,8 +71,11 @@ public class ImageAdapter extends BaseAdapter {
 		}
 
 		imageView.setImageResource(mResIDArray[position]);
-		// imageView.setBackgroundResource(R.drawable.button_selector);
+		
+		if(!mEnableArray[position]){
+			imageView.setAlpha(0.5f);
+			imageView.setSelected(false);
+		}
 		return imageView;
 	}
-
 }

@@ -34,16 +34,20 @@ public class StageFragment extends Fragment {
 		GridView gridView = (GridView) v
 				.findViewById(R.id.stage_fragment_gridView1);
 
-		bossAdapter = new ImageAdapter(getActivity(), Constant.bossIDs);
+		bossAdapter = new ImageAdapter(getActivity(), Constant.bossIDs,
+				MenuActivity.bossEnable);
 		bossAdapter.setCorrectEquip(bossInt);
 		gridView.setAdapter(bossAdapter);
 
 		gridView.setOnItemClickListener(new GridView.OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
-				bossInt = position;
-				bossAdapter.setCorrectEquip(bossInt);
-				bossAdapter.notifyDataSetChanged();
+				if (MenuActivity.bossEnable[position]) {
+
+					bossInt = position;
+					bossAdapter.setCorrectEquip(bossInt);
+					bossAdapter.notifyDataSetChanged();
+				}
 				Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT)
 						.show();
 			}

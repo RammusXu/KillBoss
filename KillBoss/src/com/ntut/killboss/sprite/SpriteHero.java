@@ -41,7 +41,7 @@ public class SpriteHero extends Sprite {
 					currentFrameWidth = 0;
 					currentFrameHeight = 4;
 				}
-			}, 50);
+			}, 100);
 			new Handler().postDelayed(new Runnable() {
 
 				@Override
@@ -49,7 +49,7 @@ public class SpriteHero extends Sprite {
 					currentFrameWidth = 1;
 					currentFrameHeight = 4;
 				}
-			}, 300);
+			}, 500);
 			new Handler().postDelayed(new Runnable() {
 
 				@Override
@@ -57,7 +57,7 @@ public class SpriteHero extends Sprite {
 					currentFrameWidth = 9;
 					currentFrameHeight = 2;
 				}
-			}, 500);
+			}, 700);
 			new Handler().postDelayed(new Runnable() {
 
 				@Override
@@ -65,7 +65,7 @@ public class SpriteHero extends Sprite {
 					currentFrameWidth = 9;
 					currentFrameHeight = 3;
 				}
-			}, 750);
+			}, 1500);
 		} else {
 			new Handler().postDelayed(new Runnable() {
 
@@ -74,7 +74,7 @@ public class SpriteHero extends Sprite {
 					currentFrameWidth = 9;
 					currentFrameHeight = 4;
 				}
-			}, 50);
+			}, 100);
 			new Handler().postDelayed(new Runnable() {
 
 				@Override
@@ -82,7 +82,7 @@ public class SpriteHero extends Sprite {
 					currentFrameWidth = 8;
 					currentFrameHeight = 4;
 				}
-			}, 300);
+			}, 500);
 			new Handler().postDelayed(new Runnable() {
 
 				@Override
@@ -90,7 +90,7 @@ public class SpriteHero extends Sprite {
 					currentFrameWidth = 0;
 					currentFrameHeight = 2;
 				}
-			}, 500);
+			}, 700);
 			new Handler().postDelayed(new Runnable() {
 
 				@Override
@@ -98,7 +98,7 @@ public class SpriteHero extends Sprite {
 					currentFrameWidth = 0;
 					currentFrameHeight = 3;
 				}
-			}, 750);
+			}, 1500);
 		}
 	}
 

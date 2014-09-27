@@ -43,8 +43,11 @@ public class SpriteBoss extends Sprite {
 		temp1 = new ObjectSkill2(_context, GameView._objectSkillsBoss);
 		temp2 = new ObjectSkill2(_context, GameView._objectSkillsBoss);
 		temp3 = new ObjectSkill2(_context, GameView._objectSkillsBoss);
+		
+//		_animationDie = new DrawBitmapFactory(bitmap, x, y, columns, rows, frameNum);
 
 	}
+	DrawBitmapFactory _animationDie;
 
 	public void useSkill() {
 		skillReleaseFlag = (skillReleaseFlag + 1) % SKILL_RELEASE_SPEED;
@@ -117,10 +120,15 @@ public class SpriteBoss extends Sprite {
 
 		dst.set(_x, _y, _x + _width, _y + _height);
 
-		if (_direction) {
-			canvas.drawBitmap(_bitmapMirror, null, dst, null);
+		if (_hp > 1) {
+
+			if (_direction) {
+				canvas.drawBitmap(_bitmapMirror, null, dst, null);
+			} else {
+				canvas.drawBitmap(_bitmap, null, dst, null);
+			}
 		} else {
-			canvas.drawBitmap(_bitmap, null, dst, null);
+
 		}
 
 		drawHP(canvas);

@@ -30,14 +30,16 @@ import com.ntut.killboss.sprite.SpriteGameResult;
 import com.ntut.killboss.sprite.SpriteHero;
 
 public class GameView extends SurfaceView {
-	public interface OnEndOfGameInterface {  
-	    public void onEndOfGame();        
+	public interface OnEndOfGameInterface {
+		public void onEndOfGame();
 	}
-	protected OnEndOfGameInterface mOnEndOfGame ; //callback interface   
-    public void setOnEndOfGame(OnEndOfGameInterface xOnEndOfGame){  
-        mOnEndOfGame = xOnEndOfGame;  
-    }  
-	
+
+	protected OnEndOfGameInterface mOnEndOfGame; // callback interface
+
+	public void setOnEndOfGame(OnEndOfGameInterface xOnEndOfGame) {
+		mOnEndOfGame = xOnEndOfGame;
+	}
+
 	private static final String TAG = "GameView";
 	private SurfaceHolder _holder;
 	private GameThread _gameThread;
@@ -56,8 +58,6 @@ public class GameView extends SurfaceView {
 	// Global Variables
 	public static Point _screenSize;
 	public static int _bottomSpace;
-	
-	
 
 	public GameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -73,7 +73,7 @@ public class GameView extends SurfaceView {
 				FunctionUtilities.createBitmap(getResources(),
 						R.drawable.background1));
 		_gameResult = new SpriteGameResult(context, GameView.this);
-		
+
 		_boss = new SpriteBoss(context, GameView.this, StageFragment.bossInt);
 		_hero = new SpriteHero(context, GameView.this,
 				FunctionUtilities.createBitmap(getResources(),
@@ -123,8 +123,8 @@ public class GameView extends SurfaceView {
 	public boolean onTouchEvent(MotionEvent event) {
 
 		synchronized (getHolder()) {
-			if(_gameResult.isTouched(event.getX(), event.getY())){
-				((Activity)_context).finish();
+			if (_gameResult.isTouched(event.getX(), event.getY())) {
+				((Activity) _context).finish();
 			}
 		}
 
@@ -145,11 +145,11 @@ public class GameView extends SurfaceView {
 		}
 
 		_background.onDraw(canvas);
-//		if(_boss.checkSpriteDie()) {
-//		} else {
-//			((Activity)getContext()).finish();
-//		}
-		
+		// if(_boss.checkSpriteDie()) {
+		// } else {
+		// ((Activity)getContext()).finish();
+		// }
+
 		_boss.onDraw(canvas);
 		_hero.onDraw(canvas);
 
@@ -165,12 +165,14 @@ public class GameView extends SurfaceView {
 		for (int i = _objectSkillsBoss.size() - 1; i >= 0; i--) {
 			_objectSkillsBoss.get(i).onDraw(canvas);
 			_objectSkillsBoss.get(i).hitSprite(_hero, GameView.this);
+			//	TODO try it hero hurt
+			_hero.hurt();
 		}
-		
-		if(_boss.checkSpriteDie()){
+
+		if (_boss.checkSpriteDie()) {
 			_gameResult.onDraw(canvas, true);
 		}
-		if(_hero.checkSpriteDie()) {
+		if (_hero.checkSpriteDie()) {
 			_hero.shutDown();
 			_gameResult.onDraw(canvas, false);
 		}
@@ -223,7 +225,7 @@ public class GameView extends SurfaceView {
 	}
 
 	public void shotSkillB(int skillID) {
-		new SoundEffect(getContext(), R.raw.jump);
+		new SoundEffect(getContext(), R.raw.hero_skill_2);
 
 		new Handler().postDelayed(new Runnable() {
 			@Override
@@ -246,8 +248,8 @@ public class GameView extends SurfaceView {
 				_hero.skillBshot();
 
 				ObjectSkill temp = new ObjectSkill3(getContext(),
-						GameView._objectSkillsHero, _hero.get_x(), _hero
-								.get_y(), _hero.get_direction());
+						GameView._objectSkillsHero, _hero.get_x()+_hero.get_width()/2, _hero
+								.get_y()+_hero.get_height()/2, _hero.get_direction());
 
 				GameView._objectSkillsHero.add(temp);
 			}
@@ -297,6 +299,5 @@ public class GameView extends SurfaceView {
 			}
 		}
 	}
-	
 
 }
