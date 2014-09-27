@@ -24,12 +24,12 @@ public class Constant {
 			R.drawable.skilla, R.drawable.dropfire, R.drawable.skillc,
 			R.drawable.skill_fireblast };
 
-	public static final Boolean[] temp1 = { true, false, false, false, false,
+	public static final Boolean[] temp1 = { true, true, false, false, false,
 			false, false, false, false, false, false, false };
 
-	public static final Boolean[] temp2 = { true, false, false, false, false,
+	public static final Boolean[] temp2 = { true, true, false, false, false,
 			false, false, false, false, false, false, false };
 
-	public static final Boolean[] temp3 = { true, false, false, false, false,
+	public static final Boolean[] tempBOss = { true, true, false, false, false,
 			false };
 }

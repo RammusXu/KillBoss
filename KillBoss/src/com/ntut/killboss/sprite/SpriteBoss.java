@@ -65,6 +65,7 @@ public class SpriteBoss extends Sprite {
 			temp1.activeObject();
 			temp2.activeObject();
 			temp3.activeObject();
+			//temp1.activeObject();
 		}
 	}
 

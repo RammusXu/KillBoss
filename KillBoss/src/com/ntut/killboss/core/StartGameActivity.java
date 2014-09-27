@@ -18,7 +18,7 @@ import android.widget.ImageButton;
 
 import com.ntut.killboss.R;
 import com.ntut.killboss.core.GameView.OnEndOfGameInterface;
-import com.ntut.killboss.setting.EquipmentSetting;
+import com.ntut.killboss.setting.GameSetting;
 
 public class StartGameActivity extends Activity implements OnEndOfGameInterface {
 	// Constant
@@ -145,7 +145,7 @@ public class StartGameActivity extends Activity implements OnEndOfGameInterface 
 		});
 
 		ibSkillA = (ImageButton) findViewById(R.id.game_view_skill_a);
-		ibSkillA.setImageResource(EquipmentSetting._weapon.get_bitmapSkillA());
+		ibSkillA.setImageResource(GameSetting._weapon.get_bitmapSkillA());
 		ibSkillA.setOnClickListener(new ImageButton.OnClickListener() {
 
 			@Override
@@ -164,7 +164,7 @@ public class StartGameActivity extends Activity implements OnEndOfGameInterface 
 		});
 
 		ImageButton ibSkillB = (ImageButton) findViewById(R.id.game_view_skill_b);
-		ibSkillB.setImageResource(EquipmentSetting._weapon.get_bitmapSkillB());
+		ibSkillB.setImageResource(GameSetting._weapon.get_bitmapSkillB());
 		ibSkillB.setOnClickListener(new ImageButton.OnClickListener() {
 
 			@Override

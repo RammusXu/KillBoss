@@ -61,7 +61,7 @@ public class MySaveData {
 		}
 	}
 
-	public Object readObject(String filename) {
+	public Object loadObject(String filename) {
 		Object returnlist = null;
 		try {
 			FileInputStream inputStream = mContext.openFileInput(filename);

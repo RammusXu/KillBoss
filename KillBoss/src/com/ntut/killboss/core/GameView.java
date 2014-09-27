@@ -16,12 +16,14 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.ntut.killboss.Constant;
 import com.ntut.killboss.FunctionUtilities;
 import com.ntut.killboss.R;
 import com.ntut.killboss.SoundEffect;
 import com.ntut.killboss.menu.StageFragment;
 import com.ntut.killboss.object.ObjectSkill;
 import com.ntut.killboss.object.ObjectSkill3;
+import com.ntut.killboss.setting.GameSetting;
 import com.ntut.killboss.sprite.AnimationReduceHP;
 import com.ntut.killboss.sprite.Sprite3x4;
 import com.ntut.killboss.sprite.SpriteBackground;
@@ -124,7 +126,17 @@ public class GameView extends SurfaceView {
 
 		synchronized (getHolder()) {
 			if (_gameResult.isTouched(event.getX(), event.getY())) {
-				((Activity) _context).finish();
+
+				if (_boss.checkSpriteDie() || _hero.checkSpriteDie()) {
+					if (_gameResult.isTouched(event.getX(), event.getY())) {
+						if (_boss.checkSpriteDie()
+								&& (StageFragment.bossInt < Constant.bossIDs.length - 1)) {
+							GameSetting._bossEnable[StageFragment.bossInt + 1] = true;
+							GameSetting.saveSetting(_context);
+						}
+						((Activity) _context).finish();
+					}
+				}
 			}
 		}
 
@@ -165,7 +177,7 @@ public class GameView extends SurfaceView {
 		for (int i = _objectSkillsBoss.size() - 1; i >= 0; i--) {
 			_objectSkillsBoss.get(i).onDraw(canvas);
 			_objectSkillsBoss.get(i).hitSprite(_hero, GameView.this);
-			//	TODO try it hero hurt
+			// TODO try it hero hurt
 			_hero.hurt();
 		}
 
@@ -248,8 +260,9 @@ public class GameView extends SurfaceView {
 				_hero.skillBshot();
 
 				ObjectSkill temp = new ObjectSkill3(getContext(),
-						GameView._objectSkillsHero, _hero.get_x()+_hero.get_width()/2, _hero
-								.get_y()+_hero.get_height()/2, _hero.get_direction());
+						GameView._objectSkillsHero, _hero.get_x()
+								+ _hero.get_width() / 2, _hero.get_y()
+								+ _hero.get_height() / 2, _hero.get_direction());
 
 				GameView._objectSkillsHero.add(temp);
 			}

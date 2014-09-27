@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.ntut.killboss.Constant;
 import com.ntut.killboss.R;
 import com.ntut.killboss.core.StartGameActivity;
+import com.ntut.killboss.setting.GameSetting;
 import com.ntut.killboss.setting.ImageAdapter;
 
 public class StageFragment extends Fragment {
@@ -28,25 +29,26 @@ public class StageFragment extends Fragment {
 		return v;
 	}
 
-	ImageAdapter bossAdapter;
+	private ImageAdapter _bossAdapter;
+	private GridView _gridView;
 
 	private void findView(View v) {
-		GridView gridView = (GridView) v
+		_gridView = (GridView) v
 				.findViewById(R.id.stage_fragment_gridView1);
 
-		bossAdapter = new ImageAdapter(getActivity(), Constant.bossIDs,
-				MenuActivity.bossEnable);
-		bossAdapter.setCorrectEquip(bossInt);
-		gridView.setAdapter(bossAdapter);
+		_bossAdapter = new ImageAdapter(getActivity(), Constant.bossIDs,
+				GameSetting._bossEnable);
+		_bossAdapter.setCorrectEquip(bossInt);
+		_gridView.setAdapter(_bossAdapter);
 
-		gridView.setOnItemClickListener(new GridView.OnItemClickListener() {
+		_gridView.setOnItemClickListener(new GridView.OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
-				if (MenuActivity.bossEnable[position]) {
+				if (GameSetting._bossEnable[position]) {
 
 					bossInt = position;
-					bossAdapter.setCorrectEquip(bossInt);
-					bossAdapter.notifyDataSetChanged();
+					_bossAdapter.setCorrectEquip(bossInt);
+					_bossAdapter.notifyDataSetChanged();
 				}
 				Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT)
 						.show();
@@ -65,5 +67,12 @@ public class StageFragment extends Fragment {
 
 			}
 		});
+	}
+	
+	public void updateAdapter(){
+		_bossAdapter = new ImageAdapter(getActivity(), Constant.bossIDs,
+				GameSetting._bossEnable);
+		_bossAdapter.setCorrectEquip(bossInt);
+		_gridView.setAdapter(_bossAdapter);
 	}
 }
