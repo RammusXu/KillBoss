@@ -178,7 +178,7 @@ public class GameView extends SurfaceView {
 			_objectSkillsBoss.get(i).onDraw(canvas);
 			_objectSkillsBoss.get(i).hitSprite(_hero, GameView.this);
 			// TODO try it hero hurt
-			_hero.hurt();
+//			_hero.hurt();
 		}
 
 		if (_boss.checkSpriteDie()) {
